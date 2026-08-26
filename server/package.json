@@ -1,0 +1,20 @@
+{
+  "name": "tu-conjunto-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "API segura de TuConjunto — plataforma de administración de copropiedades",
+  "main": "src/index.js",
+  "scripts": {
+    "seed": "node src/seed.js",
+    "create-admin": "node scripts/create-admin.js",
+    "start": "node src/index.js",
+    "start:https": "TLS_KEY=./tls/key.pem TLS_CERT=./tls/cert.pem node src/index.js",
+    "dev": "node --watch src/index.js",
+    "backup": "bash scripts/backup.sh",
+    "test:pse": "node scripts/prueba-e2e-pse.mjs"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.0.0",
+    "express": "^4.19.2"
+  }
+}

@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi portal · TuConjunto</title>
+  <meta name="description" content="Portal del residente de TuConjunto: paga tu cuota de administración con PSE, reserva zonas comunes, crea solicitudes PQRS y descarga documentos del Conjunto Residencial Altos del Bosque.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏢</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>if(localStorage.getItem("tc-theme")==="dark")document.documentElement.classList.add("dark");</script>
+  <link rel="stylesheet" href="../tailwind.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 font-sans text-slate-900 dark:text-slate-100 antialiased">
+
+  <header class="sticky top-0 z-40 border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur">
+    <nav class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8" aria-label="Navegación principal">
+      <input type="checkbox" id="menu-toggle" class="peer sr-only">
+      <div class="flex h-16 items-center justify-between gap-4">
+        <a href="#" class="flex shrink-0 items-center gap-2.5" aria-label="TuConjunto · ir al inicio">
+          <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-600" aria-hidden="true">
+            <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z"/></svg>
+          </span>
+          <span class="text-lg font-bold tracking-tight"><span class="text-slate-900 dark:text-slate-100">Tu</span><span class="text-brand-600">Conjunto</span></span>
+        </a>
+
+        <ul class="hidden items-center gap-1 text-sm font-medium md:flex">
+          <li><a href="#" aria-current="page" class="rounded-lg bg-brand-50 dark:bg-brand-500/10 px-3 py-2 text-brand-600 dark:text-brand-300">Inicio</a></li>
+          <li><a href="#pagos" class="rounded-lg px-3 py-2 text-slate-600 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100">Pagos</a></li>
+          <li><a href="#reservas" class="rounded-lg px-3 py-2 text-slate-600 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100">Reservas</a></li>
+          <li><a href="#soporte" class="rounded-lg px-3 py-2 text-slate-600 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100">Soporte</a></li>
+          <li><a href="#documentos" class="rounded-lg px-3 py-2 text-slate-600 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100">Documentos</a></li>
+        </ul>
+
+        <div class="flex items-center gap-1 sm:gap-2">
+          <a href="#" aria-label="Notificaciones: tienes 1 aviso nuevo" class="relative rounded-full p-2 text-slate-500 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-300">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/></svg>
+            <span class="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white dark:ring-slate-900"></span>
+          </a>
+          <button type="button" id="theme-toggle" aria-label="Cambiar tema" class="rounded-lg p-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition">
+            <svg class="h-5 w-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg>
+            <svg class="h-5 w-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/></svg>
+          </button>
+          <a href="#" id="perfil-link" class="flex items-center gap-2 rounded-full p-1 pr-1 transition hover:bg-slate-100 dark:hover:bg-slate-800 sm:pr-2.5" aria-label="Ver perfil de Ana María Gómez">
+            <span id="perfil-iniciales" class="flex h-8 w-8 items-center justify-center rounded-full bg-brand-100 dark:bg-brand-500/20 text-xs font-bold text-brand-700 dark:text-brand-300">AG</span>
+            <span id="perfil-nombre" class="hidden text-sm font-medium text-slate-700 dark:text-slate-300 sm:block">Ana María</span>
+          </a>
+          <label for="menu-toggle" class="inline-flex cursor-pointer rounded-lg p-2 text-slate-600 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 md:hidden" aria-label="Abrir menú de navegación">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+          </label>
+        </div>
+      </div>
+
+      <div class="hidden pb-4 peer-checked:block md:hidden md:peer-checked:hidden">
+        <ul class="space-y-1 pt-2 text-sm font-medium">
+          <li><a href="#" aria-current="page" class="block rounded-lg bg-brand-50 dark:bg-brand-500/10 px-3 py-2.5 text-brand-600 dark:text-brand-300">Inicio</a></li>
+          <li><a href="#pagos" class="block rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-300 transition hover:bg-slate-100 dark:hover:bg-slate-800">Pagos</a></li>
+          <li><a href="#reservas" class="block rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-300 transition hover:bg-slate-100 dark:hover:bg-slate-800">Reservas</a></li>
+          <li><a href="#soporte" class="block rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-300 transition hover:bg-slate-100 dark:hover:bg-slate-800">Soporte</a></li>
+          <li><a href="#documentos" class="block rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-300 transition hover:bg-slate-100 dark:hover:bg-slate-800">Documentos</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="mx-auto max-w-6xl space-y-10 px-4 py-6 sm:space-y-12 sm:px-6 sm:py-8 lg:px-8">
+
+    <p role="note" class="flex items-start gap-2.5 rounded-xl border border-sky-200 dark:border-sky-500/30 bg-sky-50 dark:bg-sky-500/10 px-4 py-3 text-xs text-sky-800 dark:text-sky-300 sm:text-sm">
+      <svg class="mt-0.5 h-4 w-4 shrink-0 text-sky-500 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12v-.008z"/></svg>
+      <span>Demo interactiva con datos ficticios.</span>
+    </p>
+
+    <section class="rounded-2xl border border-brand-100 dark:border-slate-800 bg-gradient-to-r from-brand-50 to-white dark:from-slate-900 dark:to-slate-900 p-6 sm:p-7" aria-labelledby="titulo-bienvenida">
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h1 id="titulo-bienvenida" class="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100 sm:text-3xl">Hola, Ana 👋</h1>
+          <p id="hero-unidad" class="mt-1.5 text-sm text-slate-600 dark:text-slate-400 sm:text-base">Torre 2 · Apto 502 · Conjunto Altos del Bosque</p>
+        </div>
+        <span class="inline-flex items-center gap-1.5 self-start rounded-full bg-emerald-50 dark:bg-emerald-500/10 px-3.5 py-1.5 text-sm font-medium text-emerald-700 dark:text-emerald-300 ring-1 ring-inset ring-emerald-200 dark:ring-emerald-500/30 sm:self-auto">
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Cuenta al día
+        </span>
+      </div>
+    </section>
+
+    <section id="pagos" class="scroll-mt-24" aria-labelledby="titulo-pagos">
+      <div>
+        <h2 id="titulo-pagos" class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-2xl">Estado de cuenta</h2>
+        <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Consulta tus cuotas y paga en línea con PSE.</p>
+      </div>
+      <div class="mt-5 grid gap-5 lg:grid-cols-3">
+
+        <article id="card-cuota" class="rounded-xl bg-white dark:bg-slate-900 p-6 shadow-sm dark:shadow-black/40 ring-2 ring-brand-500/30 lg:col-span-1">
+          <div class="flex items-start justify-between gap-2">
+            <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Cuota de administración · Agosto 2026</h3>
+            <span id="pill-pagado" class="hidden shrink-0 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-700 ring-1 ring-inset ring-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-300 dark:ring-emerald-500/30">Pagado el <span id="pill-pagado-fecha"></span></span>
+          </div>
+          <p class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100">$285.000<span class="ml-1 align-middle text-sm font-semibold text-slate-400 dark:text-slate-500">COP</span></p>
+          <dl class="mt-4 space-y-1.5 border-b border-dashed border-slate-200 dark:border-slate-800 pb-4 text-sm">
+            <div class="flex justify-between text-slate-600 dark:text-slate-400"><dt>Administración</dt><dd class="font-medium text-slate-800 dark:text-slate-100">$245.000</dd></div>
+            <div class="flex justify-between text-slate-600 dark:text-slate-400"><dt>Fondo reserva</dt><dd class="font-medium text-slate-800 dark:text-slate-100">$40.000</dd></div>
+          </dl>
+          <p class="mt-3 flex justify-between text-sm">
+            <span class="text-slate-500 dark:text-slate-400">Fecha límite</span>
+            <span class="font-medium text-amber-600 dark:text-amber-400">Vence el 5 de sep</span>
+          </p>
+          <button type="button" id="btn-pagar" class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"/></svg>
+            Pagar con PSE
+          </button>
+          <p class="mt-3 text-center text-xs text-slate-500 dark:text-slate-400">Débito automático disponible · <a href="#" class="font-semibold text-brand-600 dark:text-brand-300 transition hover:text-brand-700 dark:hover:text-brand-200 hover:underline">Activarlo</a></p>
+          <p class="mt-4 flex items-center justify-center gap-1.5 border-t border-slate-100 dark:border-slate-800 pt-4 text-[11px] font-medium text-slate-500 dark:text-slate-400">
+            <svg class="h-4 w-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+            Pago en línea seguro · PSE
+          </p>
+        </article>
+
+        <article class="card-lift rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm dark:shadow-black/40">
+          <div class="flex items-center justify-between gap-3">
+            <h3 class="text-sm font-semibold text-slate-900 dark:text-slate-100">Último pago</h3>
+            <span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 dark:bg-emerald-500/10 px-2.5 py-0.5 text-[11px] font-medium text-emerald-700 dark:text-emerald-300 ring-1 ring-inset ring-emerald-200 dark:ring-emerald-500/30">Pagado</span>
+          </div>
+          <p id="ultimo-periodo" class="mt-5 text-xs font-medium uppercase tracking-wider text-slate-400 dark:text-slate-500">Julio 2026</p>
+          <p class="mt-1 text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100">$285.000</p>
+          <p id="ultimo-detalle" class="mt-1 text-xs text-slate-500 dark:text-slate-400">Pagado el 31 jul con PSE</p>
+          <div class="mt-5 border-t border-dashed border-slate-200 dark:border-slate-800 pt-4">
+            <a href="#" class="inline-flex items-center gap-1.5 text-sm font-medium text-brand-600 dark:text-brand-300 transition hover:text-brand-700 dark:hover:text-brand-200 hover:underline">
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+              Descargar recibo
+            </a>
+          </div>
+        </article>
+
+        <article class="card-lift rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm dark:shadow-black/40">
+          <h3 class="text-sm font-semibold text-slate-900 dark:text-slate-100">Resumen anual 2026</h3>
+          <ul class="mt-5 space-y-4 text-sm">
+            <li>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-600 dark:text-slate-400">Cuotas pagadas</span>
+                <span class="font-semibold text-slate-900 dark:text-slate-100">8/8</span>
+              </div>
+              <div class="mt-2 h-1.5 rounded-full bg-slate-100 dark:bg-slate-800" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" aria-label="Progreso de cuotas pagadas en 2026">
+                <div class="h-full w-full rounded-full bg-brand-500"></div>
+              </div>
+              <p class="mt-1.5 text-xs text-slate-400 dark:text-slate-500">Enero a agosto · todo al día</p>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-5 w-5 shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span class="text-slate-700 dark:text-slate-300">Sin intereses de mora</span>
+            </li>
+            <li class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-4">
+              <span class="text-slate-600 dark:text-slate-400">Saldo a favor</span>
+              <span class="font-semibold text-slate-900 dark:text-slate-100">$0</span>
+            </li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="reservas" class="scroll-mt-24" aria-labelledby="titulo-reservas">
+      <div>
+        <h2 id="titulo-reservas" class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-2xl">Reservas de zonas comunes</h2>
+        <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Elige un espacio, revisa disponibilidad y agenda tu visita.</p>
+      </div>
+      <div class="mt-5 grid gap-5 lg:grid-cols-2">
+
+        <div class="grid gap-4 self-start sm:grid-cols-2">
+
+          <article class="card-lift flex flex-col rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm dark:shadow-black/40">
+            <div class="flex items-start justify-between gap-2">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-violet-50 dark:bg-violet-500/10 text-violet-600 dark:text-violet-300" aria-hidden="true">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
+              </span>
+              <span class="inline-flex rounded-full bg-emerald-50 dark:bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium leading-4 text-emerald-700 dark:text-emerald-300 ring-1 ring-inset ring-emerald-200 dark:ring-emerald-500/30">Disponible este fin de semana</span>
+            </div>
+            <h3 class="mt-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Salón Social</h3>
+            <p class="mt-1.5 text-xs text-slate-500 dark:text-slate-400">Capacidad 40 personas</p>
+            <p class="text-xs font-medium text-slate-700 dark:text-slate-300">$50.000 / hora</p>
+            <button type="button" data-zona="Salón Social" class="mt-4 w-full rounded-lg bg-brand-600 px-3 py-2 text-xs font-semibold text-white transition hover:bg-brand-700">Reservar</button>
+          </article>
+
+          <article class="card-lift flex flex-col rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm dark:shadow-black/40">
+            <div class="flex items-start justify-between gap-2">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-300" aria-hidden="true">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48zM12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z"/></svg>
+              </span>
+              <span class="inline-flex rounded-full bg-emerald-50 dark:bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium leading-4 text-emerald-700 dark:text-emerald-300 ring-1 ring-inset ring-emerald-200 dark:ring-emerald-500/30">Disponible</span>
+            </div>
+            <h3 class="mt-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Zona BBQ</h3>
+            <p class="mt-1.5 text-xs text-slate-500 dark:text-slate-400">Turnos de 3 horas</p>
+            <p class="text-xs font-medium text-slate-700 dark:text-slate-300">$30.000 / 3 h</p>
+            <button type="button" data-zona="Zona BBQ" class="mt-4 w-full rounded-lg bg-brand-600 px-3 py-2 text-xs font-semibold text-white transition hover:bg-brand-700">Reservar</button>
+          </article>
+
+          <article class="card-lift flex flex-col rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm dark:shadow-black/40">
+            <div class="flex items-start justify-between gap-2">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sky-50 dark:bg-sky-500/10 text-sky-600 dark:text-sky-300" aria-hidden="true">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg>
+              </span>
+              <span class="inline-flex rounded-full bg-amber-50 dark:bg-amber-500/10 px-2 py-0.5 text-[10px] font-medium leading-4 text-amber-700 dark:text-amber-300 ring-1 ring-inset ring-amber-200 dark:ring-amber-500/30">Cupo 85 % sábado</span>
+            </div>
+            <h3 class="mt-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Piscina</h3>
+            <p class="mt-1.5 text-xs text-slate-500 dark:text-slate-400">Gratis con registro previo</p>
+            <p class="text-xs font-medium text-slate-700 dark:text-slate-300">Sin costo adicional</p>
+            <button type="button" data-zona="Piscina" class="mt-4 w-full rounded-lg border border-brand-200 dark:border-brand-500/30 px-3 py-2 text-xs font-semibold text-brand-700 dark:text-brand-300 transition hover:border-brand-300 hover:bg-brand-50 dark:hover:bg-slate-800">Registrar visita</button>
+          </article>
+
+          <article class="card-lift flex flex-col rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm dark:shadow-black/40">
+            <div class="flex items-start justify-between gap-2">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-300" aria-hidden="true">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+              </span>
+              <span class="inline-flex rounded-full bg-emerald-50 dark:bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium leading-4 text-emerald-700 dark:text-emerald-300 ring-1 ring-inset ring-emerald-200 dark:ring-emerald-500/30">Abierto ahora</span>
+            </div>
+            <h3 class="mt-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Gimnasio</h3>
+            <p class="mt-1.5 text-xs text-slate-500 dark:text-slate-400">Horario 6 am – 10 pm</p>
+            <p class="text-xs font-medium text-slate-700 dark:text-slate-300">Gratis para residentes</p>
+            <button type="button" data-zona="Gimnasio" class="mt-4 w-full rounded-lg border border-brand-200 dark:border-brand-500/30 px-3 py-2 text-xs font-semibold text-brand-700 dark:text-brand-300 transition hover:border-brand-300 hover:bg-brand-50 dark:hover:bg-slate-800">Registrar visita</button>
+          </article>
+
+        </div>
+
+        <article class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm dark:shadow-black/40 sm:p-6">
+          <div class="flex items-center justify-between gap-3">
+            <h3 class="text-base font-semibold text-slate-900 dark:text-slate-100">Mis reservas</h3>
+            <svg class="h-5 w-5 text-slate-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 16.5v2.25"/></svg>
+          </div>
+          <div class="mt-4 overflow-x-auto">
+            <table class="w-full min-w-[480px] text-left text-sm">
+              <caption id="caption-reservas" class="sr-only">Listado de reservas activas de Ana María Gómez</caption>
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-800 text-[11px] uppercase tracking-wider text-slate-400 dark:text-slate-500">
+                  <th scope="col" class="pb-2 pr-4 font-semibold">Espacio</th>
+                  <th scope="col" class="pb-2 pr-4 font-semibold">Fecha</th>
+                  <th scope="col" class="pb-2 pr-4 font-semibold">Horario</th>
+                  <th scope="col" class="pb-2 font-semibold">Estado</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-reservas" class="divide-y divide-slate-100 dark:divide-slate-800"></tbody>
+            </table>
+          </div>
+          <p class="mt-4 flex items-start gap-2 rounded-lg bg-slate-50 dark:bg-slate-800 p-3 text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+            <svg class="mt-0.5 h-4 w-4 shrink-0 text-slate-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12v-.008z"/></svg>
+            Las reservas se aprueban automáticamente si estás al día con tu cuota.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="soporte" class="scroll-mt-24" aria-labelledby="titulo-soporte">
+      <div>
+        <h2 id="titulo-soporte" class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-2xl">Soporte y atención</h2>
+        <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Tu canal directo con la administración del conjunto.</p>
+      </div>
+      <div class="mt-5 grid gap-5 lg:grid-cols-2">
+
+        <article class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm dark:shadow-black/40 sm:p-6">
+          <div class="flex items-center justify-between gap-3">
+            <h3 class="text-base font-semibold text-slate-900 dark:text-slate-100">Mis solicitudes (PQRS)</h3>
+            <svg class="h-5 w-5 text-slate-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
+          </div>
+          <ul id="lista-pqrs" class="mt-2 divide-y divide-slate-100 dark:divide-slate-800"></ul>
+          <button type="button" id="btn-nueva-pqrs" class="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-600 px-4 py-3 text-sm font-semibold text-slate-600 dark:text-slate-400 transition hover:border-brand-400 hover:bg-brand-50 dark:hover:bg-brand-500/10 hover:text-brand-700 dark:hover:text-brand-300">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+            Crear nueva solicitud
+          </button>
+        </article>
+
+        <article class="flex flex-col rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm dark:shadow-black/40 sm:p-6">
+          <h3 class="text-base font-semibold text-slate-900 dark:text-slate-100">Contacto de administración</h3>
+          <ul class="mt-5 space-y-4">
+            <li class="flex items-center gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400" aria-hidden="true">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+              </span>
+              <div>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Teléfono / portería</p>
+                <p class="text-sm font-medium text-slate-900 dark:text-slate-100">(601) 555 0134 · Anexo 102</p>
+              </div>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400" aria-hidden="true">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </span>
+              <div>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Horario de atención</p>
+                <p class="text-sm font-medium text-slate-900 dark:text-slate-100">Lunes a sábado · 8:00 am – 6:00 pm</p>
+              </div>
+            </li>
+          </ul>
+          <div class="mt-auto space-y-3 pt-6">
+            <a href="#" class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-50 dark:bg-emerald-500/10 px-4 py-2.5 text-sm font-semibold text-emerald-700 dark:text-emerald-300 transition hover:bg-emerald-100 dark:hover:bg-emerald-500/20">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"/></svg>
+              Escribir por WhatsApp
+            </a>
+            <p class="flex items-center justify-center gap-2 rounded-lg bg-red-50 dark:bg-red-500/10 px-3 py-2.5 text-xs font-medium text-red-700 dark:text-red-300">
+              <svg class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+              Emergencias 24/7: Cel. portería 310 555 8899
+            </p>
+            <div class="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-slate-200 dark:border-slate-800 pt-4">
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-wider text-rose-600 dark:text-rose-400">Emergencias 24/7</p>
+                <p class="mt-0.5 text-xs text-slate-500 dark:text-slate-400">Alerta inmediata a portería y seguridad.</p>
+              </div>
+              <button type="button" id="soporte-panico" aria-label="Activar alerta de emergencia" class="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-rose-200 dark:border-rose-500/30 bg-rose-50 dark:bg-rose-500/10 px-3 py-2 text-sm font-semibold text-rose-700 dark:text-rose-300 transition hover:bg-rose-100 dark:hover:bg-rose-500/20">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/></svg>
+                Activar alerta
+              </button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section aria-labelledby="titulo-comunicados">
+      <div>
+        <h2 id="titulo-comunicados" class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-2xl">Comunicados</h2>
+        <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Anuncios recientes de la administración.</p>
+      </div>
+      <div class="mt-5 space-y-4">
+
+        <article class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm dark:shadow-black/40 sm:p-6">
+          <div class="flex flex-wrap items-center gap-2">
+            <time datetime="2026-08-14" class="inline-flex rounded-full bg-slate-100 dark:bg-slate-800 px-2.5 py-1 text-[11px] font-medium text-slate-600 dark:text-slate-400">14 ago 2026</time>
+            <span class="rounded-full bg-violet-50 dark:bg-violet-500/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-violet-700 dark:text-violet-300 ring-1 ring-inset ring-violet-200 dark:ring-violet-500/30">Asamblea</span>
+          </div>
+          <h3 class="mt-2.5 text-base font-semibold text-slate-900 dark:text-slate-100">Convocatoria asamblea extraordinaria</h3>
+          <p class="mt-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Se cita a los propietarios el sábado 12 de sep a las 9 am en el salón social. Orden del día: aprobación del presupuesto 2027 y estado de obras.</p>
+          <a href="#" class="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 dark:text-brand-300 transition hover:text-brand-700 dark:hover:text-brand-200 hover:underline">
+            Confirmar asistencia
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+          </a>
+        </article>
+
+        <article class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm dark:shadow-black/40 sm:p-6">
+          <div class="flex flex-wrap items-center gap-2">
+            <time datetime="2026-08-19" class="inline-flex rounded-full bg-slate-100 dark:bg-slate-800 px-2.5 py-1 text-[11px] font-medium text-slate-600 dark:text-slate-400">19 ago 2026</time>
+            <span class="rounded-full bg-sky-50 dark:bg-sky-500/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-sky-700 dark:text-sky-300 ring-1 ring-inset ring-sky-200 dark:ring-sky-500/30">Servicios</span>
+          </div>
+          <h3 class="mt-2.5 text-base font-semibold text-slate-900 dark:text-slate-100">Corte de agua programado</h3>
+          <p class="mt-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">El jueves 27 de ago entre 8 am y 12 pm se suspenderá el servicio por mantenimiento de tanques. Te recomendamos almacenar agua con anticipación.</p>
+        </article>
+
+        <article class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm dark:shadow-black/40 sm:p-6">
+          <div class="flex flex-wrap items-center gap-2">
+            <time datetime="2026-08-22" class="inline-flex rounded-full bg-slate-100 dark:bg-slate-800 px-2.5 py-1 text-[11px] font-medium text-slate-600 dark:text-slate-400">22 ago 2026</time>
+            <span class="rounded-full bg-amber-50 dark:bg-amber-500/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-amber-700 dark:text-amber-300 ring-1 ring-inset ring-amber-200 dark:ring-amber-500/30">Convivencia</span>
+          </div>
+          <h3 class="mt-2.5 text-base font-semibold text-slate-900 dark:text-slate-100">Nueva norma de parqueaderos visitantes</h3>
+          <p class="mt-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Desde el 1 de sep los vehículos visitantes deben registrar placa en portería y ocupar únicamente los cupos demarcados del sótano 2.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="documentos" class="scroll-mt-24" aria-labelledby="titulo-documentos">
+      <div>
+        <h2 id="titulo-documentos" class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-2xl">Documentos</h2>
+        <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Descarga los documentos oficiales de tu copropiedad.</p>
+      </div>
+      <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+
+        <a href="#" download class="card-lift group flex items-center justify-between gap-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm dark:shadow-black/40">
+          <div class="flex min-w-0 items-center gap-3">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300" aria-hidden="true">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+            </span>
+            <span class="min-w-0">
+              <span class="block truncate text-sm font-semibold text-slate-900 dark:text-slate-100 transition group-hover:text-brand-700 dark:group-hover:text-brand-300">Reglamento de propiedad horizontal.pdf</span>
+              <span class="block text-xs text-slate-500 dark:text-slate-400">PDF · 2,1 MB</span>
+            </span>
+          </div>
+          <span class="shrink-0 rounded-lg p-2 text-slate-400 dark:text-slate-500 transition group-hover:bg-brand-50 dark:group-hover:bg-slate-800 group-hover:text-brand-600 dark:group-hover:text-brand-300" aria-hidden="true">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+          </span>
+        </a>
+
+        <a href="#" download class="card-lift group flex items-center justify-between gap-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm dark:shadow-black/40">
+          <div class="flex min-w-0 items-center gap-3">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300" aria-hidden="true">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+            </span>
+            <span class="min-w-0">
+              <span class="block truncate text-sm font-semibold text-slate-900 dark:text-slate-100 transition group-hover:text-brand-700 dark:group-hover:text-brand-300">Acta asamblea jul 2026.pdf</span>
+              <span class="block text-xs text-slate-500 dark:text-slate-400">PDF · 480 KB</span>
+            </span>
+          </div>
+          <span class="shrink-0 rounded-lg p-2 text-slate-400 dark:text-slate-500 transition group-hover:bg-brand-50 dark:group-hover:bg-slate-800 group-hover:text-brand-600 dark:group-hover:text-brand-300" aria-hidden="true">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+          </span>
+        </a>
+
+        <a href="#" download class="card-lift group flex items-center justify-between gap-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm dark:shadow-black/40">
+          <div class="flex min-w-0 items-center gap-3">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300" aria-hidden="true">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+            </span>
+            <span class="min-w-0">
+              <span class="block truncate text-sm font-semibold text-slate-900 dark:text-slate-100 transition group-hover:text-brand-700 dark:group-hover:text-brand-300">Certificado de paz y salvo.pdf</span>
+              <span class="block text-xs text-slate-500 dark:text-slate-400">PDF · 120 KB</span>
+            </span>
+          </div>
+          <span class="shrink-0 rounded-lg p-2 text-slate-400 dark:text-slate-500 transition group-hover:bg-brand-50 dark:group-hover:bg-slate-800 group-hover:text-brand-600 dark:group-hover:text-brand-300" aria-hidden="true">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+          </span>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+    <div class="mx-auto max-w-6xl px-4 py-8 text-center sm:px-6 lg:px-8">
+      <div class="flex items-center justify-center gap-2">
+        <span class="flex h-7 w-7 items-center justify-center rounded-md bg-brand-600" aria-hidden="true">
+          <svg class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z"/></svg>
+        </span>
+        <span class="text-sm font-bold tracking-tight"><span class="text-slate-900 dark:text-slate-100">Tu</span><span class="text-brand-600">Conjunto</span></span>
+      </div>
+      <p class="mt-3 text-xs text-slate-500 dark:text-slate-400">© 2026 TuConjunto · Demo con datos ficticios</p>
+      <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">
+        <a href="#" class="transition hover:text-slate-700 dark:hover:text-slate-300 hover:underline">Términos</a>
+        <span class="mx-1.5 text-slate-300 dark:text-slate-600">·</span>
+        <a href="#" class="transition hover:text-slate-700 dark:hover:text-slate-300 hover:underline">Privacidad (Ley 1581 de 2012)</a>
+      </p>
+    </div>
+  </footer>
+
+  <button type="button" id="fab-panico" aria-label="Botón de pánico: activar alerta de emergencia" class="group fixed bottom-6 right-6 z-40 flex h-16 w-16 items-center justify-center rounded-full bg-rose-600 text-white shadow-2xl shadow-rose-600/50 transition hover:bg-rose-500 active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">
+    <span class="pointer-events-none absolute inset-0 animate-ping rounded-full bg-rose-500/60" aria-hidden="true"></span>
+    <svg class="relative h-7 w-7" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"/></svg>
+    <span class="pointer-events-none absolute right-full mr-3 hidden whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs font-medium text-slate-100 group-hover:block group-focus-visible:block dark:bg-slate-100 dark:text-slate-900">Emergencia — mantener pulsado no necesario</span>
+  </button>
+
+  <div id="modal-panico" role="dialog" aria-modal="true" aria-labelledby="titulo-panico" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/70 p-4 backdrop-blur-sm">
+    <div class="w-full max-w-sm rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 text-center shadow-2xl">
+      <div id="panico-paso1">
+        <span class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-rose-100 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400" aria-hidden="true">
+          <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/></svg>
+        </span>
+        <h3 id="titulo-panico" class="mt-4 text-lg font-bold text-slate-900 dark:text-slate-100">¿Activar alerta de emergencia?</h3>
+        <p class="mt-2 text-xs leading-relaxed text-slate-500 dark:text-slate-400">Se notificará de inmediato a portería, al administrador y a tus contactos de confianza indicando tu unidad: <strong id="panico-unidad" class="font-semibold text-slate-700 dark:text-slate-200">Torre 2 · Apto 502</strong>.</p>
+        <div class="mt-5 space-y-2.5">
+          <button type="button" id="panico-confirmar" class="w-full rounded-xl bg-rose-600 py-3 text-sm font-bold text-white transition hover:bg-rose-500 active:scale-[0.98]">Activar ahora</button>
+          <button type="button" id="panico-cancelar" class="w-full rounded-xl border border-slate-200 dark:border-slate-700 py-3 text-sm font-semibold text-slate-600 dark:text-slate-300 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100">Cancelar</button>
+        </div>
+      </div>
+      <div id="panico-paso2" class="hidden">
+        <p id="panico-contador" aria-live="assertive" class="text-6xl font-extrabold tracking-tight text-rose-600 dark:text-rose-400">3</p>
+        <p class="mt-3 text-sm font-semibold text-slate-700 dark:text-slate-300">Enviando alerta…</p>
+        <button type="button" id="panico-cancelar-cuenta" class="mt-6 w-full rounded-xl border border-rose-200 dark:border-rose-500/30 py-3 text-sm font-semibold text-rose-700 dark:text-rose-300 transition hover:bg-rose-50 dark:hover:bg-rose-500/10">Cancelar alerta</button>
+      </div>
+      <div id="panico-paso3" class="hidden">
+        <span class="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400" aria-hidden="true">
+          <svg class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </span>
+        <h3 class="mt-4 text-lg font-bold text-slate-900 dark:text-slate-100">Alerta enviada</h3>
+        <p class="mt-2 text-xs leading-relaxed text-slate-500 dark:text-slate-400">Portería y seguridad han sido notificadas a las <span id="hora-panico" class="font-semibold text-slate-700 dark:text-slate-200"></span>.</p>
+        <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">Si fue una activación accidental, avisa a la portería.</p>
+        <button type="button" id="panico-entendido" class="mt-5 w-full rounded-xl bg-brand-600 py-3 text-sm font-semibold text-white transition hover:bg-brand-700">Entendido</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const themeToggle = document.getElementById("theme-toggle");
+    themeToggle.addEventListener("click", () => {
+      const isDark = document.documentElement.classList.toggle("dark");
+      localStorage.setItem("tc-theme", isDark ? "dark" : "light");
+    });
+  </script>
+
+  <script>
+    const fabPanico = document.getElementById("fab-panico");
+    const soportePanico = document.getElementById("soporte-panico");
+    const modalPanico = document.getElementById("modal-panico");
+    const paso1 = document.getElementById("panico-paso1");
+    const paso2 = document.getElementById("panico-paso2");
+    const paso3 = document.getElementById("panico-paso3");
+    const contadorPanico = document.getElementById("panico-contador");
+    const horaPanico = document.getElementById("hora-panico");
+    const botonConfirmar = document.getElementById("panico-confirmar");
+    let intervaloPanico = null;
+    let disparadorPanico = null;
+
+    function mostrarPasoPanico(paso) {
+      [paso1, paso2, paso3].forEach((p) => p.classList.add("hidden"));
+      paso.classList.remove("hidden");
+    }
+
+    function abrirModalPanico() {
+      if (intervaloPanico) {
+        clearInterval(intervaloPanico);
+        intervaloPanico = null;
+      }
+      disparadorPanico = document.activeElement;
+      mostrarPasoPanico(paso1);
+      modalPanico.classList.remove("hidden");
+      modalPanico.classList.add("flex");
+      botonConfirmar.focus();
+    }
+
+    function cerrarModalPanico() {
+      if (intervaloPanico) {
+        clearInterval(intervaloPanico);
+        intervaloPanico = null;
+      }
+      modalPanico.classList.add("hidden");
+      modalPanico.classList.remove("flex");
+      if (disparadorPanico && typeof disparadorPanico.focus === "function") disparadorPanico.focus();
+    }
+
+    function enviarAlertaPanico() {
+      try {
+        const alertas = JSON.parse(localStorage.getItem("tc-alertas") || "[]");
+        let unidadPanico = "Torre 2 · Apto 502";
+        try {
+          const sesion = JSON.parse(localStorage.getItem("tc-sesion"));
+          if (sesion && sesion.unidad) unidadPanico = sesion.unidad;
+        } catch (error) {}
+        alertas.push({ tipo: "panico", unidad: unidadPanico, fecha: new Date().toISOString(), atendida: false });
+        localStorage.setItem("tc-alertas", JSON.stringify(alertas));
+      } catch (error) {}
+      horaPanico.textContent = new Date().toLocaleTimeString("es-CO", { hour: "numeric", minute: "2-digit", hour12: true });
+      mostrarPasoPanico(paso3);
+    }
+
+    function iniciarCuentaAtras() {
+      mostrarPasoPanico(paso2);
+      let restante = 3;
+      contadorPanico.textContent = String(restante);
+      document.getElementById("panico-cancelar-cuenta").focus();
+      intervaloPanico = setInterval(() => {
+        restante -= 1;
+        if (restante > 0) {
+          contadorPanico.textContent = String(restante);
+          return;
+        }
+        clearInterval(intervaloPanico);
+        intervaloPanico = null;
+        enviarAlertaPanico();
+      }, 900);
+    }
+
+    fabPanico.addEventListener("click", abrirModalPanico);
+    soportePanico.addEventListener("click", abrirModalPanico);
+    botonConfirmar.addEventListener("click", iniciarCuentaAtras);
+    document.getElementById("panico-cancelar").addEventListener("click", cerrarModalPanico);
+    document.getElementById("panico-cancelar-cuenta").addEventListener("click", cerrarModalPanico);
+    document.getElementById("panico-entendido").addEventListener("click", cerrarModalPanico);
+    modalPanico.addEventListener("click", (evento) => {
+      if (evento.target === modalPanico && !paso1.classList.contains("hidden")) cerrarModalPanico();
+    });
+    document.addEventListener("keydown", (evento) => {
+      if (evento.key === "Escape" && !modalPanico.classList.contains("hidden") && !paso1.classList.contains("hidden")) cerrarModalPanico();
+    });
+  </script>
+
+  <div id="toast-zone" class="pointer-events-none fixed inset-x-0 bottom-6 z-50 flex flex-col items-start gap-2 px-4 sm:px-6"></div>
+
+  <div id="modal-pago" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-pago" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/70 p-4 backdrop-blur-sm">
+    <div class="w-full max-w-md rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-2xl">
+      <div class="flex items-start justify-between gap-3">
+        <div class="flex items-center gap-2.5">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sky-600 text-[11px] font-extrabold tracking-tight text-white" aria-hidden="true">PSE</span>
+          <div>
+            <h3 id="titulo-modal-pago" class="text-base font-bold text-slate-900 dark:text-slate-100">PSE</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Pagos Seguros en Línea</p>
+          </div>
+        </div>
+        <button type="button" data-cerrar-modal aria-label="Cerrar" class="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-600 dark:hover:text-slate-300">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <form id="form-pago" class="mt-5 space-y-4">
+        <div>
+          <label for="pago-banco" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Banco</label>
+          <select id="pago-banco" name="banco" required data-autofocus class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm transition focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
+            <option value="">Selecciona tu banco</option>
+            <option value="Bancolombia">Bancolombia</option>
+            <option value="Davivienda">Davivienda</option>
+            <option value="BBVA">BBVA</option>
+            <option value="Nequi">Nequi</option>
+          </select>
+        </div>
+        <dl id="pago-resumen" class="space-y-1.5 rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm dark:border-slate-700 dark:bg-slate-800"></dl>
+        <div class="flex flex-col-reverse gap-2.5 sm:flex-row">
+          <button type="button" data-cerrar-modal class="flex flex-1 items-center justify-center rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-slate-100">Cancelar</button>
+          <button type="submit" id="btn-confirmar-pago" class="flex flex-1 items-center justify-center gap-2 rounded-xl bg-brand-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600">Pagar $285.000</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="modal-reserva" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-reserva" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/70 p-4 backdrop-blur-sm">
+    <div class="w-full max-w-md rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-2xl">
+      <div class="flex items-start justify-between gap-3">
+        <h3 id="titulo-modal-reserva" class="text-base font-bold text-slate-900 dark:text-slate-100">Reservar zona común</h3>
+        <button type="button" data-cerrar-modal aria-label="Cerrar" class="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-600 dark:hover:text-slate-300">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <form id="form-reserva" class="mt-5 space-y-4">
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label for="reserva-fecha" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Fecha</label>
+            <input type="date" id="reserva-fecha" name="fecha" min="2026-08-23" required data-autofocus class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm transition focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
+          </div>
+          <div>
+            <label for="reserva-franja" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Franja horaria</label>
+            <select id="reserva-franja" name="franja" required class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm transition focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
+              <option value="08:00–12:00">Mañana · 8 am – 12 m</option>
+              <option value="12:00–18:00">Tarde · 12 m – 6 pm</option>
+              <option value="18:00–22:00">Noche · 6 pm – 10 pm</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="reserva-notas" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Notas (opcional)</label>
+          <textarea id="reserva-notas" name="notas" rows="3" placeholder="Ej.: celebración de cumpleaños, número de invitados…" class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm transition focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"></textarea>
+        </div>
+        <p class="flex items-start gap-2 rounded-lg bg-slate-50 p-3 text-xs leading-relaxed text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+          <svg class="mt-0.5 h-4 w-4 shrink-0 text-slate-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12v-.008z"/></svg>
+          Queda Pendiente hasta aprobación de administración (sin costo si estás al día).
+        </p>
+        <div class="flex flex-col-reverse gap-2.5 sm:flex-row">
+          <button type="button" data-cerrar-modal class="flex flex-1 items-center justify-center rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-slate-100">Cancelar</button>
+          <button type="submit" class="flex flex-1 items-center justify-center rounded-xl bg-brand-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600">Enviar solicitud</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="modal-pqrs" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-pqrs" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/70 p-4 backdrop-blur-sm">
+    <div class="w-full max-w-md rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-2xl">
+      <div class="flex items-start justify-between gap-3">
+        <h3 id="titulo-modal-pqrs" class="text-base font-bold text-slate-900 dark:text-slate-100">Nueva solicitud (PQRS)</h3>
+        <button type="button" data-cerrar-modal aria-label="Cerrar" class="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-600 dark:hover:text-slate-300">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <form id="form-pqrs" class="mt-5 space-y-4">
+        <div>
+          <label for="pqrs-asunto" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Asunto</label>
+          <input type="text" id="pqrs-asunto" name="asunto" required data-autofocus maxlength="120" placeholder="Resumen corto de tu solicitud" class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm transition focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label for="pqrs-tipo" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Tipo</label>
+            <select id="pqrs-tipo" name="tipo" class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm transition focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
+              <option value="Convivencia">Convivencia</option>
+              <option value="Mantenimiento">Mantenimiento</option>
+              <option value="Administrativo">Administrativo</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+          <div>
+            <label for="pqrs-prioridad" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Prioridad</label>
+            <select id="pqrs-prioridad" name="prioridad" class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm transition focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
+              <option value="Baja">Baja</option>
+              <option value="Media" selected>Media</option>
+              <option value="Alta">Alta</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="pqrs-detalle" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Detalle</label>
+          <textarea id="pqrs-detalle" name="detalle" rows="4" required placeholder="Describe tu solicitud con el mayor detalle posible…" class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm transition focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"></textarea>
+        </div>
+        <div class="flex flex-col-reverse gap-2.5 sm:flex-row">
+          <button type="button" data-cerrar-modal class="flex flex-1 items-center justify-center rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-slate-100">Cancelar</button>
+          <button type="submit" class="flex flex-1 items-center justify-center rounded-xl bg-brand-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600">Crear solicitud</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const DIAS = ["dom", "lun", "mar", "mié", "jue", "vie", "sáb"];
+      const MESES = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+      const BTN_PAGAR_CLASES = "mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600";
+      const BTN_PAGAR_HTML = '<svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"/></svg>Pagar con PSE';
+      const BTN_AL_DIA_CLASES = "mt-5 inline-flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-300";
+      const BTN_AL_DIA_HTML = '<svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Cuota al día ✓';
+      const ICONO_EXITO = '<svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>';
+      const ICONO_INFO = '<svg class="mt-0.5 h-4 w-4 shrink-0 text-sky-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12v-.008z"/></svg>';
+      const PILL_RESERVA = {
+        Confirmada: "bg-emerald-50 text-emerald-700 ring-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-300 dark:ring-emerald-500/30",
+        Pendiente: "bg-amber-50 text-amber-700 ring-amber-200 dark:bg-amber-500/10 dark:text-amber-300 dark:ring-amber-500/30",
+        Cancelada: "bg-slate-100 text-slate-600 ring-slate-200 dark:bg-slate-500/10 dark:text-slate-300 dark:ring-slate-500/30",
+        Rechazada: "bg-rose-50 text-rose-700 ring-rose-200 dark:bg-rose-500/10 dark:text-rose-300 dark:ring-rose-500/30"
+      };
+      const PILL_PQRS = {
+        Abierto: "bg-rose-50 text-rose-700 ring-rose-200 dark:bg-rose-500/10 dark:text-rose-300 dark:ring-rose-500/30",
+        "En revisión": "bg-amber-50 text-amber-700 ring-amber-200 dark:bg-amber-500/10 dark:text-amber-300 dark:ring-amber-500/30",
+        Resuelto: "bg-emerald-50 text-emerald-700 ring-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-300 dark:ring-emerald-500/30"
+      };
+      const $ = (id) => document.getElementById(id);
+
+      function loadLS(clave, defecto) {
+        try {
+          const valor = JSON.parse(localStorage.getItem(clave));
+          return valor == null ? defecto : valor;
+        } catch (error) {
+          return defecto;
+        }
+      }
+      function saveLS(clave, valor) {
+        try {
+          localStorage.setItem(clave, JSON.stringify(valor));
+        } catch (error) {}
+      }
+      const esc = (valor) => String(valor == null ? "" : valor).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+      const dinero = (n) => "$" + Number(n || 0).toLocaleString("es-CO");
+
+      const sesionCruda = (() => {
+        try {
+          const s = JSON.parse(localStorage.getItem("tc-sesion"));
+          if (s && typeof s.nombre === "string" && s.nombre.trim() && s.unidad) return s;
+        } catch (error) {}
+        return null;
+      })();
+      const NOMBRE = sesionCruda ? sesionCruda.nombre : "Ana María Gómez";
+      const UNIDAD = sesionCruda ? sesionCruda.unidad : "Torre 2 · Apto 502";
+
+      function sembrar() {
+        if (localStorage.getItem("tc-pagos") === null) {
+          saveLS("tc-pagos", [
+            { id: "PAGO-2026-07", unidad: UNIDAD, concepto: "Cuota administración", periodo: "Julio 2026", valor: 285000, estado: "Pagado", metodo: "PSE", fecha: "2026-07-31T14:32:00" },
+            { id: "PAGO-2026-08", unidad: UNIDAD, concepto: "Cuota administración", periodo: "Agosto 2026", valor: 285000, estado: "Pendiente", metodo: "PSE", fecha: null }
+          ]);
+        }
+        if (localStorage.getItem("tc-reservas") === null) {
+          saveLS("tc-reservas", [
+            { id: "R-1", zona: "Salón Social", fecha: "2026-08-29", hora: "18:00–22:00", unidad: UNIDAD, solicitante: NOMBRE, estado: "Confirmada", notas: "Reunión familiar" },
+            { id: "R-2", zona: "Zona BBQ", fecha: "2026-08-30", hora: "12:00–15:00", unidad: UNIDAD, solicitante: NOMBRE, estado: "Pendiente", notas: "" },
+            { id: "R-3", zona: "Cancha sintética", fecha: "2026-09-04", hora: "19:00–20:00", unidad: UNIDAD, solicitante: NOMBRE, estado: "Confirmada", notas: "" }
+          ]);
+        }
+        if (localStorage.getItem("tc-pqrs") === null) {
+          saveLS("tc-pqrs", [
+            { id: "T-0398", titulo: "Ruido en pasillo piso 5", descripcion: "Ruido frecuente en el pasillo del piso 5 después de las 10 pm.", unidad: UNIDAD, solicitante: NOMBRE, estado: "En revisión", prioridad: "Media", creada: "2026-08-21T09:15:00" },
+            { id: "T-0351", titulo: "Solicitud de copia del reglamento", descripcion: "Solicito copia digital del reglamento de propiedad horizontal.", unidad: UNIDAD, solicitante: NOMBRE, estado: "Resuelto", prioridad: "Baja", creada: "2026-08-16T10:05:00" }
+          ]);
+        }
+      }
+
+      function fmtFecha(iso) {
+        if (!iso) return "";
+        const p = String(iso).slice(0, 10).split("-").map(Number);
+        if (p.length !== 3 || p.some(isNaN)) return String(iso);
+        const d = new Date(Date.UTC(p[0], p[1] - 1, p[2]));
+        return `${DIAS[d.getUTCDay()]} ${p[2]} ${MESES[p[1] - 1]}`;
+      }
+      function fmtFechaCorta(iso) {
+        if (!iso) return "";
+        const d = new Date(iso);
+        return `${d.getDate()} ${MESES[d.getMonth()]}`;
+      }
+      function fmtFechaLarga(iso) {
+        if (!iso) return "";
+        const d = new Date(iso);
+        return `${d.getDate()} ${MESES[d.getMonth()]} ${d.getFullYear()}`;
+      }
+      function hora12(t) {
+        const partes = String(t).split(":").map(Number);
+        let h = partes[0] || 0;
+        const m = partes[1] || 0;
+        const sufijo = h < 12 ? "am" : "pm";
+        h = h % 12 || 12;
+        return m ? `${h}:${String(m).padStart(2, "0")} ${sufijo}` : `${h} ${sufijo}`;
+      }
+      function fmtHorario(hora) {
+        if (!hora) return "";
+        const tramos = String(hora).split("–");
+        return tramos.length === 2 ? tramos.map(hora12).join(" – ") : String(hora);
+      }
+      function hace(iso) {
+        const dias = Math.floor((Date.now() - new Date(iso).getTime()) / 86400000);
+        if (!(dias >= 0)) return "";
+        if (dias === 0) return "hoy";
+        if (dias === 1) return "hace 1 día";
+        if (dias < 7) return `hace ${dias} días`;
+        const semanas = Math.floor(dias / 7);
+        if (semanas < 5) return semanas === 1 ? "hace 1 semana" : `hace ${semanas} semanas`;
+        const meses = Math.floor(dias / 30);
+        return meses === 1 ? "hace 1 mes" : `hace ${meses} meses`;
+      }
+
+      const toastZone = $("toast-zone");
+      function showToast(mensaje, tipo) {
+        const toast = document.createElement("div");
+        toast.setAttribute("role", "status");
+        toast.className = "pointer-events-auto flex w-full max-w-sm items-start gap-2.5 translate-y-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 opacity-0 shadow-xl transition duration-300 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200";
+        toast.innerHTML = (tipo === "info" ? ICONO_INFO : ICONO_EXITO) + `<span class="min-w-0">${mensaje}</span>`;
+        toastZone.appendChild(toast);
+        requestAnimationFrame(() => toast.classList.remove("opacity-0", "translate-y-2"));
+        setTimeout(() => {
+          toast.classList.add("opacity-0", "translate-y-2");
+          setTimeout(() => toast.remove(), 320);
+        }, 3600);
+      }
+
+      const modalPago = $("modal-pago");
+      const modalReserva = $("modal-reserva");
+      const modalPqrs = $("modal-pqrs");
+      const modales = [modalPago, modalReserva, modalPqrs];
+      let procesandoPago = false;
+
+      function abrirModal(modal) {
+        modal.__origen = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+        const objetivo = modal.querySelector("[data-autofocus]") || modal.querySelector("input, select, textarea, button");
+        if (objetivo) objetivo.focus();
+      }
+      function cerrarModal(modal) {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+        if (modal.__origen && typeof modal.__origen.focus === "function") modal.__origen.focus();
+      }
+      modales.forEach((modal) => {
+        modal.addEventListener("click", (evento) => {
+          if (modal === modalPago && procesandoPago) return;
+          if (evento.target === modal || evento.target.closest("[data-cerrar-modal]")) cerrarModal(modal);
+        });
+      });
+      document.addEventListener("keydown", (evento) => {
+        if (evento.key !== "Escape") return;
+        const activo = modales.find((m) => !m.classList.contains("hidden"));
+        if (activo && !(activo === modalPago && procesandoPago)) cerrarModal(activo);
+      });
+
+      function renderSesion() {
+        const primerNombre = NOMBRE.trim().split(/\s+/)[0];
+        $("saludo-usuario").textContent = `Hola, ${primerNombre} 👋`;
+        $("hero-unidad").textContent = `${UNIDAD} · Conjunto Altos del Bosque`;
+        const palabras = NOMBRE.trim().split(/\s+/);
+        $("perfil-iniciales").textContent = palabras.slice(0, 2).map((p) => p[0].toUpperCase()).join("");
+        $("perfil-nombre").textContent = palabras.slice(0, 2).join(" ");
+        $("perfil-link").setAttribute("aria-label", `Ver perfil de ${NOMBRE}`);
+        $("caption-reservas").textContent = `Listado de reservas de ${NOMBRE}`;
+        $("panico-unidad").textContent = UNIDAD;
+      }
+
+      function datosPagos() {
+        const todas = loadLS("tc-pagos", []);
+        const propias = todas.filter((p) => p.unidad === UNIDAD);
+        return propias.length ? propias : todas;
+      }
+      function renderPagos() {
+        const todas = datosPagos();
+        const pendiente = todas.find((p) => p.estado === "Pendiente");
+        const pagadas = todas.filter((p) => p.estado === "Pagado").sort((a, b) => new Date(b.fecha || 0) - new Date(a.fecha || 0));
+        const ultimo = pagadas[0];
+        const card = $("card-cuota");
+        const pill = $("pill-pagado");
+        const btn = $("btn-pagar");
+        if (!pendiente) {
+          card.classList.remove("ring-brand-500/30");
+          card.classList.add("ring-emerald-500/40");
+          pill.classList.remove("hidden");
+          $("pill-pagado-fecha").textContent = ultimo ? fmtFechaLarga(ultimo.fecha) : "";
+          btn.disabled = true;
+          btn.title = `Ya registraste tu pago de ${(ultimo ? ultimo.periodo.split(" ")[0] : "este mes").toLowerCase()}`;
+          btn.className = BTN_AL_DIA_CLASES;
+          btn.innerHTML = BTN_AL_DIA_HTML;
+        } else {
+          card.classList.add("ring-brand-500/30");
+          card.classList.remove("ring-emerald-500/40");
+          pill.classList.add("hidden");
+          btn.disabled = false;
+          btn.removeAttribute("title");
+          btn.className = BTN_PAGAR_CLASES;
+          btn.innerHTML = BTN_PAGAR_HTML;
+        }
+        if (ultimo) {
+          $("ultimo-periodo").textContent = ultimo.periodo;
+          $("ultimo-detalle").textContent = `Pagado el ${fmtFechaCorta(ultimo.fecha)} con ${ultimo.metodo || "PSE"}`;
+        }
+      }
+
+      const formPago = $("form-pago");
+      const pagoResumen = $("pago-resumen");
+      const btnConfirmarPago = $("btn-confirmar-pago");
+      $("btn-pagar").addEventListener("click", () => {
+        const cuota = datosPagos().find((p) => p.estado === "Pendiente");
+        if (!cuota) return;
+        $("pago-banco").value = "";
+        btnConfirmarPago.disabled = false;
+        btnConfirmarPago.textContent = `Pagar ${dinero(cuota.valor)}`;
+        pagoResumen.innerHTML = `
+          <div class="flex justify-between gap-4"><dt class="text-slate-500 dark:text-slate-400">Valor</dt><dd class="font-semibold text-slate-900 dark:text-slate-100">${dinero(cuota.valor)} COP</dd></div>
+          <div class="flex justify-between gap-4"><dt class="text-slate-500 dark:text-slate-400">Concepto</dt><dd class="font-medium text-slate-800 dark:text-slate-100">${esc(cuota.concepto)}</dd></div>
+          <div class="flex justify-between gap-4"><dt class="text-slate-500 dark:text-slate-400">Periodo</dt><dd class="font-medium text-slate-800 dark:text-slate-100">${esc(cuota.periodo)}</dd></div>
+          <div class="flex justify-between gap-4"><dt class="text-slate-500 dark:text-slate-400">Unidad</dt><dd class="font-medium text-slate-800 dark:text-slate-100">${esc(UNIDAD)}</dd></div>`;
+        abrirModal(modalPago);
+      });
+      formPago.addEventListener("submit", (evento) => {
+        evento.preventDefault();
+        if (procesandoPago) return;
+        procesandoPago = true;
+        btnConfirmarPago.disabled = true;
+        btnConfirmarPago.innerHTML = '<span class="inline-block h-4 w-4 animate-spin rounded-full border-2 border-white/40" style="border-top-color:#fff" aria-hidden="true"></span>Procesando…';
+        setTimeout(() => {
+          const pagos = loadLS("tc-pagos", []);
+          const cuota = pagos.find((p) => p.estado === "Pendiente" && p.unidad === UNIDAD) || pagos.find((p) => p.estado === "Pendiente");
+          if (cuota) {
+            cuota.estado = "Pagado";
+            cuota.metodo = "PSE";
+            cuota.fecha = new Date().toISOString();
+            saveLS("tc-pagos", pagos);
+          }
+          procesandoPago = false;
+          cerrarModal(modalPago);
+          renderPagos();
+          showToast("Pago aprobado por PSE · Recibo PG-88213");
+        }, 1200);
+      });
+
+      const tbodyReservas = $("tbody-reservas");
+      function pill(texto, clases) {
+        return `<span class="inline-flex whitespace-nowrap rounded-full px-2.5 py-0.5 text-[11px] font-medium ring-1 ring-inset ${clases}">${texto}</span>`;
+      }
+      function renderReservas() {
+        const lista = loadLS("tc-reservas", []).filter((r) => r.unidad === UNIDAD).sort((a, b) => String(a.fecha || "").localeCompare(String(b.fecha || "")) || String(a.hora || "").localeCompare(String(b.hora || "")));
+        tbodyReservas.innerHTML = lista.length
+          ? lista.map((r) => `
+            <tr class="table-row-hover">
+              <td class="py-3.5 pr-4 font-medium text-slate-900 dark:text-slate-100">${esc(r.zona)}</td>
+              <td class="py-3.5 pr-4 text-slate-600 dark:text-slate-400">${fmtFecha(r.fecha)}</td>
+              <td class="py-3.5 pr-4 text-slate-600 dark:text-slate-400">${fmtHorario(r.hora)}</td>
+              <td class="py-3.5"><div class="flex flex-wrap items-center gap-2">${pill(r.estado === "Pendiente" ? "Pendiente" : esc(r.estado), PILL_RESERVA[r.estado] || PILL_RESERVA.Pendiente)}${r.estado === "Pendiente" ? `<button type="button" data-cancelar="${esc(r.id)}" class="rounded-md border border-slate-200 px-2 py-0.5 text-[11px] font-medium text-slate-500 transition hover:border-red-200 hover:bg-red-50 hover:text-red-600 dark:border-slate-800 dark:text-slate-400 dark:hover:border-red-500/30 dark:hover:bg-red-500/10 dark:hover:text-red-400">Cancelar</button>` : ""}</div></td>
+            </tr>`).join("")
+          : '<tr><td colspan="4" class="py-6 text-center text-xs text-slate-500 dark:text-slate-400">Aún no tienes reservas. Elige una zona y agenda tu visita.</td></tr>';
+      }
+      tbodyReservas.addEventListener("click", (evento) => {
+        const boton = evento.target.closest("[data-cancelar]");
+        if (!boton) return;
+        const reservas = loadLS("tc-reservas", []);
+        const reserva = reservas.find((r) => r.id === boton.dataset.cancelar);
+        if (!reserva || reserva.estado !== "Pendiente") return;
+        if (confirm(`¿Cancelar tu reserva de ${reserva.zona} del ${fmtFecha(reserva.fecha)}?`)) {
+          reserva.estado = "Cancelada";
+          saveLS("tc-reservas", reservas);
+          renderReservas();
+          showToast("Reserva cancelada", "info");
+        }
+      });
+      let zonaReserva = "";
+      document.querySelectorAll("[data-zona]").forEach((boton) => {
+        boton.addEventListener("click", () => {
+          zonaReserva = boton.dataset.zona;
+          $("titulo-modal-reserva").textContent = `Reservar · ${zonaReserva}`;
+          $("form-reserva").reset();
+          abrirModal(modalReserva);
+        });
+      });
+      $("form-reserva").addEventListener("submit", (evento) => {
+        evento.preventDefault();
+        const reservas = loadLS("tc-reservas", []);
+        let maxN = 0;
+        reservas.forEach((r) => {
+          const n = parseInt(String(r.id).replace(/\D/g, ""), 10);
+          if (!isNaN(n) && n > maxN) maxN = n;
+        });
+        reservas.push({ id: "R-" + (maxN + 1), zona: zonaReserva, fecha: $("reserva-fecha").value, hora: $("reserva-franja").value, unidad: UNIDAD, solicitante: NOMBRE, estado: "Pendiente", notas: $("reserva-notas").value.trim() });
+        saveLS("tc-reservas", reservas);
+        cerrarModal(modalReserva);
+        renderReservas();
+        showToast(`Solicitud enviada para ${esc(zonaReserva)} · Queda Pendiente de aprobación`);
+      });
+
+      const listaPqrs = $("lista-pqrs");
+      function renderPqrs() {
+        const lista = loadLS("tc-pqrs", []).filter((t) => t.unidad === UNIDAD).sort((a, b) => new Date(b.creada || 0) - new Date(a.creada || 0));
+        listaPqrs.innerHTML = lista.length
+          ? lista.map((t) => `
+            <li class="flex items-start justify-between gap-4 py-4">
+              <div class="min-w-0">
+                <p class="text-sm font-medium text-slate-900 dark:text-slate-100">${esc(t.titulo)}</p>
+                <p class="mt-0.5 text-xs text-slate-500 dark:text-slate-400">#${esc(t.id)} · ${hace(t.creada)} · Prioridad ${esc(String(t.prioridad || "Media").toLowerCase())}</p>
+                ${t.estado === "Resuelto" ? '<a href="#" class="mt-1.5 inline-flex items-center gap-1 text-xs font-semibold text-brand-600 transition hover:text-brand-700 hover:underline dark:text-brand-300 dark:hover:text-brand-200">Ver respuesta<svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>' : ""}
+              </div>
+              ${pill(esc(t.estado), PILL_PQRS[t.estado] || PILL_PQRS.Abierto)}
+            </li>`).join("")
+          : '<li class="py-4 text-sm text-slate-500 dark:text-slate-400">No tienes solicitudes registradas.</li>';
+      }
+      $("btn-nueva-pqrs").addEventListener("click", () => {
+        $("form-pqrs").reset();
+        abrirModal(modalPqrs);
+      });
+      $("form-pqrs").addEventListener("submit", (evento) => {
+        evento.preventDefault();
+        const lista = loadLS("tc-pqrs", []);
+        let maxN = 399;
+        lista.forEach((t) => {
+          const n = parseInt(String(t.id).replace(/\D/g, ""), 10);
+          if (!isNaN(n) && n > maxN) maxN = n;
+        });
+        lista.push({
+          id: "T-" + String(maxN + 1).padStart(4, "0"),
+          titulo: $("pqrs-asunto").value.trim(),
+          descripcion: $("pqrs-detalle").value.trim(),
+          unidad: UNIDAD,
+          solicitante: NOMBRE,
+          estado: "Abierto",
+          prioridad: $("pqrs-prioridad").value,
+          creada: new Date().toISOString()
+        });
+        saveLS("tc-pqrs", lista);
+        cerrarModal(modalPqrs);
+        renderPqrs();
+        showToast("Ticket creado · Portería y administración notificadas");
+      });
+
+      sembrar();
+      renderSesion();
+      renderPagos();
+      renderReservas();
+      renderPqrs();
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TuConjunto — Mapa de módulos</title>
+<style>
+  :root{
+    --bg:#0f172a; --panel:#1e293b; --panel2:#273549; --line:#334155;
+    --txt:#e2e8f0; --mut:#94a3b8; --brand:#6366f1; --ok:#10b981; --warn:#f59e0b; --rose:#f43f5e; --sky:#0ea5e9; --vio:#8b5cf6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Segoe UI",system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--txt);padding:24px;line-height:1.45}
+  h1{font-size:26px;margin-bottom:4px}
+  .sub{color:var(--mut);margin-bottom:22px;font-size:14px}
+  h2{font-size:18px;margin:28px 0 12px;display:flex;align-items:center;gap:8px}
+  h2 .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+  .grid{display:grid;gap:14px}
+  .g3{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+  .g4{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .card h3{font-size:14px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:99px;color:#fff}
+  ul{list-style:none}
+  li{font-size:13px;padding:3px 0 3px 18px;position:relative;color:var(--txt)}
+  li::before{content:"→";position:absolute;left:0;color:var(--mut)}
+  li b{color:#fff}
+  .flow{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;overflow-x:auto}
+  .lane{display:flex;align-items:center;gap:8px;flex-wrap:nowrap;margin:10px 0;min-width:max-content}
+  .node{background:var(--panel2);border:1.5px solid var(--brand);border-radius:10px;padding:8px 14px;font-size:13px;font-weight:600;white-space:nowrap;text-align:center}
+  .node small{display:block;font-weight:400;color:var(--mut);font-size:11px}
+  .arr{color:var(--mut);font-size:18px;flex-shrink:0}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin:8px 0 0;font-size:12px;color:var(--mut)}
+  .legend span b{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line)}
+  th{color:var(--mut);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.4px}
+  td:first-child{font-weight:600;color:#fff;white-space:nowrap}
+  .s{font-weight:800}.si{color:var(--ok)}.no{color:#475569}
+  .foot{margin-top:30px;color:var(--mut);font-size:12px;border-top:1px solid var(--line);padding-top:14px}
+</style>
+</head>
+<body>
+
+<h1>🗺️ TuConjunto — Mapa funcional de módulos</h1>
+<p class="sub">Plataforma de administración de conjuntos residenciales · Ley 675 de 2001 (Colombia) · Cada despliegue = 1 conjunto con base de datos propia e independiente.</p>
+
+<h2><span class="dot" style="background:var(--brand)"></span> Arquitectura general</h2>
+<div class="flow">
+  <div class="lane">
+    <div class="node">👥 Usuarios<small>navegador / móvil</small></div><span class="arr">⇄</span>
+    <div class="node">🖥️ App web<small>landing · login · admin · residente · portería</small></div><span class="arr">⇄</span>
+    <div class="node" style="border-color:var(--sky)">⚙️ API Express (Node.js)<small>sesiones cookie httpOnly · RBAC por rol · CSRF · rate-limit</small></div><span class="arr">⇄</span>
+    <div class="node" style="border-color:var(--ok)">🗄️ SQLite por conjunto<small>datos 100% aislados por despliegue</small></div>
+  </div>
+  <div class="lane">
+    <div class="node" style="border-color:var(--warn)">🌍 Público<small>landing + wizard → leads · autorregistro → "Pendiente aprobación"</small></div><span class="arr">→</span>
+    <div class="node">🔐 Login<small>scrypt · bloqueo anti fuerza bruta · "Recordarme" ≤12 h</small></div><span class="arr">→</span>
+    <div class="node" style="border-color:var(--vio)">🧭 Rol decide vista<small>administrador · consejo · porteria · copropietario · arrendatario</small></div>
+  </div>
+</div>
+
+<h2><span class="dot" style="background:var(--ok)"></span> Flujos principales por rol</h2>
+<div class="grid g3">
+
+  <div class="card">
+    <h3><span class="tag" style="background:var(--rose)">ADMIN</span> Administrador <small style="color:var(--mut);font-weight:400">(Jorge · 1020001)</small></h3>
+    <ul>
+      <li><b>Resumen:</b> KPIs en vivo + cartera + reservas próximas</li>
+      <li><b>Comunidad:</b> crear/editar usuarios, roles, aprobar pendientes, reset clave, torres y unidades</li>
+      <li><b>Pagos:</b> ver todos + asignar cuota manual (o invitar si no existe)</li>
+      <li><b>Reservas:</b> aprobar ✅ / rechazar ❌ solicitudes</li>
+      <li><b>PQRS:</b> atender → resolver tickets</li>
+      <li><b>Crear ▾:</b> ticket, reserva manual, comunicado, asamblea, pago, <b>documento</b></li>
+      <li><b>Seguridad:</b> sesión, recordarme ≤12 h, intentos, bloqueo, pass mínima + logo del conjunto</li>
+      <li><b>Alertas pánico:</b> ver y marcar atendidas</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3><span class="tag" style="background:var(--vio)">CONSEJO</span> Consejo <small style="color:var(--mut);font-weight:400">(Marta · 1020002)</small></h3>
+    <ul>
+      <li><b>Lectura global:</b> KPIs, cartera, usuarios, unidades, stats</li>
+      <li>Ve pagos, reservas y PQRS de toda la comunidad</li>
+      <li>❌ Sin botones de escritura (bloqueado también en API → 403)</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3><span class="tag" style="background:var(--sky)">PORTERÍA</span> Portería <small style="color:var(--mut);font-weight:400">(Carlos · 1020003)</small></h3>
+    <ul>
+      <li><b>Registrar entrada:</b> nombre, doc, destino + 📷 foto rostro/cédula (cámara o archivo)</li>
+      <li><b>Panel visitantes:</b> búsqueda en vivo + marcar salida</li>
+      <li><b>🚨 Alertas pánico:</b> banner rojo en tiempo real (sondeo 5 s) → atender</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3><span class="tag" style="background:var(--ok)">RESIDENTE</span> Copropietario / Arrendatario <small style="color:var(--mut);font-weight:400">(Ana · 1020004 / Pedro · 1020005)</small></h3>
+    <ul>
+      <li><b>Pagos:</b> estado de cuenta + pagar PSE (simulado) → referencia PG-xxxxx</li>
+      <li><b>Reservas:</b> zonas comunes por fecha/franja → Pendiente → admin confirma; cancelar propias</li>
+      <li><b>PQRS:</b> crear con tipo/prioridad → código T-xxxx y seguimiento</li>
+      <li><b>Asambleas:</b> confirmar asistencia + votar (1 voto/persona)</li>
+      <li><b>Documentos:</b> descargar PDF/JPG/PNG publicados por admin</li>
+      <li><b>Comunicados:</b> tablón de avisos</li>
+      <li><b>🚨 Botón de pánico:</b> alerta instantánea a portería con su unidad</li>
+      <li><b>Mi cuenta:</b> cambiar contraseña propia</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3><span class="tag" style="background:var(--warn)">PÚBLICO</span> Landing comercial</h3>
+    <ul>
+      <li>Catálogo de módulos, planes Esencial/Profesional/Enterprise</li>
+      <li><b>Wizard de suscripción:</b> trial 14 días → registra lead</li>
+      <li><b>Demo interactiva:</b> prototipos admin/residente/portería sin credenciales (/demo)</li>
+      <li><b>Autorregistro:</b> crea cuenta "Pendiente aprobación"; auto-crea unidad nueva si no existe</li>
+      <li>Términos, privacidad, guía de pruebas</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3><span class="tag" style="background:#334155">🔒 SEGURIDAD</span> Transversal</h3>
+    <ul>
+      <li>Contraseñas scrypt · tokens de sesión hasheados sha256</li>
+      <li>CSRF por cabecera en mutaciones · CSP con nonce</li>
+      <li>Rate-limit login 5/min · escrituras 60/min · leads 5/h</li>
+      <li>Magic-bytes en fotos/documentos · SQL 100% preparado</li>
+      <li>Auditoría de acciones sensibles · BD permisos 600</li>
+    </ul>
+  </div>
+</div>
+
+<h2><span class="dot" style="background:var(--warn)"></span> Ciclos de negocio</h2>
+<div class="flow">
+  <div class="lane"><b style="min-width:150px">💳 Cuota mensual</b>
+    <div class="node">Admin asigna o seed genera<small>Pendiente</small></div><span class="arr">→</span>
+    <div class="node">Residente paga PSE<small>Pagado PG-xxxxx</small></div><span class="arr">→</span>
+    <div class="node" style="border-color:var(--ok)">KPIs recaudo ↑<small>cartera ↓ mora ↓</small></div>
+  </div>
+  <div class="lane"><b style="min-width:150px">📅 Reserva zona</b>
+    <div class="node">Residente solicita<small>Pendiente</small></div><span class="arr">→</span>
+    <div class="node">Admin revisa<small>aprobar / rechazar</small></div><span class="arr">→</span>
+    <div class="node" style="border-color:var(--ok)">Confirmada<small>409 si franja ocupada</small></div>
+  </div>
+  <div class="lane"><b style="min-width:150px">🎫 PQRS</b>
+    <div class="node">Residente crea<small>T-xxxx</small></div><span class="arr">→</span>
+    <div class="node">Admin atiende<small>asigna responsable</small></div><span class="arr">→</span>
+    <div class="node" style="border-color:var(--ok)">Resuelto</div>
+  </div>
+  <div class="lane"><b style="min-width:150px">🗳️ Asamblea</b>
+    <div class="node">Admin convoca<small>opciones de voto</small></div><span class="arr">→</span>
+    <div class="node">Residentes asisten+votan<small>único voto por persona</small></div><span class="arr">→</span>
+    <div class="node" style="border-color:var(--ok)">Cerrada + resultados</div>
+  </div>
+  <div class="lane"><b style="min-width:150px">🚨 Pánico</b>
+    <div class="node" style="border-color:var(--rose)">Residente activa<small>desde app</small></div><span class="arr">→</span>
+    <div class="node" style="border-color:var(--rose)">Portería ve banner<small>unidad + hora, sondeo 5 s</small></div><span class="arr">→</span>
+    <div class="node">Atendida por<small>quién y cuándo (auditoría)</small></div>
+  </div>
+  <div class="lane"><b style="min-width:150px">🪪 Visitante</b>
+    <div class="node">Portería registra<small>+ fotos rostro/cédula</small></div><span class="arr">→</span>
+    <div class="node">Dentro<small>estado visible en panel</small></div><span class="arr">→</span>
+    <div class="node" style="border-color:var(--ok)">Salida registrada</div>
+  </div>
+  <div class="lane"><b style="min-width:150px">✍️ Alta usuario</b>
+    <div class="node">Autorregistro<small>o admin invita</small></div><span class="arr">→</span>
+    <div class="node">Pendiente aprobación<small>(login bloqueado)</small></div><span class="arr">→</span>
+    <div class="node">Admin aprueba<small>rol + unidad</small></div><span class="arr">→</span>
+    <div class="node" style="border-color:var(--ok)">Activo</div>
+  </div>
+</div>
+
+<h2><span class="dot" style="background:var(--sky)"></span> Matriz de permisos (API)</h2>
+<div class="card" style="overflow-x:auto">
+  <table>
+    <tr><th>Módulo</th><th>Administrador</th><th>Consejo</th><th>Portería</th><th>Copropietario</th><th>Arrendatario</th></tr>
+    <tr><td>KPIs / Cartera / Stats</td><td class="s si">✔ total</td><td class="s si">✔ leer</td><td class="s no">—</td><td class="s no">—</td><td class="s no">—</td></tr>
+    <tr><td>Usuarios / Unidades</td><td class="s si">✔ gestionar</td><td class="s si">✔ leer</td><td class="s no">—</td><td class="s no">—</td><td class="s no">—</td></tr>
+    <tr><td>Pagos</td><td class="s si">✔ todos + asignar</td><td class="s si">✔ leer</td><td class="s no">—</td><td class="s si">✔ propios + PSE</td><td class="s si">✔ propios + PSE</td></tr>
+    <tr><td>Reservas</td><td class="s si">✔ todas + aprobar</td><td class="s si">✔ leer</td><td class="s no">—</td><td class="s si">✔ crear/cancelar propias</td><td class="s si">✔ crear/cancelar propias</td></tr>
+    <tr><td>PQRS</td><td class="s si">✔ atender/resolver</td><td class="s si">✔ leer</td><td class="s no">—</td><td class="s si">✔ propias</td><td class="s si">✔ propias</td></tr>
+    <tr><td>Visitas</td><td class="s si">✔ leer</td><td class="s no">—</td><td class="s si">✔ registrar/salida</td><td class="s no">—</td><td class="s no">—</td></tr>
+    <tr><td>Alertas pánico</td><td class="s si">✔ ver/atender</td><td class="s no">—</td><td class="s si">✔ ver/atender</td><td class="s si">✔ activar</td><td class="s si">✔ activar</td></tr>
+    <tr><td>Comunicados / Documentos / Asambleas</td><td class="s si">✔ publicar/gestionar</td><td class="s si">✔ leer/votar</td><td class="s no">—</td><td class="s si">✔ leer/descargar/votar</td><td class="s si">✔ leer/descargar/votar</td></tr>
+    <tr><td>Config seguridad / Logo</td><td class="s si">✔ único</td><td class="s no">—</td><td class="s no">—</td><td class="s no">—</td><td class="s no">—</td></tr>
+    <tr><td>Autorregistro / Leads</td><td colspan="5" style="text-align:center;color:var(--mut)">público (sin sesión) · honeypot + rate-limit anti abuso</td></tr>
+  </table>
+</div>
+
+<p class="foot">TuConjunto v1.0 · Generado automáticamente · Credenciales demo: documento 1020001–1020005 · clave demo1234 · Ver guía completa en deploy/DEPLOY.md</p>
+
+</body>
+</html>

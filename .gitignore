@@ -1,0 +1,28 @@
+# --- Secretos y datos locales (NUNCA subir) ---
+.env
+*.env
+!.env.example
+
+# Base de datos (contiene PII: documentos, fotos de cédula)
+server/data/
+*.db
+*.db-wal
+*.db-shm
+
+# Backups
+server/backups/
+backups/
+
+# Certificados TLS
+server/tls/
+
+# Dependencias
+node_modules/
+
+# Sistema
+*.log
+.DS_Store
+Thumbs.db
+
+# Prototipos históricos pesados (opcional: borrar esta línea si quieres versionarlos)
+# demo/

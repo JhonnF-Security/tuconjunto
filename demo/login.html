@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ingresar · TuConjunto</title>
+  <meta name="description" content="Pantalla de acceso a los paneles demo de TuConjunto: administración, copropietario y portería del Conjunto Residencial Altos del Bosque.">
+  <script>if(localStorage.getItem("tc-theme")==="dark")document.documentElement.classList.add("dark");</script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏢</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../tailwind.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="min-h-screen bg-slate-50 font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+
+  <button id="btn-tema"
+    type="button"
+    aria-label="Cambiar tema"
+    class="fixed top-4 right-4 z-50 inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800">
+    <svg class="h-5 w-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg>
+    <svg class="h-5 w-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/></svg>
+  </button>
+
+  <main class="mx-auto flex min-h-screen w-full max-w-md flex-col items-center justify-center px-4 py-12">
+
+    <div class="flex flex-col items-center text-center">
+      <span class="float-soft flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-600 shadow-lg shadow-brand-600/30">
+        <svg class="h-9 w-9 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z"/></svg>
+      </span>
+      <p class="mt-4 text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100 sm:text-3xl">Tu<span class="text-brand-600 dark:text-brand-400">Conjunto</span></p>
+      <h1 class="mt-2 text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-2xl">Ingresa a tu copropiedad</h1>
+      <p class="mt-1 text-xs font-medium text-slate-500 dark:text-slate-400">Entorno de validación operativa · Datos ficticios</p>
+    </div>
+
+    <form id="form-login" novalidate
+      class="mt-8 w-full rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:shadow-black/40">
+      <fieldset>
+        <legend class="text-sm font-bold text-slate-900 dark:text-slate-100">Elige tu perfil de acceso</legend>
+
+        <div role="radiogroup" aria-labelledby="ayuda-perfiles" class="mt-4 space-y-3">
+          <p id="ayuda-perfiles" class="sr-only">Selecciona uno de los tres perfiles de demostración y pulsa Entrar al panel.</p>
+
+          <div role="radio" aria-checked="false" tabindex="-1"
+            data-rol="administrador"
+            data-nombre="Jorge Ramírez"
+            data-unidad=""
+            data-destino="admin.html"
+            class="cursor-pointer rounded-xl border-2 border-slate-200 p-4 transition hover:border-brand-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 dark:border-slate-700 dark:hover:border-brand-500/40">
+            <div class="flex items-start gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-100 text-brand-700 dark:bg-brand-500/20 dark:text-brand-300" aria-hidden="true">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z"/></svg>
+              </span>
+              <div class="min-w-0 flex-1">
+                <p class="flex items-center justify-between gap-2">
+                  <span class="truncate text-sm font-bold text-slate-900 dark:text-slate-100">Administración</span>
+                  <svg class="marca-check hidden h-5 w-5 shrink-0 text-brand-600 dark:text-brand-400" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </p>
+                <p class="mt-0.5 truncate text-xs font-medium text-slate-700 dark:text-slate-300">Jorge Ramírez</p>
+                <p class="mt-0.5 text-xs text-slate-500 dark:text-slate-400">Panel operativo, comunidad, cartera</p>
+              </div>
+            </div>
+            <label for="pass-administrador" class="sr-only">Contraseña de Administración (demo)</label>
+            <input id="pass-administrador" type="password" readonly tabindex="-1" aria-hidden="true" value="••••••••"
+              class="mt-3 block w-full cursor-not-allowed rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm tracking-[0.3em] text-slate-400 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-500">
+            <p class="mt-1.5 text-[11px] text-slate-400 dark:text-slate-500">Credenciales de demostración precargadas</p>
+          </div>
+
+          <div role="radio" aria-checked="false" tabindex="-1"
+            data-rol="copropietario"
+            data-nombre="Ana María Gómez"
+            data-unidad="Torre 2 · Apto 502"
+            data-destino="residente.html"
+            class="cursor-pointer rounded-xl border-2 border-slate-200 p-4 transition hover:border-brand-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 dark:border-slate-700 dark:hover:border-brand-500/40">
+            <div class="flex items-start gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-100 text-brand-700 dark:bg-brand-500/20 dark:text-brand-300" aria-hidden="true">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
+              </span>
+              <div class="min-w-0 flex-1">
+                <p class="flex items-center justify-between gap-2">
+                  <span class="truncate text-sm font-bold text-slate-900 dark:text-slate-100">Copropietario</span>
+                  <svg class="marca-check hidden h-5 w-5 shrink-0 text-brand-600 dark:text-brand-400" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </p>
+                <p class="mt-0.5 truncate text-xs font-medium text-slate-700 dark:text-slate-300">Ana María Gómez · Torre 2 · Apto 502</p>
+                <p class="mt-0.5 text-xs text-slate-500 dark:text-slate-400">Pagos, reservas, PQRS, pánico</p>
+              </div>
+            </div>
+            <label for="pass-copropietario" class="sr-only">Contraseña de Copropietario (demo)</label>
+            <input id="pass-copropietario" type="password" readonly tabindex="-1" aria-hidden="true" value="••••••••"
+              class="mt-3 block w-full cursor-not-allowed rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm tracking-[0.3em] text-slate-400 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-500">
+            <p class="mt-1.5 text-[11px] text-slate-400 dark:text-slate-500">Credenciales de demostración precargadas</p>
+          </div>
+
+          <div role="radio" aria-checked="false" tabindex="-1"
+            data-rol="porteria"
+            data-nombre="Carlos Vega"
+            data-unidad=""
+            data-destino="porteria.html"
+            class="cursor-pointer rounded-xl border-2 border-slate-200 p-4 transition hover:border-brand-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 dark:border-slate-700 dark:hover:border-brand-500/40">
+            <div class="flex items-start gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-100 text-brand-700 dark:bg-brand-500/20 dark:text-brand-300" aria-hidden="true">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5a2.25 2.25 0 002.25 2.25zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z"/></svg>
+              </span>
+              <div class="min-w-0 flex-1">
+                <p class="flex items-center justify-between gap-2">
+                  <span class="truncate text-sm font-bold text-slate-900 dark:text-slate-100">Portería</span>
+                  <svg class="marca-check hidden h-5 w-5 shrink-0 text-brand-600 dark:text-brand-400" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </p>
+                <p class="mt-0.5 truncate text-xs font-medium text-slate-700 dark:text-slate-300">Carlos Vega</p>
+                <p class="mt-0.5 text-xs text-slate-500 dark:text-slate-400">Control de accesos y emergencias</p>
+              </div>
+            </div>
+            <label for="pass-porteria" class="sr-only">Contraseña de Portería (demo)</label>
+            <input id="pass-porteria" type="password" readonly tabindex="-1" aria-hidden="true" value="••••••••"
+              class="mt-3 block w-full cursor-not-allowed rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm tracking-[0.3em] text-slate-400 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-500">
+            <p class="mt-1.5 text-[11px] text-slate-400 dark:text-slate-500">Credenciales de demostración precargadas</p>
+          </div>
+        </div>
+      </fieldset>
+
+      <button id="btn-entrar" type="button"
+        class="mt-6 w-full rounded-xl bg-brand-600 px-4 py-3 font-bold text-white shadow-sm shadow-brand-600/30 transition hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 active:scale-[0.99]">
+        Entrar al panel
+      </button>
+
+      <p class="mt-4 text-center text-[11px] text-slate-400 dark:text-slate-500">
+        <svg class="mr-1 inline h-3.5 w-3.5 align-text-bottom text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>
+        Acceso simulado · No se validan contraseñas reales
+      </p>
+    </form>
+
+    <a href="../index.html" class="mt-6 text-xs font-semibold text-slate-500 transition hover:text-brand-600 hover:underline dark:text-slate-400 dark:hover:text-brand-400">← Volver al sitio comercial</a>
+
+    <section aria-labelledby="titulo-flujo"
+      class="mt-4 w-full rounded-xl border border-slate-200 bg-slate-50 p-4 text-xs leading-relaxed text-slate-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
+      <h2 id="titulo-flujo" class="font-bold text-slate-800 dark:text-slate-100">¿Cómo probar el flujo completo?</h2>
+      <p class="mt-1">Ingresa como Copropietario y activa el pánico con la ventana de Portería abierta; paga la cuota PSE y aprueba la reserva desde Administración.</p>
+    </section>
+
+    <p class="mt-8 text-[11px] font-medium text-slate-400 dark:text-slate-600">© 2026 TuConjunto · Demo interactiva</p>
+  </main>
+
+  <script>
+  (function(){
+    "use strict";
+    var CLAVE_SESION = "tc-sesion";
+    var radios = Array.prototype.slice.call(document.querySelectorAll('[role="radio"]'));
+    var btnEntrar = document.getElementById("btn-entrar");
+    var btnTema = document.getElementById("btn-tema");
+    var CLASES_ACTIVAS = [
+      "bg-brand-50/60",
+      "border-brand-600",
+      "ring-2",
+      "ring-brand-500/30",
+      "dark:bg-brand-500/10",
+      "dark:border-brand-500"
+    ];
+    var CLASES_INACTIVAS = [
+      "hover:border-brand-300",
+      "border-slate-200",
+      "dark:hover:border-brand-500/40",
+      "dark:border-slate-700"
+    ];
+
+    function aplicarEstado(radio){
+      var activo = radio.getAttribute("aria-checked") === "true";
+      CLASES_ACTIVAS.forEach(function(c){ radio.classList.toggle(c, activo); });
+      CLASES_INACTIVAS.forEach(function(c){ radio.classList.toggle(c, !activo); });
+      radio.setAttribute("tabindex", activo ? "0" : "-1");
+      var marca = radio.querySelector(".marca-check");
+      if(marca){
+        marca.classList.toggle("hidden", !activo);
+      }
+    }
+
+    function seleccionar(radio){
+      radios.forEach(function(r){
+        r.setAttribute("aria-checked", r === radio ? "true" : "false");
+      });
+      radios.forEach(aplicarEstado);
+    }
+
+    function seleccionado(){
+      var actual = radios.filter(function(r){
+        return r.getAttribute("aria-checked") === "true";
+      });
+      return actual[0] || radios[0];
+    }
+
+    radios.forEach(function(radio){
+      radio.addEventListener("click", function(){
+        seleccionar(radio);
+      });
+      radio.addEventListener("keydown", function(ev){
+        var i = radios.indexOf(radio);
+        var destino = null;
+        if(ev.key === "ArrowDown" || ev.key === "ArrowRight"){
+          destino = radios[(i + 1) % radios.length];
+        }else if(ev.key === "ArrowUp" || ev.key === "ArrowLeft"){
+          destino = radios[(i - 1 + radios.length) % radios.length];
+        }else if(ev.key === "Home"){
+          destino = radios[0];
+        }else if(ev.key === "End"){
+          destino = radios[radios.length - 1];
+        }else if(ev.key === " " || ev.key === "Enter"){
+          ev.preventDefault();
+          seleccionar(radio);
+          return;
+        }
+        if(destino){
+          ev.preventDefault();
+          seleccionar(destino);
+          destino.focus();
+        }
+      });
+    });
+
+    btnEntrar.addEventListener("click", function(){
+      var actual = seleccionado();
+      if(!actual){
+        return;
+      }
+      var sesion = {
+        rol: actual.getAttribute("data-rol"),
+        nombre: actual.getAttribute("data-nombre"),
+        unidad: actual.getAttribute("data-unidad") || null
+      };
+      try{
+        localStorage.setItem(CLAVE_SESION, JSON.stringify(sesion));
+      }catch(e){}
+      location.href = actual.getAttribute("data-destino");
+    });
+
+    btnTema.addEventListener("click", function(){
+      var oscuro = document.documentElement.classList.toggle("dark");
+      try{
+        localStorage.setItem("tc-theme", oscuro ? "dark" : "light");
+      }catch(e){}
+    });
+
+    seleccionar(radios[0]);
+  })();
+  </script>
+</body>
+</html>

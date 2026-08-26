@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TuConjunto — Guía interactiva de producción</title>
+<style>
+  :root{
+    --bg:#0f172a; --panel:#1e293b; --panel2:#273449; --line:#334155;
+    --txt:#e2e8f0; --mut:#94a3b8; --acc:#38bdf8; --ok:#34d399; --warn:#fbbf24;
+    --bad:#f87171; --code:#0b1220;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--txt); font-family:'Segoe UI',system-ui,sans-serif; line-height:1.55;}
+  header{padding:28px 20px 18px; text-align:center; border-bottom:1px solid var(--line);}
+  header h1{font-size:1.6rem;} header h1 span{color:var(--acc);}
+  header p{color:var(--mut); margin-top:6px; font-size:.95rem;}
+  .wrap{max-width:980px; margin:0 auto; padding:20px 16px 80px;}
+  .global{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--line); padding:10px 16px; display:flex; gap:14px; align-items:center;}
+  .bar{flex:1; height:12px; background:var(--panel); border-radius:99px; overflow:hidden; border:1px solid var(--line);}
+  .bar>i{display:block; height:100%; width:0%; background:linear-gradient(90deg,var(--acc),var(--ok)); transition:width .3s;}
+  #pct{font-weight:700; color:var(--acc); min-width:52px; text-align:right;}
+  button.mini{background:none; border:1px solid var(--line); color:var(--mut); border-radius:8px; padding:5px 10px; cursor:pointer; font-size:.78rem;}
+  button.mini:hover{color:var(--bad); border-color:var(--bad);}
+  nav{display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 26px; justify-content:center;}
+  nav a{color:var(--mut); text-decoration:none; border:1px solid var(--line); padding:7px 13px; border-radius:99px; font-size:.85rem;}
+  nav a:hover{color:var(--acc); border-color:var(--acc);}
+  section{background:var(--panel); border:1px solid var(--line); border-radius:14px; margin-bottom:26px; overflow:hidden; scroll-margin-top:60px;}
+  section>h2{padding:16px 20px; background:var(--panel2); font-size:1.15rem; display:flex; align-items:center; gap:10px;}
+  section>h2 .tag{font-size:.72rem; background:var(--bg); color:var(--mut); border:1px solid var(--line); padding:2px 9px; border-radius:99px; margin-left:auto;}
+  .mod{padding:18px 20px;}
+  .intro{color:var(--mut); font-size:.93rem; margin-bottom:14px;}
+  details.con{border:1px solid var(--line); border-radius:10px; margin:10px 0; background:var(--bg);}
+  details.con>summary{cursor:pointer; padding:11px 15px; font-weight:600; color:var(--acc); list-style:none;}
+  details.con>summary::before{content:"▸ ";}
+  details.con[open]>summary::before{content:"▾ ";}
+  details.con .body{padding:0 16px 14px; font-size:.92rem;}
+  details.con .body p{margin:8px 0;}
+  .step{display:flex; gap:12px; padding:12px; border:1px dashed var(--line); border-radius:10px; margin:10px 0; align-items:flex-start;}
+  .step input[type=checkbox]{width:19px;height:19px;margin-top:3px;accent-color:var(--ok); cursor:pointer; flex-shrink:0;}
+  .step.done .stxt{opacity:.55; text-decoration:line-through;}
+  .step.done{border-color:#1d3a2f;}
+  .stxt b{display:block;}
+  .stxt small{color:var(--mut);}
+  pre{position:relative; background:var(--code); border:1px solid var(--line); border-radius:8px; padding:12px 44px 12px 14px; margin:9px 0; overflow-x:auto; font-size:.82rem; line-height:1.5;}
+  code{font-family:Consolas,Menlo,monospace; color:#a5f3fc; word-break:break-word;}
+  pre code{color:#e2e8f0;}
+  .copy{position:absolute; top:7px; right:7px; background:var(--panel2); border:1px solid var(--line); color:var(--mut); border-radius:6px; font-size:.7rem; padding:3px 8px; cursor:pointer;}
+  .copy:hover{color:var(--acc);}
+  .note,.warn,.danger{border-left:4px solid; border-radius:8px; padding:10px 14px; margin:10px 0; font-size:.88rem;}
+  .note{border-color:var(--acc); background:#12202f;}
+  .warn{border-color:var(--warn); background:#241d0e;}
+  .danger{border-color:var(--bad); background:#241214;}
+  table{width:100%; border-collapse:collapse; margin:10px 0; font-size:.86rem;}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:left;}
+  th{background:var(--panel2); color:var(--acc);}
+  td code{font-size:.8rem;}
+  .q{background:var(--bg); border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin:12px 0;}
+  .q .q-t{font-weight:600; margin-bottom:10px;}
+  .q label{display:block; padding:8px 12px; border:1px solid var(--line); border-radius:8px; margin:6px 0; cursor:pointer; font-size:.9rem;}
+  .q label:hover{border-color:var(--acc);}
+  .q label.correcta{border-color:var(--ok); background:#10231b;}
+  .q label.incorrecta{border-color:var(--bad); background:#241214;}
+  .q .fb{margin-top:8px; font-size:.85rem; display:none;}
+  .q.resp .fb{display:block;}
+  .fb.ok{color:var(--ok);} .fb.no{color:var(--bad);}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>TuConjunto <span>·</span> Guía interactiva de producción</h1>
+  <p>Validación de módulos · Seguridad OWASP · Despliegue VPS · Integración pagos PSE</p>
+</header>
+
+<div class="global">
+  <div class="bar"><i id="fill"></i></div>
+  <span id="pct">0%</span>
+  <button class="mini" onclick="reiniciar()">↺ Reiniciar progreso</button>
+</div>
+
+<div class="wrap">
+
+<nav>
+  <a href="#m0">0 · Arranque</a>
+  <a href="#m1">1 · Roles</a>
+  <a href="#m2">2 · Seguridad</a>
+  <a href="#m3">3 · Bloqueantes VPS</a>
+  <a href="#m4">4 · Desplegar</a>
+  <a href="#m5">5 · Pagos PSE</a>
+  <a href="#quiz">Quiz</a>
+</nav>
+<!-- ============ MÓDULO 0 ============ -->
+<section id="m0">
+  <h2>📦 Módulo 0 — Arrancar y comprobar vida <span class="tag">3 pasos</span></h2>
+  <div class="mod">
+    <p class="intro">Antes de probar cualquier lógica, confirma que el proceso vive. Todo backend serio expone <code>/api/health</code>: responde sin tocar la BD. Es tu primer latido.</p>
+
+    <label class="step"><input type="checkbox" data-k="0a"><span class="stxt"><b>Iniciar el servidor desligado de la terminal</b>
+      <pre><code>cd /root/agency-agents/tu-conjunto/server
+setsid nohup node src/index.js &gt; /tmp/opencode/server.log 2&gt;&amp;1 &amp;</code></pre>
+      <small><code>setsid nohup ... &amp;</code> desliga el proceso de tu sesión: sigue vivo aunque cierres la terminal o SSH.</small>
+    </span></label>
+
+    <label class="step"><input type="checkbox" data-k="0b"><span class="stxt"><b>Verificar el latido</b>
+      <pre><code>curl http://localhost:8081/api/health
+# → {"ok":true,"status":"up","uptime_s":...,"version":"1.0.0"}</code></pre>
+      <small>Si responde, el proceso arrancó; si no, ni pierdas tiempo probando lo demás.</small>
+    </span></label>
+
+    <label class="step"><input type="checkbox" data-k="0c"><span class="stxt"><b>Saber ver los logs</b>
+      <pre><code>tail -f /tmp/opencode/tuconjunto-server.log   # en desarrollo
+journalctl -u tuconjunto -f                   # en producción (systemd)</code></pre>
+    </span></label>
+
+    <details class="con"><summary>¿Por qué un endpoint de health separado?</summary><div class="body">
+      <p>Diferencia <b>vivo</b> vs <b>sano</b>: health solo prueba "el proceso corre". No consulta la BD a propósito — así distingues "el server murió" de "la BD tiene problemas" en segundos. Los balanceadores y monitores usan este patrón (liveness probe).</p>
+    </div></details>
+  </div>
+</section>
+
+<!-- ============ MÓDULO 1 ============ -->
+<section id="m1">
+  <h2>👥 Módulo 1 — Validación funcional por rol <span class="tag">5 roles</span></h2>
+  <div class="mod">
+    <p class="intro">La técnica: <b>convertirte en cada usuario</b> con curl y verificar dos cosas opuestas — que SÍ puede hacer su trabajo y que NO puede hacer el de los demás (RBAC). Un endpoint no está probado hasta que pruebas que rechaza a quien debe rechazar.</p>
+
+    <table>
+      <tr><th>Rol</th><th>Documento demo</th><th>Clave</th><th>Puede</th><th>No puede</th></tr>
+      <tr><td>administrador</td><td><code>1020001</code></td><td rowspan="5"><code>demo1234</code></td><td>todo: usuarios, unidades, config, documentos, asambleas, cartera</td><td>—</td></tr>
+      <tr><td>consejo</td><td><code>1020002</code></td><td>KPIs, cartera, comunicados, PQRS, asambleas</td><td>crear/editar usuarios</td></tr>
+      <tr><td>porteria</td><td><code>1020003</code></td><td>visitas, alertas pánico</td><td>ver usuarios ni KPIs</td></tr>
+      <tr><td>copropietario</td><td><code>1020004</code></td><td>pagos PSE, reservar zonas, PQRS propios</td><td>ver reservas ajenas, aprobar nada</td></tr>
+      <tr><td>arrendatario</td><td><code>1020005</code></td><td>como copropietario</td><td>igual + sin acceso a datos de otras unidades</td></tr>
+    </table>
+
+    <label class="step"><input type="checkbox" data-k="1a"><span class="stxt"><b>Login como cada rol (guardar cookie)</b>
+      <pre><code>curl -s -X POST http://localhost:8081/api/auth/login \
+  -H "Content-Type: application/json" -H "X-Requested-With: fetch" \
+  -c cookies-1020004.txt \
+  -d '{"documento":"1020004","password":"demo1234"}'</code></pre>
+      <small><code>-c</code> guarda la cookie; <code>-b</code> la envía después. Repite para los 5 documentos.</small>
+    </span></label>
+
+    <label class="step"><input type="checkbox" data-k="1b"><span class="stxt"><b>Caso positivo: cada rol consulta sus endpoints</b>
+      <pre><code># Copropietario:
+curl -b cookies-1020004.txt http://localhost:8081/api/pagos          # 200
+curl -b cookies-1020004.txt "http://localhost:8081/api/reservas?mias=1"  # 200
+# Portería:
+curl -b cookies-1020003.txt http://localhost:8081/api/visitas        # 200
+# Consejo / Admin:
+curl -b cookies-1020002.txt http://localhost:8081/api/kpis           # 200
+curl -b cookies-1020001.txt http://localhost:8081/api/usuarios       # 200</code></pre>
+      <small>Fíjate en <code>?mias=1</code>: el residente solo ve SUS reservas; admin ve todas sin filtro.</small>
+    </span></label>
+
+    <label class="step"><input type="checkbox" data-k="1c"><span class="stxt"><b>Caso negativo: los 403 correctos</b>
+      <pre><code>curl -b cookies-1020003.txt http://localhost:8081/api/usuarios       # → 403
+curl -b cookies-1020004.txt -X PATCH \
+  -H "X-Requested-With: fetch" -H "Content-Type: application/json" \
+  -d '{"accion":"aprobar"}' http://localhost:8081/api/reservas/1     # → 403</code></pre>
+    </span></label>
+
+    <label class="step"><input type="checkbox" data-k="1d"><span class="stxt"><b>Mutaciones de ejemplo (crear PQRS y reserva)</b>
+      <pre><code>curl -X POST -b cookies-1020004.txt \
+  -H "X-Requested-With: fetch" -H "Content-Type: application/json" \
+  -d '{"titulo":"Prueba","descripcion":"Test","tipo":"Otro","prioridad":"Baja"}' \
+  http://localhost:8081/api/pqrs                                     # → 201
+
+curl -X POST -b cookies-1020004.txt \
+  -H "X-Requested-With: fetch" -H "Content-Type: application/json" \
+  -d '{"zona_id":1,"fecha":"2026-09-15","franja":"tarde"}' \
+  http://localhost:8081/api/reservas                                 # → 201</code></pre>
+    </span></label>
+
+    <details class="con"><summary>Concepto · Cookie HttpOnly y anti-CSRF</summary><div class="body">
+      <p><b>HttpOnly</b>: el JavaScript del navegador no puede leer la cookie → aunque hubiera un XSS, no roba la sesión. <b>X-Requested-With: fetch</b> es el anti-CSRF: un sitio malicioso externo puede disparar formularios hacia tu API, pero no puede añadir cabeceras personalizadas → sus peticiones reciben 403 CSRF. Dos capas independientes.</p>
+    </div></details>
+
+    <details class="con"><summary>Concepto · RBAC vs IDOR (los dos enemigos distintos)</summary><div class="body">
+      <p><b>RBAC</b> pregunta "¿puede este ROL hacer esta acción?" → <code>requireRole('administrador')</code>.</p>
+      <p><b>IDOR</b> pregunta "¿este recurso es SUYO?". Ejemplo real en reservas.js:</p>
+      <pre><code>if (reserva.usuario_id !== req.usuario.id)
+  throw httpError(403, 'SIN_PERMISO', 'Solo quien creó...');</code></pre>
+      <p>Sin esa línea, cualquiera cambiando <code>/reservas/7/cancelar</code> cancelaría reservas ajenas. Regla: <b>rol controla el tipo de acción; ownership controla sobre qué fila</b>. Recursos personales necesitan ambos.</p>
+    </div></details>
+  </div>
+</section>
+<!-- ============ MÓDULO 2 ============ -->
+<section id="m2">
+  <h2>🔐 Módulo 2 — Seguridad: los 4 fixes y su lógica <span class="tag">OWASP</span></h2>
+  <div class="mod">
+    <p class="intro">Cuatro vulnerabilidades reales encontradas por auditoría, corregidas y verificadas en vivo. Cada una enseña un principio distinto.</p>
+
+    <label class="step"><input type="checkbox" data-k="2a"><span class="stxt"><b>A-1 · Suspensión invalida sesión al instante (defense in depth)</b>
+      <small>El bug: un usuario suspendido seguía dentro hasta 12 h con su cookie. El fix en <code>middleware.js → requireAuth</code>: revalidar el estado en CADA request.</small>
+      <pre><code>if (fila.estado !== 'Activo') {
+  db.prepare('DELETE FROM sesiones WHERE usuario_id = ?').run(fila.id);
+  return res.status(403).json({ error: { code: 'CUENTA_INACTIVA', ... }});
+}</code></pre>
+      <small>Verifícalo: suspende al usuario 4 desde admin y con SU cookie pide /api/zonas → debe responder CUENTA_INACTIVA.</small>
+    </span></label>
+
+    <details class="con"><summary>requireAuth línea por línea</summary><div class="body">
+      <pre><code>① token = leerCookie(req,'tc_session')        // el navegador lo adjunta solo
+② fila = SELECT ... WHERE token_hash = sha256(token)   // ¡hash, no token plano!
+③ if (!fila) → 401                            // token desconocido
+④ limpiarSesionesExpiradas(...)               // higiene de la tabla
+⑤ if (expirada) → 401 SESION_EXPIRADA
+⑥ if (estado!=='Activo') → borrar sesiones + 403   // ← nuestro fix A-1
+⑦ req.usuario = perfilUsuario(fila)           // todos los routers confían en esto
+⑧ if (debe_cambiar_clave &amp;&amp; !url.startsWith('/api/auth')) → 403
+⑨ next()                                      // continúa al router</code></pre>
+      <p><b>② es oro puro:</b> la BD guarda SHA-256 del token. Si te roban la BD completa, esos hashes NO sirven para suplantar a nadie (necesitarías preimágenes). Lección: <b>nunca guardes credenciales reversibles</b>.</p>
+    </div></details>
+
+    <label class="step"><input type="checkbox" data-k="2b"><span class="stxt"><b>A-2 · Contraseña temporal aleatoria (entropía)</b>
+      <small>El bug: clave inicial = número de documento, que es dato público → cualquiera podía tomar posesión de la cuenta antes del primer ingreso.</small>
+      <pre><code>// usuarios.js — ANTES: const passwordTemporal = d.documento;
+const passwordTemporal = crypto.randomBytes(6).toString('hex'); // 12 chars, 48 bits</code></pre>
+      <small>Se entrega UNA sola vez en la respuesta del admin + cuenta nace con debe_cambiar_clave=1.</small>
+    </span></label>
+
+    <details class="con"><summary>Concepto · Math.random() vs crypto.randomBytes</summary><div class="body">
+      <p><code>Math.random()</code> es un PRNG predecible: observando suficientes salidas se reconstruye su estado interno y se predicen las siguientes. <code>crypto.randomBytes()</code> usa el CSPRNG del kernel (entropía real). Para claves/contraseñas/sesiones: SIEMPRE crypto. 48 bits ≈ 281 billones de combinaciones; con rate-limit de 5 intentos/min la fuerza bruta online es inviable.</p>
+    </div></details>
+
+    <label class="step"><input type="checkbox" data-k="2c"><span class="stxt"><b>M-2 · Botón de pánico con frenos (rate-limit + dedup)</b>
+      <small>Sin freno: 60 alarmas/minuto desensibilizan a portería. Dos técnicas combinadas en alertas.js:</small>
+      <pre><code>// 1. Límite por usuario: 3 cada 5 min → 429 Too Many Requests
+const limitadorPanico = rateLimit({ ventanaMs:300000, max:3, clave:(req)=&gt;String(req.usuario.id) });
+
+// 2. Dedup: si ya hay alerta activa reciente de la misma unidad, devolver esa
+const activa = db.prepare(
+  "SELECT id FROM alertas WHERE atendida=0 AND unidad=? AND tipo=? AND creada_en&gt;?"
+).get(unidad, tipo, ahoraMs()-300000);</code></pre>
+      <small>Probado: 1ª→201, 2ª-3ª→200 deduplicada, 4ª→429.</small>
+    </span></label>
+
+    <label class="step"><input type="checkbox" data-k="2d"><span class="stxt"><b>B-5 · Oráculo de tiempo (side-channel)</b>
+      <small>Incluso sin ver tu código, midiendo cuánto tarda el login se distinguía "documento existe" (~80 ms de scrypt) de "no existe" (~2 ms).</small>
+      <pre><code>// auth.js — si no existe, ejecutar igual el cálculo costoso contra un hash falso:
+let HASH_DUMMY = null;
+function hashDummy(){ if(!HASH_DUMMY) HASH_DUMMY = hashPassword('equalizador-tiempo-tuconjunto'); return HASH_DUMMY; }
+
+const claveValida = usuario
+  ? verifyPassword(password, usuario.password_hash)
+  : (void verifyPassword(password, hashDummy()), false);</code></pre>
+      <small>Lección: en seguridad, HASTA EL TIEMPO DE RESPUESTA es información.</small>
+    </span></label>
+
+    <details class="con"><summary>Concepto · scrypt y comparación en tiempo constante</summary><div class="body">
+      <p><code>{N:16384, r:8, p:1}</code> ≈ 16 MB de RAM por hash. scrypt es memory-hard: limita a los atacantes con GPU (que son malas con RAM). OWASP lo recomienda como mínimo actual.</p>
+      <p><code>crypto.timingSafeEqual(a,b)</code> compara byte a byte SIN cortocircuito. Un <code>===</code> entre strings aborta en el primer byte distinto → el tiempo revela cuántos bytes acertaste.</p>
+      <p>Formato almacenado <code>scrypt$salt$hash</code> con salt aleatorio de 16 B por usuario → misma contraseña produce hashes distintos → tablas precalculadas (rainbow tables) inútiles.</p>
+    </div></details>
+
+    <details class="con"><summary>Pendientes menores documentados (no bloqueantes)</summary><div class="body">
+      <p>· Enumeración vía mensajes de login (429 vs 401 distintos) — mitigable con respuesta uniforme.<br>
+      · XSS almacenado en campos libres: mitigado por CSP con nonce; conviene sanitizar server-side.<br>
+      · Rate-limits en memoria: se reinician al reiniciar el proceso; para multi-instancia usar Redis.<br>
+      · CSP podría añadir object-src/base-uri/frame-ancestors.</p>
+    </div></details>
+  </div>
+</section>
+
+<!-- ============ MÓDULO 3 ============ -->
+<section id="m3">
+  <h2>🚀 Módulo 3 — Los 5 bloqueantes de despliegue VPS <span class="tag">corregidos</span></h2>
+  <div class="mod">
+    <p class="intro">Errores que SOLO aparecen el día del despliegue real, no en tu máquina. Cada uno con su lección.</p>
+
+    <label class="step"><input type="checkbox" data-k="3a"><span class="stxt"><b>B1 · Círculo vicioso nginx/TLS (chicken-and-egg)</b>
+      <small>El conf exigía certificados que aún no existían; quien los crea (certbot) corría después de validar nginx. Orden correcto:</small>
+      <pre><code>1. vhost inicial SOLO puerto 80   → nginx -t pasa sin certificados
+2. la app queda accesible por HTTP desde el minuto uno
+3. certbot --nginx --redirect     → emite certificado Y edita el conf:
+                                    añade bloque 443 + redirección a HTTPS</code></pre>
+      <small>HTTPS necesita certificado; el gratuito se emite demostrando control del dominio vía HTTP. Es inevitable pasar primero por HTTP.</small>
+    </span></label>
+
+    <label class="step"><input type="checkbox" data-k="3b"><span class="stxt"><b>B2 · Esquema de BD al arrancar, sin seed (idempotencia)</b>
+      <small>Las tablas solo nacían con <code>npm run seed</code>, que BORRA todo e instala demo. En producción: o BD sin tablas (500 en todo), o usuarios demo con demo1234.</small>
+      <pre><code>// index.js — CREATE TABLE IF NOT EXISTS ×23 tablas:
+crearEsquema(db);</code></pre>
+      <table>
+        <tr><th></th><th>seed.js</th><th>crearEsquema</th></tr>
+        <tr><td>Propósito</td><td>demo con datos falsos</td><td>infraestructura</td></tr>
+        <tr><td>Destructivo</td><td style="color:#f87171;">SÍ (rmSync de la BD)</td><td style="color:#34d399;">NO (IF NOT EXISTS)</td></tr>
+        <tr><td>Cuándo</td><td>solo tú, local</td><td>cada arranque</td></tr>
+      </table>
+      <small>Regla: código de instalación (seed) ≠ código de arranque (schema). Idempotente = correrlo 1000 veces sin efecto colateral.</small>
+    </span></label>
+
+    <label class="step"><input type="checkbox" data-k="3c"><span class="stxt"><b>B3 · Primer administrador (semilla de confianza)</b>
+      <small>El registro público crea cuentas pendientes... aprobables solo por un admin. ¿Y si no hay ninguno? Bucle infinito. Solución: CLI fuera del flujo web.</small>
+      <pre><code>cd /opt/tuconjunto/server
+sudo -u tuconjunto npm run create-admin -- \
+  --documento TU_DOCUMENTO --nombre "Tu Nombre"
+# imprime clave aleatoria UNA sola vez + debe_cambiar_clave=1</code></pre>
+      <small>Equivalente al usuario root que creas al instalar Linux: la semilla de confianza vive fuera del sistema que va a gobernar.</small>
+    </span></label>
+
+    <label class="step"><input type="checkbox" data-k="3d"><span class="stxt"><b>B4 · Instrucción destructiva disfrazada</b>
+      <small>El banner final de deploy.sh sugería <code>node src/seed.js --limpiar-usuarios-demo</code>. Ese flag NO existía, y seed a secas borra la BD productiva. Un operador obediente habría destruido los datos.</small>
+      <span class="danger">Lección: los mensajes de un script son interfaz de usuario. Lo que sugieras ahí, alguien lo ejecutará literalmente. Nunca documentes comandos inexistentes ni normalices comandos destructivos.</span>
+    </span></label>
+
+    <label class="step"><input type="checkbox" data-k="3e"><span class="stxt"><b>B5 · TRUST_PROXY: cookies Secure e IPs reales detrás de nginx</b>
+      <pre><code>sed -i "s|^TRUST_PROXY=.*|TRUST_PROXY=1|" .env   # ¡sed, no grep||append!
+# + HOST=127.0.0.1  (la API solo escucha local; público entra por nginx)
+# + COOKIE_SECURE=true</code></pre>
+      <small>Sin esto: req.secure=false permanente → cookies sin flag Secure sobre HTTPS, sin HSTS, y TODOS los rate-limiters cuentan contra 127.0.0.1 → una sola cubeta compartida: 21 logins reales/min = bloqueos en cadena.</small>
+    </span></label>
+
+    <details class="con"><summary>Anatomía de X-Forwarded-For (por qué exactamente 1 salto)</summary><div class="body">
+      <p>nginx CONCATENA lo que envió el cliente, no lo reemplaza:</p>
+      <pre><code>X-Forwarded-For: basura_falsa_del_cliente, IP_real
+                  ↑ NO confiable            ↑ último salto confiable</code></pre>
+      <p><code>TRUST_PROXY=1</code> = "cuenta 1 salto desde atrás": toma la IP que TU nginx puso, ignora la basura del cliente.</p>
+      <p>· TRUST_PROXY=0 → todos comparten bucket (DoS accidental)<br>
+      · TRUST_PROXY muy alto → el atacante rota su XFF falso y evada límites<br>
+      · Exactamente los saltos que TÚ controlas = precisión sin exposición.</p>
+    </div></details>
+
+    <details class="con"><summary>Bonus · Hardening systemd traducido a humano</summary><div class="body">
+      <p>· <code>ProtectSystem=strict</code> → filesystem completo solo-lectura, excepto…<br>
+      · <code>ReadWritePaths=data backups</code> → …estas dos carpetas<br>
+      · <code>NoNewPrivileges=true</code> → jamás puede escalar a root (bloquea setuid/sudo)<br>
+      · <code>PrivateTmp=true</code> → /tmp propio invisible para otros procesos<br>
+      · <code>CapabilityBoundingSet=</code> (vacío) → sin capacidades mínimas de root<br>
+      · <code>MemoryMax=768M</code> → techo de RAM para GC de V8</p>
+      <p><span style="color:#f87171;">⚠ NUNCA MemoryDenyWriteExecute=true con Node:</span> prohíbe memoria escribible+ejecutable y el JIT de V8 necesita exactamente eso → el server moriría al arrancar.</p>
+      <p>Además el arranque hace <code>process.umask(0o077)</code> → la BD nace 600 (solo dueño lee): aunque comprometan otro servicio del VPS, no lee PII.</p>
+    </div></details>
+  </div>
+</section>
+<!-- ============ MÓDULO 4 ============ -->
+<section id="m4">
+  <h2>🌍 Módulo 4 — Desplegar en tu VPS, paso a paso <span class="tag">producción</span></h2>
+  <div class="mod">
+    <p class="intro">Requisitos: VPS Ubuntu 22.04/24.04 (1 vCPU/2 GB/40 GB basta para decenas de conjuntos), dominio propio, puertos 22/80/443.</p>
+
+    <label class="step"><input type="checkbox" data-k="4a"><span class="stxt"><b>1 · Compra el dominio y crea el registro A → IP del VPS</b>
+      <small>HAZLO PRIMERO: la propagación DNS tarda. Certbot valida tu dominio por DNS; sin esto el TLS falla.</small>
+    </span></label>
+
+    <label class="step"><input type="checkbox" data-k="4b"><span class="stxt"><b>2 · Copia el proyecto al VPS con los excludes correctos</b>
+      <pre><code>rsync -av \
+  --exclude node_modules --exclude data --exclude backups \
+  --exclude tls --exclude .env \
+  ./tu-conjunto/ root@IP-DEL-VPS:/opt/tuconjunto/</code></pre>
+      <small>¿Por qué cada exclude?<br>· node_modules → se reconstruye allá (binarios nativos del SO destino)<br>· data/backups → datos reales locales; no deben sobreescribirse jamás<br>· .env → secretos locales<br>· tls → cert dev self-signed inútil en prod</small>
+    </span></label>
+
+    <label class="step"><input type="checkbox" data-k="4c"><span class="stxt"><b>3 · Ejecuta el despliegue automático</b>
+      <pre><code>cd /opt/tuconjunto/deploy
+chmod +x deploy.sh &amp;&amp; sudo ./deploy.sh tudominio.com</code></pre>
+      <small>Hace: Node 20 + nginx + certbot + usuario de servicio sin shell + systemd endurecido + firewall ufw (22/80/443) + backups diarios 3 AM como usuario dedicado + health check con reintentos.</small>
+    </span></label>
+
+    <label class="step"><input type="checkbox" data-k="4d"><span class="stxt"><b>4 · Crea tu administrador real (NUNCA uses demo en producción)</b>
+      <pre><code>sudo -u tuconjunto npm run create-admin -- \
+  --documento TU_DOCUMENTO --nombre "Tu Nombre"</code></pre>
+      <div class="danger">npm run seed BORRA la base completa e instala demo1234. Solo para pruebas locales.</div>
+    </span></label>
+
+    <label class="step"><input type="checkbox" data-k="4e"><span class="stxt"><b>5 · Primer ingreso y configuración</b>
+      <small>Entra a /login.html con la clave temporal impresa → cámbiala (el sistema lo obliga) → configura Seguridad: sesión, recordarme ≤12 h, intentos de login.</small>
+    </span></label>
+
+    <label class="step"><input type="checkbox" data-k="4f"><span class="stxt"><b>6 · Prueba desde tu CELULAR</b>
+      <small>La cámara de fotos de portería exige HTTPS real. Es tu validación end-to-end del TLS + cookies Secure.</small>
+    </span></label>
+
+    <details class="con"><summary>Operación diaria (chuleta)</summary><div class="body">
+      <pre><code>systemctl status tuconjunto        # estado
+systemctl restart tuconjunto       # reiniciar
+journalctl -u tuconjunto -f        # logs en vivo
+sudo -u tuconjunto npm run backup  # backup manual
+
+# Restaurar backup (¡procedimiento seguro!):
+systemctl stop tuconjunto
+cp backups/tuconjunto-FECHA.db data/tuconjunto.db
+rm -f data/tuconjunto.db-wal data/tuconjunto.db-shm   # ¡OBLIGATORIO!
+sqlite3 data/tuconjunto.db "PRAGMA integrity_check;"   # debe decir "ok"
+chown tuconjunto:tuconjunto data/tuconjunto.db*
+systemctl start tuconjunto</code></pre>
+      <p><b>¿Por qué borrar -wal/-shm?</b> SQLite en modo WAL escribe en archivos auxiliares constantemente; restaurar el .db sobre -wal viejos = mezclar dos estados = corrupción.</p>
+      <p><b>¿Por qué backup con VACUUM INTO?</b> Saca foto consistente MIENTRAS el server sigue corriendo. Copiar el .db a medias bajo WAL = corrupción garantizada tarde o temprano.</p>
+    </div></details>
+
+    <details class="con"><summary>Actualizar la app más adelante</summary><div class="body">
+      <pre><code>rsync -av --exclude node_modules --exclude data --exclude backups \
+  --exclude tls --exclude .env ./ root@VPS:/opt/tuconjunto/
+ssh root@VPS systemctl restart tuconjunto</code></pre>
+      <p>El esquema es idempotente al arranque: las nuevas tablas se crean solas, los datos existentes no se tocan.</p>
+    </div></details>
+
+    <details class="con"><summary>Escala futura (&gt;50 conjuntos)</summary><div class="body">
+      <p>· SQLite → PostgreSQL (solo cambia db.js; el contrato API no cambia)<br>
+      · Notificaciones email/WhatsApp a un worker aparte<br>
+      · Backups offsite: <code>rclone copy backups/ b2:tuconjunto-backups</code><br>
+      · Costos: VPS US$5–12/mes · dominio US$10–15/año · TLS gratis · PSE real ~2,5–3,5 % por transacción</p>
+    </div></details>
+  </div>
+</section>
+
+<!-- ============ MÓDULO 5 ============ -->
+<section id="m5">
+  <h2>💳 Módulo 5 — Pagos PSE reales con Wompi <span class="tag">F0→F5</span></h2>
+  <div class="mod">
+    <p class="intro">Hoy existe un simulador interno (<code>POST /api/pagos/pse</code>). Está diseñado para enlazarse a una pasarela real sin cambiar el modelo de cuotas. En producción real, el simulador debe desactivarse — hoy cualquiera podría autocompletarse una cuota gratis con curl.</p>
+
+    <details class="con"><summary>Lo que YA cumple el proyecto (reutilizable tal cual)</summary><div class="body">
+      <p>✅ Monto SIEMPRE desde la BD (el cliente nunca envía valor)<br>
+      ✅ Idempotencia: transacción SQLite atómica + UNIQUE(unidad_id,periodo) → doble pago imposible (409)<br>
+      ✅ Referencia visible PG-XXXXX, auditoría, cartera y KPIs derivados del estado<br>
+      ✅ Infraestructura webhook-ready: TLS, rate-limiting, logs</p>
+    </div></details>
+
+    <details class="con"><summary>¿Por qué Wompi? Comparativa</summary><div class="body">
+      <table>
+        <tr><th>Criterio</th><th>Wompi ★</th><th>Bold</th><th>ePayco</th><th>PayU</th></tr>
+        <tr><td>Checkout</td><td>Redirect/form (compatible CSP actual)</td><td>Redirect/API</td><td>Widget JS</td><td>API REST pesada</td></tr>
+        <tr><td>Firma</td><td>SHA256 server-side (1 línea)</td><td>HMAC-SHA256</td><td>SHA256</td><td>MD5 legacy</td></tr>
+        <tr><td>Webhook</td><td>1 evento + checksum fácil</td><td>CloudEvents JSON</td><td>confirmation URL</td><td>state_pol</td></tr>
+        <tr><td>Sandbox</td><td>Sí, gratis pub_test_</td><td>Sí</td><td>Sí</td><td>Sí</td></tr>
+      </table>
+      <p>PSE nace PENDING en todas: puede tardar minutos. Por eso existen estados intermedios.</p>
+    </div></details>
+
+    <label class="step"><input type="checkbox" data-k="5a"><span class="stxt"><b>F0 · Cuenta y dominio (sin código)</b>
+      <small>Contratar comercio Wompi con NIT del conjunto → obtener llaves sandbox → dominio con HTTPS público (obligatorio para webhooks). Llenar variables en server/.env:</small>
+      <pre><code>PAYMENTS_PROVIDER=wompi            # none (simulado) | wompi
+WOMPI_ENV=sandbox                  # sandbox | production
+WOMPI_PUBLIC_KEY=pub_test_xxxx
+WOMPI_PRIVATE_KEY=priv_test_xxxx
+WOMPI_INTEGRITY_SECRET=test_integrity_xxxx
+WOMPI_EVENTS_SECRET=test_events_xxxx
+APP_PUBLIC_BASE_URL=https://tuconjunto.tudominio.co
+PAGOS_TIMEOUT_MINUTOS=30</code></pre>
+    </span></label>
+
+    <label class="step"><input type="checkbox" data-k="5b"><span class="stxt"><b>F1 · Modelo de transacciones</b>
+      <pre><code>CREATE TABLE transacciones_pse(
+  id INTEGER PRIMARY KEY, pago_id, unidad_id, periodo,
+  referencia TEXT UNIQUE, monto_centavos INTEGER, moneda DEFAULT 'COP',
+  pasarela, txn_id_pasarela, banco,
+  estado CHECK(estado IN ('Creada','Pendiente','Aprobada','Rechazada','Anulada','Expirada')),
+  raw_evento JSON, creada_en, actualizada_en
+);
+-- pagos.estado gana el intermedio 'Procesando'</code></pre>
+      <small>La cuota pasa a Procesando al iniciar; solo el webhook Aprobado la devuelve a Pagado.</small>
+    </span></label>
+
+    <label class="step"><input type="checkbox" data-k="5c"><span class="stxt"><b>F2 · Iniciar pago + firma de integridad</b>
+      <pre><code>// POST /api/pagos/pse/iniciar {periodo}
+// firma = SHA256(referencia + monto_centavos + "COP" + INTEGRITY_SECRET)
+checkout_url = https://checkout.wompi.co/p/?public-key=...
+  &amp;currency=COP&amp;amount-in-cents=25000000
+  &amp;reference=PG-52-abc123&amp;signature:integrity=...&amp;redirect-url=...
+
+// El frontend hace window.location = checkout_url (redirect top-level)</code></pre>
+      <small>Wompi recalcula la firma al recibir al visitante: si alguien manipuló el monto en el navegador, no cuadra → rechaza. Por eso el monto sale SIEMPRE de tu BD.</small>
+    </span></label>
+
+    <label class="step"><input type="checkbox" data-k="5d"><span class="stxt"><b>F3 · Webhook firmado = fuente de verdad</b>
+      <pre><code>// POST /api/pagos/webhook/wompi  (público, SIN sesión, exento de CSRF)
+// 1. Validar checksum:
+//    SHA256(propiedades.valores concatenadas + timestamp + EVENTS_SECRET)
+//    === header 'X-Event-Checksum'
+// 2. Verificar amount_in_cents contra TU fila local
+// 3. Aplicar idempotente por transaction.id:
+//    Aprobada  → pagos.estado='Pagado' (referencia+fecha del evento)
+//    Rechazada → transacción Fallida, cuota vuelve a Pendiente
+//    VOIDED    → Anulada + alerta admin
+// 4. Guardar payload crudo (raw_evento) y responder 200 INMEDIATO</code></pre>
+      <div class="warn">Wompi reintenta webhooks: si tu lógica no es idempotente por transaction.id, marcarás Pagado dos veces o responderás error y perderás el evento.</div>
+    </span></label>
+
+    <label class="step"><input type="checkbox" data-k="5e"><span class="stxt"><b>F4 · Consistencia: consulta y timeouts</b>
+      <pre><code>GET /v1/transactions/{id}   // con PRIVATE key: fallback si pierdes el evento
+// Lazy-check: transacción 'Creada' &gt;30 min → Expirada + cuota vuelve a Pendiente
+// Página de retorno: SOLO muestra UI "en verificación" y consulta estado</code></pre>
+      <div class="danger">Regla de oro: NUNCA confíes en el redirect de vuelta. El usuario puede cerrar el navegador a mitad. La verdad llega SOLO por el webhook firmado.</div>
+    </span></label>
+
+    <label class="step"><input type="checkbox" data-k="5f"><span class="stxt"><b>F5 · Frontend + go-live</b>
+      <small>Reemplazar modal simulado por redirect + pantalla resultado con polling ligero → pruebas E2E completas en sandbox (pago OK, rechazado, timeout, webhook duplicado) → cambiar WOMPI_ENV=production con llaves pub_prod_ → activar URL de eventos producción → COOKIE_SECURE=true.</small>
+    </span></label>
+  </div>
+</section>
+<!-- ============ QUIZ ============ -->
+<section id="quiz">
+  <h2>🧠 Quiz — pon a prueba lo aprendido <span class="tag">10 preguntas</span></h2>
+  <div class="mod">
+    <p class="intro">Responde con clic. La retroalimentación aparece al instante.</p>
+    <div id="quizbox"></div>
+  </div>
+</section>
+
+<section id="meta">
+  <h2>🎓 Las 7 lecciones meta</h2>
+  <div class="mod">
+    <table>
+      <tr><th>#</th><th>Lección</th><th>Nació de</th></tr>
+      <tr><td>1</td><td>Prueba positivo Y negativo: que funcione y que rechace.</td><td>Módulo 1</td></tr>
+      <tr><td>2</td><td>Verifica el estado crítico en cada request, no solo al entrar.</td><td>Fix A-1</td></tr>
+      <tr><td>3</td><td>Secretos aleatorios con entropía criptográfica, nunca derivados de datos públicos.</td><td>Fix A-2</td></tr>
+      <tr><td>4</td><td>Idempotencia en arranque/migraciones; separa demo de producción.</td><td>Bloqueantes B2/B4</td></tr>
+      <tr><td>5</td><td>El orden de dependencias manda: HTTP→cert→HTTPS; esquema→admin→usuarios.</td><td>Bloqueantes B1/B3</td></tr>
+      <tr><td>6</td><td>Detrás de proxy, TRUST_PROXY exacto = cookies Secure + IPs reales + límites justos.</td><td>Bloqueante B5</td></tr>
+      <tr><td>7</td><td>En pagos, el webhook firmado es la verdad; el redirect es decoración.</td><td>Módulo 5</td></tr>
+    </table>
+    <div class="note">📁 Referencias del proyecto: <code>deploy/DEPLOY.md</code> · <code>deploy/PSE-INTEGRACION.md</code> · <code>server/CONTRACT.md</code></div>
+  </div>
+</section>
+<!--PART6-->
+</div>
+<script>'use strict';
+/* ---------- Progreso persistente ---------- */
+const CLAVE = 'tc-guia-produccion-v1';
+let estado = {};
+try { estado = JSON.parse(localStorage.getItem(CLAVE) || '{}'); } catch(e) { estado = {}; }
+
+function guardar(){ try { localStorage.setItem(CLAVE, JSON.stringify(estado)); } catch(e){} }
+
+function actualizar(){
+  const boxes = document.querySelectorAll('input[type=checkbox][data-k]');
+  let hechos = 0;
+  boxes.forEach(b => {
+    b.closest('.step').classList.toggle('done', b.checked);
+    if (b.checked) hechos++;
+  });
+  const pct = boxes.length ? Math.round(hechos*100/boxes.length) : 0;
+  document.getElementById('fill').style.width = pct + '%';
+  document.getElementById('pct').textContent = pct + '%';
+}
+
+document.querySelectorAll('input[type=checkbox][data-k]').forEach(b => {
+  if (estado[b.dataset.k]) b.checked = true;
+  b.addEventListener('change', () => { estado[b.dataset.k] = b.checked; guardar(); actualizar(); });
+});
+actualizar();
+
+function reiniciar(){
+  estado = {}; guardar();
+  document.querySelectorAll('input[type=checkbox][data-k]').forEach(b => b.checked = false);
+  actualizar();
+}
+
+/* ---------- Botones de copiar en cada bloque de código ---------- */
+document.querySelectorAll('pre').forEach(pre => {
+  const btn = document.createElement('button');
+  btn.className = 'copy'; btn.textContent = 'copiar';
+  btn.onclick = () => {
+    const txt = pre.querySelector('code').innerText;
+    const ok = () => { btn.textContent = '¡copiado!'; setTimeout(()=>btn.textContent='copiar', 1500); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(ok).catch(() => fallback(txt, ok));
+    } else fallback(txt, ok);
+    function fallback(t, cb){
+      const ta = document.createElement('textarea');
+      ta.value = t; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); cb(); } catch(e){}
+      document.body.removeChild(ta);
+    }
+  };
+  pre.appendChild(btn);
+});
+
+/* ---------- Quiz ---------- */
+const QUIZ = [
+  { p: '¿Por qué la BD guarda sha256(token) y no el token de sesión?',
+    ops: ['Para ahorrar espacio', 'Si roban la BD no pueden suplantar a nadie', 'Porque SHA-256 es más rápido que AES', 'Es un requisito de Express'],
+    r: 1, e: 'Un hash es irreversible: con la BD robada solo tienes hashes inutilizables. El token real vive únicamente en la cookie del usuario.' },
+  { p: 'Usuario suspendido con sesión activa: ¿qué garantiza requireAuth tras el fix A-1?',
+    ops: ['Nada hasta que expire su token', 'Solo pierde permisos al re-loguear', 'Sus sesiones se borran y recibe CUENTA_INACTIVA en el siguiente request', 'Se le notifica por email'],
+    r: 2, e: 'Defense in depth: el estado del usuario se valida EN CADA petición, no solo al loguear.' },
+  { p: '¿Cuál es la diferencia entre RBAC e IDOR?',
+    ops: ['Son sinónimos', 'RBAC = qué puede el rol; IDOR = si el recurso le pertenece a ese usuario', 'IDOR aplica solo a admins', 'RBAC es de frontend'],
+    r: 1, e: 'Rol controla el TIPO de acción; ownership controla sobre QUÉ fila. Un recurso personal necesita ambos chequeos.' },
+  { p: '¿Por qué scrypt y no SHA-256 directo para contraseñas?',
+    ops: ['SHA-256 está roto', 'scrypt consume memoria: limita ataques con GPU y hace lenta la fuerza bruta', 'scrypt comprime mejor', 'Express lo exige'],
+    r: 1, e: '~16 MB de RAM por intento: las GPU masivamente paralelas quedan limitadas. SHA-256 puro se calcula millones de veces/segundo.' },
+  { p: 'Clave temporal = número de documento era vulnerable porque...',
+    ops: ['El documento es muy largo', 'El documento es dato público: cualquiera podía tomar la cuenta antes del primer ingreso', 'Los documentos caducan', 'No cumplía política de longitud'],
+    r: 1, e: 'Vecinos, portería o listados conocen documentos. La clave debía ser impredecible: crypto.randomBytes.' },
+  { p: '¿Qué mide un "oráculo de tiempo" en el login?',
+    ops: ['La velocidad del servidor', 'Cuántos bytes tiene la contraseña', 'Que el tiempo de respuesta distingue si el documento existe', 'El ancho de banda del atacante'],
+    r: 2, e: '~80 ms (existe, calcula scrypt) vs ~2 ms (no existe) filtra usuarios registrados. Fix: ejecutar el mismo cálculo contra hash falso.' },
+  { p: 'Orden correcto para activar HTTPS con Let\'s Encrypt:',
+    ops: ['Generar certificado → nginx SSL → HTTP', 'nginx HTTP → certbot emite y edita conf → HTTPS', 'Comprar certificado pagado → nginx', 'HTTPS primero, HTTP nunca'],
+    r: 1, e: 'Chicken-and-egg: el cert gratuito se valida vía HTTP-01. El vhost inicial solo-puerto-80 deja pasar nginx -t y la app funciona desde el minuto uno.' },
+  { p: '¿Por qué crearEsquema() usa CREATE TABLE IF NOT EXISTS en cada arranque?',
+    ops: ['Por estética', 'Idempotencia: instalación limpia arranca con tablas; BD existente no se toca', 'Para acelerar consultas', 'SQLite lo exige siempre'],
+    r: 1, e: 'Separar infraestructura (schema) de demo (seed destructivo). Correrlo 1000 veces = cero efecto colateral.' },
+  { p: 'TRUST_PROXY=0 en producción detrás de nginx causa:',
+    ops: ['Mejor rendimiento', 'Cookies sin Secure, sin HSTS y rate-limiters compartiendo una sola cubeta (127.0.0.1)', 'Error 500 inmediato', 'Nada, es irrelevante'],
+    r: 1, e: 'Node no cree al proxy: req.secure=false permanente y todas las IPs parecen 127.0.0.1 → bloqueos en cadena de usuarios legítimos.' },
+  { p: 'Llega el redirect de Wompi a tu página de retorno. ¿Confirmas el pago?',
+    ops: ['Sí, si trae parámetro ?status=approved', 'Sí, comparando el monto en la URL', 'Jamás: la verdad llega SOLO por el webhook firmado y validado', 'Depende del navegador'],
+    r: 2, e: 'El usuario puede cerrar el navegador a mitad o manipular URLs. El webhook con checksum validado + verificación de monto contra tu BD es la única fuente de verdad.' }
+];
+
+const box = document.getElementById('quizbox');
+QUIZ.forEach((q, qi) => {
+  const div = document.createElement('div');
+  div.className = 'q';
+  let html = '<p class="q-t">' + (qi+1) + '. ' + q.p + '</p>';
+  q.ops.forEach((op, oi) => { html += '<label data-o="' + oi + '">' + op + '</label>'; });
+  html += '<div class="fb"></div>';
+  div.innerHTML = html;
+  box.appendChild(div);
+  div.querySelectorAll('label').forEach(lb => {
+    lb.addEventListener('click', () => {
+      if (div.classList.contains('resp')) return;
+      div.classList.add('resp');
+      const elegida = Number(lb.dataset.o);
+      const fb = div.querySelector('.fb');
+      div.querySelectorAll('label').forEach(l2 => {
+        if (Number(l2.dataset.o) === q.r) l2.classList.add('correcta');
+      });
+      if (elegida === q.r) { fb.className = 'fb ok'; fb.textContent = '✓ ¡Correcto! ' + q.e; }
+      else {
+        lb.classList.add('incorrecta');
+        fb.className = 'fb no'; fb.textContent = '✗ Incorrecto. ' + q.e;
+      }
+    });
+  });
+});</script>
+</body>
+</html>

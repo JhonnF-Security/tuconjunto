@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ingresar · TuConjunto</title>
+  <meta name="description" content="Pantalla de acceso a los paneles de TuConjunto: administración, consejo, portería y residentes del Conjunto Residencial Altos del Bosque.">
+  <script>if(localStorage.getItem("tc-theme")==="dark")document.documentElement.classList.add("dark");</script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏢</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../tailwind.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="min-h-screen bg-slate-50 font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+
+  <button id="btn-tema"
+    type="button"
+    aria-label="Cambiar tema"
+    class="fixed top-4 right-4 z-50 inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800">
+    <svg class="h-5 w-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg>
+    <svg class="h-5 w-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/></svg>
+  </button>
+
+  <main class="mx-auto flex min-h-screen w-full max-w-md flex-col items-center justify-center px-4 py-12">
+
+    <div class="flex flex-col items-center text-center">
+      <span class="float-soft flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-600 shadow-lg shadow-brand-600/30">
+        <svg class="h-9 w-9 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z"/></svg>
+      </span>
+      <p class="mt-4 text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100 sm:text-3xl">Tu<span class="text-brand-600 dark:text-brand-400">Conjunto</span></p>
+      <h1 class="mt-2 text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-2xl">Ingresa a tu copropiedad</h1>
+      <p class="mt-1 text-xs font-medium text-slate-500 dark:text-slate-500">Autenticación real · Sesión segura, hasta 12 h con «Recordarme»</p>
+    </div>
+
+    <form id="form-login"
+      class="mt-8 w-full rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:shadow-black/40">
+      <fieldset class="space-y-4">
+        <legend class="text-sm font-bold text-slate-900 dark:text-slate-100">Credenciales de acceso</legend>
+
+        <div>
+          <label for="in-documento" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Documento <span class="text-rose-500">*</span></label>
+          <input id="in-documento" name="documento" type="text" inputmode="numeric" autocomplete="username" required
+            pattern="[0-9]+" title="Ingresa solo números, sin puntos ni espacios"
+            placeholder="1020001"
+            class="mt-1.5 block w-full rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm tabular-nums text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 transition dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-100 dark:placeholder:text-slate-500">
+        </div>
+
+        <div>
+          <label for="in-password" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Contraseña <span class="text-rose-500">*</span></label>
+          <input id="in-password" name="password" type="password" autocomplete="current-password" required minlength="6"
+            placeholder="••••••••"
+            class="mt-1.5 block w-full rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm tracking-widest text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 transition dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-100 dark:placeholder:text-slate-500">
+        </div>
+
+        <p id="login-error" role="alert" aria-live="assertive" hidden
+          class="flex items-start gap-2 rounded-xl border border-rose-200 bg-rose-50 px-3.5 py-3 text-xs font-semibold leading-relaxed text-rose-700 dark:border-rose-500/30 dark:bg-rose-500/10 dark:text-rose-300">
+          <svg class="mt-0.5 h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/></svg>
+          <span id="login-error-msg"></span>
+        </p>
+
+        <p id="banner-pendiente" role="alert" aria-live="assertive" hidden
+          class="flex items-start gap-2 rounded-xl border border-amber-200 bg-amber-50 px-3.5 py-3 text-xs font-semibold leading-relaxed text-amber-700 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-300">
+          <svg class="mt-0.5 h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+          <span>Tu cuenta está pendiente de aprobación por la administración</span>
+        </p>
+
+        <p id="banner-suspendida" role="alert" aria-live="assertive" hidden
+          class="flex items-start gap-2 rounded-xl border border-rose-200 bg-rose-50 px-3.5 py-3 text-xs font-semibold leading-relaxed text-rose-700 dark:border-rose-500/30 dark:bg-rose-500/10 dark:text-rose-300">
+          <svg class="mt-0.5 h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+          <span>Tu cuenta está suspendida. Contacta a la administración.</span>
+        </p>
+      </fieldset>
+
+      <label for="recordar" class="mt-5 flex w-full cursor-pointer select-none items-center justify-center gap-2 text-xs font-medium text-slate-600 transition hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-300">
+        <input id="recordar" name="recordar" type="checkbox"
+          class="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-2 focus:ring-brand-500/30 dark:border-slate-600 dark:bg-slate-800">
+        Recordarme por 12 h
+      </label>
+
+      <button id="btn-entrar" type="submit"
+        class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-600 px-4 py-3 font-bold text-white shadow-sm shadow-brand-600/30 transition hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 active:scale-[0.99]">
+        <svg id="btn-spinner" class="hidden h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-90" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+        <span id="btn-texto">Entrar al panel</span>
+      </button>
+
+      <details class="group mt-5 rounded-xl border border-slate-200 bg-slate-50 open:bg-brand-50/40 open:border-brand-200 dark:border-slate-700 dark:bg-slate-800/60">
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-2 px-4 py-3 text-xs font-bold text-slate-600 transition hover:text-brand-600 dark:text-slate-300 dark:hover:text-brand-400">
+          Ver credenciales de demostración
+          <svg class="h-4 w-4 shrink-0 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+        </summary>
+        <ul class="space-y-1 border-t border-slate-200 px-3 pb-3 pt-2 dark:border-slate-700">
+          <li class="flex items-center gap-2 rounded-lg px-1.5 py-1.5 text-[11px] font-medium text-slate-600 dark:text-slate-300">
+            <span class="w-24 shrink-0 truncate font-bold">Administración</span>
+            <code class="tabular-nums">1020001</code>
+            <span class="ml-auto text-slate-400 dark:text-slate-500">demo1234</span>
+            <button type="button" data-usar data-doc="1020001" class="shrink-0 rounded-md bg-white px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-brand-600 ring-1 ring-inset ring-brand-200 transition hover:bg-slate-100 dark:bg-slate-900 dark:ring-brand-500/30 dark:hover:bg-slate-800">usar</button>
+          </li>
+          <li class="flex items-center gap-2 rounded-lg px-1.5 py-1.5 text-[11px] font-medium text-slate-600 dark:text-slate-300">
+            <span class="w-24 shrink-0 truncate font-bold">Consejo</span>
+            <code class="tabular-nums">1020002</code>
+            <span class="ml-auto text-slate-400 dark:text-slate-500">demo1234</span>
+            <button type="button" data-usar data-doc="1020002" class="shrink-0 rounded-md bg-white px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-brand-600 ring-1 ring-inset ring-brand-200 transition hover:bg-slate-100 dark:bg-slate-900 dark:ring-brand-500/30 dark:hover:bg-slate-800">usar</button>
+          </li>
+          <li class="flex items-center gap-2 rounded-lg px-1.5 py-1.5 text-[11px] font-medium text-slate-600 dark:text-slate-300">
+            <span class="w-24 shrink-0 truncate font-bold">Portería</span>
+            <code class="tabular-nums">1020003</code>
+            <span class="ml-auto text-slate-400 dark:text-slate-500">demo1234</span>
+            <button type="button" data-usar data-doc="1020003" class="shrink-0 rounded-md bg-white px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-brand-600 ring-1 ring-inset ring-brand-200 transition hover:bg-slate-100 dark:bg-slate-900 dark:ring-brand-500/30 dark:hover:bg-slate-800">usar</button>
+          </li>
+          <li class="flex items-center gap-2 rounded-lg px-1.5 py-1.5 text-[11px] font-medium text-slate-600 dark:text-slate-300">
+            <span class="w-24 shrink-0 truncate font-bold">Copropietario</span>
+            <code class="tabular-nums">1020004</code>
+            <span class="ml-auto text-slate-400 dark:text-slate-500">demo1234</span>
+            <button type="button" data-usar data-doc="1020004" class="shrink-0 rounded-md bg-white px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-brand-600 ring-1 ring-inset ring-brand-200 transition hover:bg-slate-100 dark:bg-slate-900 dark:ring-brand-500/30 dark:hover:bg-slate-800">usar</button>
+          </li>
+          <li class="flex items-center gap-2 rounded-lg px-1.5 py-1.5 text-[11px] font-medium text-slate-600 dark:text-slate-300">
+            <span class="w-24 shrink-0 truncate font-bold">Arrendatario</span>
+            <code class="tabular-nums">1020005</code>
+            <span class="ml-auto text-slate-400 dark:text-slate-500">demo1234</span>
+            <button type="button" data-usar data-doc="1020005" class="shrink-0 rounded-md bg-white px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-brand-600 ring-1 ring-inset ring-brand-200 transition hover:bg-slate-100 dark:bg-slate-900 dark:ring-brand-500/30 dark:hover:bg-slate-800">usar</button>
+          </li>
+          <li class="flex items-center gap-2 rounded-lg px-1.5 py-1.5 text-[11px] font-medium text-slate-600 dark:text-slate-300">
+            <span class="w-24 shrink-0 truncate font-bold">Camila</span>
+            <code class="tabular-nums">1020008</code>
+            <span class="ml-auto shrink-0 text-[10px] font-bold uppercase tracking-wide text-amber-600 dark:text-amber-400">pendiente aprobación</span>
+            <button type="button" data-usar data-doc="1020008" class="shrink-0 rounded-md bg-white px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-brand-600 ring-1 ring-inset ring-brand-200 transition hover:bg-slate-100 dark:bg-slate-900 dark:ring-brand-500/30 dark:hover:bg-slate-800">usar</button>
+          </li>
+          <li class="px-1.5 pt-0.5 text-[10px] italic text-slate-400 dark:text-slate-500">1020008 Camila · pendiente aprobación · pruébala para ver el bloqueo.</li>
+        </ul>
+      </details>
+
+      <p class="mt-4 text-center text-[11px] text-slate-400 dark:text-slate-500">
+        <svg class="mr-1 inline h-3.5 w-3.5 align-text-bottom text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>
+        Conexión cifrada contra la API · Máx. 5 intentos por minuto
+      </p>
+    </form>
+
+    <button type="button" id="btn-abrir-registro"
+      class="mt-4 text-xs font-semibold text-brand-600 transition hover:text-brand-700 hover:underline dark:text-brand-400 dark:hover:text-brand-300">
+      ¿Copropietario nuevo? Regístrate
+    </button>
+
+    <section id="registro-exito" hidden aria-labelledby="titulo-registro-exito"
+      class="mt-8 w-full rounded-2xl border border-emerald-200 bg-emerald-50 p-8 text-center shadow-sm dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:shadow-black/40">
+      <span class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-300" aria-hidden="true">
+        <svg class="h-9 w-9" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </span>
+      <h2 id="titulo-registro-exito" class="mt-4 text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Registro recibido</h2>
+      <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">Tu cuenta espera aprobación. Te notificaremos por WhatsApp.</p>
+      <button type="button" id="btn-volver-login"
+        class="mt-6 inline-flex w-full items-center justify-center rounded-xl bg-brand-600 px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600">
+        Volver a iniciar sesión
+      </button>
+    </section>
+
+    <a href="../index.html" class="mt-6 text-xs font-semibold text-slate-500 transition hover:text-brand-600 hover:underline dark:text-slate-400 dark:hover:text-brand-400">← Volver al sitio comercial</a>
+
+    <section aria-labelledby="titulo-flujo"
+      class="mt-4 w-full rounded-xl border border-slate-200 bg-slate-50 p-4 text-xs leading-relaxed text-slate-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
+      <h2 id="titulo-flujo" class="font-bold text-slate-800 dark:text-slate-100">¿Cómo probar el flujo completo?</h2>
+      <p class="mt-1">Ingresa como Copropietario y activa el pánico con la ventana de Portería abierta; paga la cuota PSE y aprueba la reserva desde Administración.</p>
+    </section>
+
+    <p class="mt-8 text-xs font-medium text-slate-400 dark:text-slate-500">
+      <a href="terminos.html" class="transition hover:text-brand-600 hover:underline dark:hover:text-brand-400">Términos</a>
+      <span aria-hidden="true">·</span>
+      <a href="privacidad.html" class="transition hover:text-brand-600 hover:underline dark:hover:text-brand-400">Privacidad</a>
+      <span aria-hidden="true">·</span>
+      <a href="guia-pruebas.html" class="transition hover:text-brand-600 hover:underline dark:hover:text-brand-400">Guía de pruebas</a>
+    </p>
+    <p class="mt-1.5 text-[11px] font-medium text-slate-400 dark:text-slate-600">© 2026 TuConjunto · Demo interactiva</p>
+  </main>
+
+  <div id="modal-registro" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-registro"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/70 p-4 backdrop-blur-sm">
+    <div class="max-h-[92vh] w-full max-w-md overflow-y-auto rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl dark:border-slate-800 dark:bg-slate-900 dark:shadow-black/60">
+      <div class="flex items-start justify-between gap-3">
+        <div>
+          <h3 id="titulo-modal-registro" class="text-base font-bold text-slate-900 dark:text-slate-100">Crear cuenta</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Autorregistro para copropietarios y arrendatarios.</p>
+        </div>
+        <button type="button" data-cerrar-registro aria-label="Cerrar"
+          class="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-300">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="form-registro" class="mt-5 space-y-4" novalidate>
+        <div>
+          <label for="reg-nombre" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Nombre completo <span class="text-rose-500">*</span></label>
+          <input id="reg-nombre" name="nombre" type="text" maxlength="120" autocomplete="name" placeholder="Ana María Gómez"
+            class="mt-1.5 block w-full rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 transition dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-100 dark:placeholder:text-slate-500">
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label for="reg-tipo-doc" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Tipo de documento <span class="text-rose-500">*</span></label>
+            <select id="reg-tipo-doc" name="tipo_doc"
+              class="mt-1.5 block w-full rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm text-slate-900 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 transition dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-100">
+              <option value="">Selecciona…</option>
+              <option value="CC">CC · Cédula</option>
+              <option value="CE">CE · Extranjería</option>
+              <option value="PAS">PAS · Pasaporte</option>
+            </select>
+          </div>
+          <div>
+            <label for="reg-documento" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Documento <span class="text-rose-500">*</span></label>
+            <input id="reg-documento" name="documento" type="text" inputmode="numeric" pattern="[0-9]+" placeholder="1020000"
+              class="mt-1.5 block w-full rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm tabular-nums text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 transition dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-100 dark:placeholder:text-slate-500">
+          </div>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label for="reg-email" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Email <span class="text-rose-500">*</span></label>
+            <input id="reg-email" name="email" type="email" autocomplete="email" placeholder="tu@correo.com"
+              class="mt-1.5 block w-full rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 transition dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-100 dark:placeholder:text-slate-500">
+          </div>
+          <div>
+            <label for="reg-celular" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Celular</label>
+            <input id="reg-celular" name="celular" type="tel" autocomplete="tel" placeholder="+57 300 123 4567"
+              class="mt-1.5 block w-full rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm tabular-nums text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 transition dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-100 dark:placeholder:text-slate-500">
+          </div>
+        </div>
+
+        <div>
+          <label for="reg-tipo" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Tipo <span class="text-rose-500">*</span></label>
+          <select id="reg-tipo" name="tipo"
+            class="mt-1.5 block w-full rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm text-slate-900 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 transition dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-100">
+            <option value="">Selecciona…</option>
+            <option value="copropietario">Soy copropietario</option>
+            <option value="arrendatario">Soy arrendatario</option>
+          </select>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label for="reg-torre" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Torre <span class="text-rose-500">*</span></label>
+            <input id="reg-torre" name="torre" type="text" maxlength="40" placeholder="Torre 2"
+              class="mt-1.5 block w-full rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 transition dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-100 dark:placeholder:text-slate-500">
+          </div>
+          <div>
+            <label for="reg-apto" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Apartamento <span class="text-rose-500">*</span></label>
+            <input id="reg-apto" name="apto" type="text" maxlength="40" placeholder="Apto 502"
+              class="mt-1.5 block w-full rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 transition dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-100 dark:placeholder:text-slate-500">
+          </div>
+        </div>
+
+        <div>
+          <label for="reg-pass" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Contraseña <span class="text-rose-500">*</span></label>
+          <input id="reg-pass" name="password" type="password" autocomplete="new-password" minlength="8" placeholder="••••••••"
+            class="mt-1.5 block w-full rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm tracking-widest text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 transition dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-100 dark:placeholder:text-slate-500">
+          <div id="pass-metro" class="mt-2">
+            <div class="flex gap-1.5" aria-hidden="true">
+              <span data-seg class="h-1 flex-1 rounded-full bg-slate-200 transition-colors dark:bg-slate-700"></span>
+              <span data-seg class="h-1 flex-1 rounded-full bg-slate-200 transition-colors dark:bg-slate-700"></span>
+              <span data-seg class="h-1 flex-1 rounded-full bg-slate-200 transition-colors dark:bg-slate-700"></span>
+            </div>
+            <p id="pass-metro-texto" class="mt-1 text-[10px] font-bold uppercase tracking-wide text-slate-400 dark:text-slate-500">Mínimo 8 caracteres</p>
+          </div>
+        </div>
+
+        <div>
+          <label for="reg-pass2" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Repite contraseña <span class="text-rose-500">*</span></label>
+          <input id="reg-pass2" name="password2" type="password" autocomplete="new-password" minlength="8" placeholder="••••••••"
+            class="mt-1.5 block w-full rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm tracking-widest text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 transition dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-100 dark:placeholder:text-slate-500">
+        </div>
+
+        <p class="flex items-start gap-2 rounded-xl border border-brand-200 bg-brand-50 px-3.5 py-3 text-[11px] font-medium leading-relaxed text-brand-700 dark:border-brand-500/30 dark:bg-brand-500/10 dark:text-brand-300">
+          <svg class="mt-0.5 h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12v-.008z"/></svg>
+          <span>Tu cuenta quedará PENDIENTE hasta que la administración la apruebe. Si tu torre/apartamento no existe aún, se creará con tu registro.</span>
+        </p>
+
+        <p id="reg-error" role="alert" aria-live="assertive" hidden
+          class="flex items-start gap-2 rounded-xl border border-rose-200 bg-rose-50 px-3.5 py-3 text-xs font-semibold leading-relaxed text-rose-700 dark:border-rose-500/30 dark:bg-rose-500/10 dark:text-rose-300">
+          <svg class="mt-0.5 h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/></svg>
+          <span id="reg-error-msg"></span>
+        </p>
+
+        <div class="flex flex-col-reverse gap-2.5 pt-1 sm:flex-row">
+          <button type="button" data-cerrar-registro
+            class="flex flex-1 items-center justify-center rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-slate-100">Cancelar</button>
+          <button type="submit" id="btn-registrar"
+            class="flex flex-1 items-center justify-center rounded-xl bg-brand-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600">Crear cuenta</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="assets/api.js"></script>
+  <script>
+  (function(){
+    "use strict";
+    var DESTINOS = {
+      administrador: "admin.html",
+      consejo: "admin.html",
+      porteria: "porteria.html",
+      copropietario: "residente.html",
+      arrendatario: "residente.html"
+    };
+    var form = document.getElementById("form-login");
+    var inDoc = document.getElementById("in-documento");
+    var inPass = document.getElementById("in-password");
+    var btnEntrar = document.getElementById("btn-entrar");
+    var btnTexto = document.getElementById("btn-texto");
+    var btnSpinner = document.getElementById("btn-spinner");
+    var errBox = document.getElementById("login-error");
+    var errMsg = document.getElementById("login-error-msg");
+    var btnTema = document.getElementById("btn-tema");
+    var inRecordar = document.getElementById("recordar");
+    var bannerPendiente = document.getElementById("banner-pendiente");
+    var bannerSuspendida = document.getElementById("banner-suspendida");
+    var btnAbrirRegistro = document.getElementById("btn-abrir-registro");
+    var modalRegistro = document.getElementById("modal-registro");
+    var formRegistro = document.getElementById("form-registro");
+    var regErrBox = document.getElementById("reg-error");
+    var regErrMsg = document.getElementById("reg-error-msg");
+    var panelExito = document.getElementById("registro-exito");
+    var btnVolverLogin = document.getElementById("btn-volver-login");
+    var btnRegistrar = document.getElementById("btn-registrar");
+    var passMetroTexto = document.getElementById("pass-metro-texto");
+    var origenRegistro = null;
+    var enviandoRegistro = false;
+
+    function val(id){
+      return (document.getElementById(id).value || "").trim();
+    }
+
+    function destinoDe(rol){
+      return DESTINOS[rol] || "residente.html";
+    }
+
+    function mostrarError(msg){
+      errMsg.textContent = msg;
+      errBox.hidden = false;
+    }
+
+    function ocultarAvisos(){
+      errBox.hidden = true;
+      bannerPendiente.hidden = true;
+      bannerSuspendida.hidden = true;
+    }
+
+    function ocupar(ocupado){
+      btnEntrar.disabled = ocupado;
+      btnSpinner.classList.toggle("hidden", !ocupado);
+      btnTexto.textContent = ocupado ? "Ingresando…" : "Entrar al panel";
+      inDoc.disabled = ocupado;
+      inPass.disabled = ocupado;
+    }
+
+    TC.api("/auth/me").then(function(data){
+      var u = data && data.usuario;
+      if(u && DESTINOS[u.rol]){
+        location.replace(destinoDe(u.rol));
+      }
+    }).catch(function(){});
+
+    Array.prototype.forEach.call(document.querySelectorAll("[data-usar]"), function(b){
+      b.addEventListener("click", function(){
+        inDoc.value = b.getAttribute("data-doc");
+        inPass.value = "demo1234";
+        errBox.hidden = true;
+        inPass.focus();
+      });
+    });
+
+    form.addEventListener("submit", async function(ev){
+      ev.preventDefault();
+      ocultarAvisos();
+      var documento = (inDoc.value || "").trim();
+      var password = inPass.value || "";
+      if(!documento || !password){
+        mostrarError("Ingresa tu documento y contraseña para continuar.");
+        return;
+      }
+      if(!/^\d+$/.test(documento)){
+        mostrarError("El documento debe contener solo números.");
+        return;
+      }
+      ocupar(true);
+      try{
+        var data = await TC.api("/auth/login", { method: "POST", body: { documento: documento, password: password, recordarme: inRecordar.checked } });
+        var u = data && data.usuario;
+        location.href = u ? destinoDe(u.rol) : "residente.html";
+      }catch(err){
+        ocupar(false);
+        if(err && err.status === 403){
+          var m = String((err && err.message) || "");
+          if(/pendiente|aprobaci/i.test(m)){
+            bannerPendiente.hidden = false;
+          }else if(/cambiar/i.test(m)){
+            mostrarError(m || "No fue posible iniciar sesión.");
+          }else{
+            bannerSuspendida.hidden = false;
+          }
+        }else if(err && err.status === 429){
+          inPass.value = "";
+          inPass.focus();
+          mostrarError((err.message || "Demasiados intentos de ingreso.") + " Espera unos minutos antes de volver a intentarlo.");
+        }else{
+          inPass.value = "";
+          inPass.focus();
+          mostrarError((err && err.message) || "No fue posible iniciar sesión.");
+        }
+      }
+    });
+
+    var SEG_BASE = "h-1 flex-1 rounded-full transition-colors ";
+    var SEG_APAGADO = "bg-slate-200 dark:bg-slate-700";
+    var SEG_COLORES = [
+      ["bg-rose-500", "bg-rose-200 dark:bg-rose-500/30", "bg-rose-200 dark:bg-rose-500/30"],
+      ["bg-amber-500", "bg-amber-500", "bg-amber-200 dark:bg-amber-500/30"],
+      ["bg-emerald-500", "bg-emerald-500", "bg-emerald-500"]
+    ];
+    var METRO_ETIQUETAS = ["Débil", "Media", "Fuerte"];
+    var METRO_COLORES_TXT = ["text-rose-600 dark:text-rose-400", "text-amber-600 dark:text-amber-400", "text-emerald-600 dark:text-emerald-400"];
+    var METRO_TXT_BASE = "mt-1 text-[10px] font-bold uppercase tracking-wide ";
+
+    function nivelClave(p){
+      if(!p) return -1;
+      var puntos = 0;
+      if(p.length >= 8) puntos++;
+      if(p.length >= 12) puntos++;
+      if(/[a-z]/.test(p) && /[A-Z]/.test(p)) puntos++;
+      if(/\d/.test(p)) puntos++;
+      if(/[^A-Za-z0-9]/.test(p)) puntos++;
+      if(puntos <= 2) return 0;
+      return puntos <= 3 ? 1 : 2;
+    }
+
+    function actualizarMetro(valor){
+      var nivel = nivelClave(valor);
+      var segs = formRegistro.querySelectorAll("[data-seg]");
+      Array.prototype.forEach.call(segs, function(s, i){
+        s.className = SEG_BASE + (nivel >= 0 && i <= nivel ? SEG_COLORES[nivel][i] : SEG_APAGADO);
+      });
+      passMetroTexto.className = METRO_TXT_BASE + (nivel < 0 ? "text-slate-400 dark:text-slate-500" : METRO_COLORES_TXT[nivel]);
+      passMetroTexto.textContent = nivel < 0 ? "Mínimo 8 caracteres" : METRO_ETIQUETAS[nivel];
+    }
+
+    document.getElementById("reg-pass").addEventListener("input", function(){
+      actualizarMetro(this.value);
+    });
+
+    function abrirRegistro(){
+      origenRegistro = document.activeElement;
+      formRegistro.reset();
+      regErrBox.hidden = true;
+      actualizarMetro("");
+      modalRegistro.classList.remove("hidden");
+      modalRegistro.classList.add("flex");
+      document.getElementById("reg-nombre").focus();
+    }
+
+    function cerrarRegistro(){
+      modalRegistro.classList.add("hidden");
+      modalRegistro.classList.remove("flex");
+      if(origenRegistro && typeof origenRegistro.focus === "function") origenRegistro.focus();
+    }
+
+    btnAbrirRegistro.addEventListener("click", abrirRegistro);
+
+    modalRegistro.addEventListener("click", function(ev){
+      if(ev.target === modalRegistro || ev.target.closest("[data-cerrar-registro]")) cerrarRegistro();
+    });
+
+    document.addEventListener("keydown", function(ev){
+      if(ev.key === "Escape" && !modalRegistro.classList.contains("hidden")) cerrarRegistro();
+    });
+
+    btnVolverLogin.addEventListener("click", function(){
+      panelExito.hidden = true;
+      form.hidden = false;
+      ocultarAvisos();
+      inDoc.focus();
+    });
+
+    formRegistro.addEventListener("submit", async function(ev){
+      ev.preventDefault();
+      if(enviandoRegistro) return;
+      regErrBox.hidden = true;
+      function fallo(m){
+        regErrMsg.textContent = m;
+        regErrBox.hidden = false;
+      }
+      var cuerpo = {
+        nombre: val("reg-nombre"),
+        tipo_doc: val("reg-tipo-doc"),
+        documento: val("reg-documento"),
+        email: val("reg-email"),
+        celular: val("reg-celular"),
+        tipo: val("reg-tipo"),
+        torre: val("reg-torre"),
+        apto: val("reg-apto"),
+        password: document.getElementById("reg-pass").value || ""
+      };
+      var pass2 = document.getElementById("reg-pass2").value || "";
+      if(!cuerpo.nombre) return fallo("Ingresa tu nombre completo.");
+      if(!cuerpo.tipo_doc) return fallo("Selecciona el tipo de documento.");
+      if(!/^\d+$/.test(cuerpo.documento)) return fallo("El documento debe contener solo números.");
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cuerpo.email)) return fallo("Ingresa un email válido.");
+      if(!cuerpo.tipo) return fallo("Indica si eres copropietario o arrendatario.");
+      if(!cuerpo.torre) return fallo("Ingresa tu torre (ej.: Torre 2).");
+      if(!cuerpo.apto) return fallo("Ingresa tu apartamento (ej.: Apto 502).");
+      if(cuerpo.password.length < 8) return fallo("La contraseña debe tener al menos 8 caracteres.");
+      if(cuerpo.password !== pass2) return fallo("Las contraseñas no coinciden.");
+      enviandoRegistro = true;
+      btnRegistrar.disabled = true;
+      btnRegistrar.textContent = "Creando cuenta…";
+      try{
+        await TC.api("/auth/registro", { method: "POST", body: cuerpo });
+        cerrarRegistro();
+        formRegistro.reset();
+        actualizarMetro("");
+        form.hidden = true;
+        panelExito.hidden = false;
+        btnVolverLogin.focus();
+      }catch(err){
+        fallo(err && err.status === 409 ? "Ese documento o email ya tiene cuenta" : ((err && err.message) || "No se pudo completar el registro."));
+      }finally{
+        enviandoRegistro = false;
+        btnRegistrar.disabled = false;
+        btnRegistrar.textContent = "Crear cuenta";
+      }
+    });
+
+    btnTema.addEventListener("click", function(){
+      var oscuro = document.documentElement.classList.toggle("dark");
+      try{
+        localStorage.setItem("tc-theme", oscuro ? "dark" : "light");
+      }catch(e){}
+    });
+  })();
+  </script>
+</body>
+</html>

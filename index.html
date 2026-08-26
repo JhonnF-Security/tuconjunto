@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TuConjunto · Administra tu conjunto residencial sin caos</title>
+  <meta name="description" content="TuConjunto centraliza pagos PSE, reservas, PQRS, comunicación y accesos de tu copropiedad en una sola plataforma, conforme a la Ley 675 de 2001. Solicita tu demo gratis.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏢</text></svg>">
+  <link rel="preload" as="image" href="img/conjunto-torres.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tailwind.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    html {
+      scroll-padding-top: 5.5rem;
+    }
+    summary::-webkit-details-marker {
+      display: none;
+    }
+  </style>
+</head>
+<body class="bg-white font-sans text-slate-700 antialiased">
+  <a href="#contenido" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-xl focus:bg-brand-600 focus:px-4 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg">Saltar al contenido principal</a>
+
+  <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between xl:h-[4.5rem]">
+        <a href="#" class="flex items-center gap-2.5" aria-label="TuConjunto · Inicio">
+          <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 shadow-lg shadow-brand-600/25">
+            <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" /></svg>
+          </span>
+          <span class="text-lg font-extrabold tracking-tight xl:text-xl"><span class="text-slate-900">Tu</span><span class="text-brand-600">Conjunto</span></span>
+        </a>
+
+        <nav class="hidden items-center gap-8 md:flex" aria-label="Navegación principal">
+          <a href="#modulos" class="text-sm font-medium text-slate-600 transition hover:text-slate-900">Módulos</a>
+          <a href="#como-funciona" class="text-sm font-medium text-slate-600 transition hover:text-slate-900">Cómo funciona</a>
+          <a href="#planes" class="text-sm font-medium text-slate-600 transition hover:text-slate-900">Planes</a>
+          <a href="#faq" class="text-sm font-medium text-slate-600 transition hover:text-slate-900">FAQ</a>
+          <a href="#demo" class="text-sm font-medium text-slate-600 transition hover:text-slate-900">Demo</a>
+        </nav>
+
+        <div class="flex items-center gap-2">
+          <a href="#planes" class="hidden rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-600/20 transition hover:bg-brand-700 sm:inline-flex sm:items-center">Solicitar demo</a>
+          <div class="relative md:hidden">
+            <input type="checkbox" id="menu-toggle" class="peer sr-only" aria-label="Abrir menú de navegación">
+            <label for="menu-toggle" class="inline-flex cursor-pointer items-center justify-center rounded-xl p-2 text-slate-700 transition hover:bg-slate-100" aria-controls="menu-movil">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
+            </label>
+            <nav id="menu-movil" class="absolute inset-x-0 top-full hidden peer-checked:flex flex-col gap-1 rounded-b-2xl border-b border-slate-200 bg-white px-5 pb-6 pt-4 shadow-xl md:hidden" aria-label="Menú móvil">
+              <a href="#modulos" class="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 hover:text-slate-900">Módulos</a>
+              <a href="#como-funciona" class="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 hover:text-slate-900">Cómo funciona</a>
+              <a href="#planes" class="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 hover:text-slate-900">Planes</a>
+              <a href="#faq" class="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 hover:text-slate-900">FAQ</a>
+              <a href="#demo" class="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 hover:text-slate-900">Demo</a>
+              <a href="#planes" class="mt-3 inline-flex items-center justify-center rounded-xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-600/20 transition hover:bg-brand-700">Solicitar demo</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <section class="relative overflow-hidden bg-white" aria-labelledby="titulo-hero">
+      <div class="pointer-events-none absolute -right-24 -top-32 h-96 w-96 rounded-full bg-brand-100/60 blur-3xl" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute -left-32 top-48 h-80 w-80 rounded-full bg-sky-100/60 blur-3xl" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute inset-0 opacity-40" style="background-image:linear-gradient(to right, rgba(226,232,240,.35) 1px, transparent 1px), linear-gradient(to bottom, rgba(226,232,240,.35) 1px, transparent 1px); background-size:44px 44px;" aria-hidden="true"></div>
+
+      <div class="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <span class="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-3.5 py-1.5 text-xs font-semibold text-brand-700">
+              <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" /></svg>
+              Nuevo · Facturas y recordatorios por WhatsApp
+            </span>
+
+            <h1 id="titulo-hero" class="mt-6 max-w-3xl text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl xl:text-6xl">
+              Administra tu conjunto residencial <span class="bg-gradient-to-r from-brand-600 to-sky-500 bg-clip-text text-transparent">sin caos</span>
+            </h1>
+
+            <p class="mt-6 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
+              Pagos PSE, reservas, PQRS y comunicación de tu copropiedad en un solo lugar. Olvídate del Excel, del cuaderno de portería y de los grupos de WhatsApp dispersos.
+            </p>
+
+            <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+              <button type="button" data-abrir-alta data-plan="profesional" class="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-brand-600/25 transition hover:bg-brand-700">
+                Solicitar demo gratis
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+              </button>
+              <a href="demo/admin.html" class="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-base font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
+                Ver demo del panel
+              </a>
+            </div>
+
+            <ul class="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-slate-500">
+              <li class="flex items-center gap-1.5">
+                <svg class="h-4 w-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                Sin permanencia
+              </li>
+              <li class="flex items-center gap-1.5">
+                <svg class="h-4 w-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                Implementación guiada
+              </li>
+              <li class="flex items-center gap-1.5">
+                <svg class="h-4 w-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                Datos respaldados (Ley 1581)
+              </li>
+            </ul>
+          </div>
+
+          <div class="relative pb-10 pl-2 pr-2 sm:pb-12">
+            <div class="absolute inset-x-0 top-0 h-56 overflow-hidden rounded-3xl shadow-2xl shadow-brand-950/20 sm:h-72 lg:h-[21rem]" aria-hidden="true">
+              <img src="img/conjunto-torres.jpg" alt="" role="presentation" loading="eager" fetchpriority="high" class="h-full w-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-br from-brand-950/80 via-brand-900/40 to-transparent" aria-hidden="true"></div>
+            </div>
+            <div class="relative mt-16 sm:mt-24 lg:mt-28">
+            <div class="relative mx-auto max-w-md rounded-2xl border border-slate-200 bg-white p-5 shadow-2xl shadow-slate-900/10">
+              <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                <div class="flex items-center gap-1.5" aria-hidden="true">
+                  <span class="h-2.5 w-2.5 rounded-full bg-rose-400"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-amber-400"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
+                </div>
+                <span class="text-[10px] font-semibold uppercase tracking-widest text-slate-400">Panel · TuConjunto</span>
+              </div>
+
+              <div class="divide-y divide-slate-100">
+                <div class="flex items-center justify-between py-3">
+                  <div class="flex items-center gap-3">
+                    <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600">
+                      <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" /></svg>
+                    </span>
+                    <div>
+                      <p class="text-xs font-medium text-slate-500">Recaudo del mes</p>
+                      <p class="text-sm font-bold text-slate-900">$42,8M</p>
+                    </div>
+                  </div>
+                  <span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-1 text-[10px] font-bold text-emerald-600">
+                    <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" /></svg>
+                    +18%
+                  </span>
+                </div>
+
+                <div class="flex items-center justify-between py-3">
+                  <div class="flex items-center gap-3">
+                    <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-100 text-brand-600">
+                      <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>
+                    </span>
+                    <div>
+                      <p class="text-xs font-medium text-slate-500">Morosidad</p>
+                      <p class="text-sm font-bold text-slate-900">6,4%</p>
+                    </div>
+                  </div>
+                  <span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-1 text-[10px] font-bold text-emerald-600">
+                    <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6L9 12.75l4.286-4.286a11.948 11.948 0 014.306 6.43l.776 2.898m0 0l3.182-5.511m-3.182 5.51l-5.511-3.181" /></svg>
+                    -38%
+                  </span>
+                </div>
+
+                <div class="flex items-center justify-between py-3">
+                  <div class="flex items-center gap-3">
+                    <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-100 text-amber-600">
+                      <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z" /></svg>
+                    </span>
+                    <div>
+                      <p class="text-xs font-medium text-slate-500">Tickets abiertos</p>
+                      <p class="text-sm font-bold text-slate-900">12</p>
+                    </div>
+                  </div>
+                  <span class="inline-flex items-center gap-1 rounded-full bg-sky-50 px-2 py-1 text-[10px] font-bold text-sky-600">&lt;24 h</span>
+                </div>
+              </div>
+
+              <div class="mt-5">
+                <div class="flex items-center justify-between">
+                  <p class="text-xs font-semibold text-slate-700">Recaudo mensual</p>
+                  <span class="text-[10px] font-bold uppercase tracking-wide text-emerald-600">En línea con presupuesto</span>
+                </div>
+                <div class="mt-3 flex h-24 items-end gap-1.5" role="img" aria-label="Gráfica de barras del recaudo mensual con tendencia ascendente">
+                  <span class="w-full rounded-t bg-brand-100" style="height:40%"></span>
+                  <span class="w-full rounded-t bg-brand-100" style="height:55%"></span>
+                  <span class="w-full rounded-t bg-brand-100" style="height:35%"></span>
+                  <span class="w-full rounded-t bg-brand-200" style="height:62%"></span>
+                  <span class="w-full rounded-t bg-brand-200" style="height:50%"></span>
+                  <span class="w-full rounded-t bg-brand-300" style="height:70%"></span>
+                  <span class="w-full rounded-t bg-brand-300" style="height:64%"></span>
+                  <span class="w-full rounded-t bg-brand-400" style="height:80%"></span>
+                  <span class="w-full rounded-t bg-brand-400" style="height:74%"></span>
+                  <span class="w-full rounded-t bg-brand-500" style="height:88%"></span>
+                  <span class="w-full rounded-t bg-brand-500" style="height:84%"></span>
+                  <span class="w-full rounded-t bg-brand-600" style="height:100%"></span>
+                </div>
+              </div>
+
+              <div class="mt-5 overflow-hidden rounded-xl border border-slate-200">
+                <table class="w-full text-left text-xs">
+                  <thead>
+                    <tr class="bg-slate-50 text-[10px] uppercase tracking-wider text-slate-400">
+                      <th scope="col" class="px-3 py-2 font-semibold">Unidad</th>
+                      <th scope="col" class="px-3 py-2 font-semibold">Estado</th>
+                      <th scope="col" class="px-3 py-2 text-right font-semibold">Valor</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-100 text-slate-600">
+                    <tr class="table-row-hover">
+                      <td class="px-3 py-2.5 font-medium text-slate-900">Apto 502 · Torre 3</td>
+                      <td class="px-3 py-2.5"><span class="inline-flex rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-emerald-600">Pagado</span></td>
+                      <td class="px-3 py-2.5 text-right font-semibold">$480.000</td>
+                    </tr>
+                    <tr class="table-row-hover">
+                      <td class="px-3 py-2.5 font-medium text-slate-900">Apto 201 · Torre 1</td>
+                      <td class="px-3 py-2.5"><span class="inline-flex rounded-full bg-rose-50 px-2 py-0.5 text-[10px] font-bold text-rose-600">En mora</span></td>
+                      <td class="px-3 py-2.5 text-right font-semibold">$520.000</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="float-soft absolute -bottom-2 left-0 flex max-w-[17rem] items-center gap-3 rounded-xl border border-slate-200 bg-white p-3.5 shadow-xl shadow-slate-900/10 sm:-left-6 sm:max-w-xs">
+              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-white">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" /></svg>
+              </span>
+              <div>
+                <p class="text-xs font-bold text-slate-900">Recordatorio de pago enviado</p>
+                <p class="mt-0.5 text-[11px] font-medium text-emerald-600">Torre 2 · Entregado ✓</p>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-y border-slate-200 bg-slate-50 py-10" aria-label="Indicadores clave de TuConjunto">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <dl class="grid grid-cols-2 gap-x-6 gap-y-8 text-center lg:grid-cols-4">
+          <div>
+            <dt class="order-2 mt-1 block text-sm text-slate-500">conjuntos activos</dt>
+            <dd class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">+120</dd>
+          </div>
+          <div>
+            <dt class="order-2 mt-1 block text-sm text-slate-500">recaudados/año</dt>
+            <dd class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">$1.900 M</dd>
+          </div>
+          <div>
+            <dt class="order-2 mt-1 block text-sm text-slate-500">morosidad promedio</dt>
+            <dd class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">-38 %</dd>
+          </div>
+          <div>
+            <dt class="order-2 mt-1 block text-sm text-slate-500">soporte respuesta</dt>
+            <dd class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">&lt;24 h</dd>
+          </div>
+        </dl>
+        <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div class="flex items-center" aria-hidden="true">
+            <img src="img/conjunto-noche.jpg" alt="" loading="lazy" class="h-8 w-8 rounded-full object-cover ring-2 ring-white">
+            <img src="img/apartamento-sala.jpg" alt="" loading="lazy" class="-ml-2 h-8 w-8 rounded-full object-cover ring-2 ring-white">
+            <img src="img/jardin.jpg" alt="" loading="lazy" class="-ml-2 h-8 w-8 rounded-full object-cover ring-2 ring-white">
+          </div>
+          <p class="text-sm font-semibold text-slate-700">+120 conjuntos confían en TuConjunto</p>
+        </div>
+        <p class="mt-4 text-center text-xs text-slate-400">Cifras ilustrativas del modelo de negocio.</p>
+      </div>
+    </section>
+
+    <section id="problema" class="bg-white py-16 sm:py-20" aria-labelledby="titulo-problema">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <h2 id="titulo-problema" class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Dejar atrás el Excel y los chats infinitos</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">La administración tradicional de copropiedades se rompe por partes. TuConjunto la integra en un solo flujo.</p>
+        </div>
+
+        <div class="mt-12 grid gap-8 md:grid-cols-2 md:gap-10">
+          <ul class="space-y-5">
+            <li class="flex items-start gap-3.5">
+              <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-rose-100">
+                <svg class="h-3.5 w-3.5 text-rose-600" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+              </span>
+              <p class="text-sm leading-relaxed text-slate-700 sm:text-base">Cartera descontrolada en hojas de cálculo que nadie actualiza a tiempo.</p>
+            </li>
+            <li class="flex items-start gap-3.5">
+              <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-rose-100">
+                <svg class="h-3.5 w-3.5 text-rose-600" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+              </span>
+              <p class="text-sm leading-relaxed text-slate-700 sm:text-base">Pagos sin conciliar y recibos en papel que se pierden entre carpetas.</p>
+            </li>
+            <li class="flex items-start gap-3.5">
+              <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-rose-100">
+                <svg class="h-3.5 w-3.5 text-rose-600" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+              </span>
+              <p class="text-sm leading-relaxed text-slate-700 sm:text-base">Reservas del salón social agendadas a mano en el cuaderno de portería.</p>
+            </li>
+            <li class="flex items-start gap-3.5">
+              <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-rose-100">
+                <svg class="h-3.5 w-3.5 text-rose-600" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+              </span>
+              <p class="text-sm leading-relaxed text-slate-700 sm:text-base">PQRS olvidados entre cadenas de chats, correos y llamadas.</p>
+            </li>
+          </ul>
+
+          <div class="rounded-2xl border border-brand-100 bg-brand-50 p-6 sm:p-8">
+            <h3 class="flex items-center gap-2.5 text-lg font-bold text-slate-900">
+              <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-white shadow-lg shadow-brand-600/25">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+              </span>
+              Con TuConjunto
+            </h3>
+            <ul class="mt-6 space-y-4">
+              <li class="flex items-start gap-3">
+                <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100">
+                  <svg class="h-3 w-3 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                </span>
+                <p class="text-sm leading-relaxed text-slate-700">Estados de cuenta automáticos y pago PSE disponible 24/7 para cada unidad.</p>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100">
+                  <svg class="h-3 w-3 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                </span>
+                <p class="text-sm leading-relaxed text-slate-700">Conciliación bancaria integrada: cada pago cuadra solo contra la cartera.</p>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100">
+                  <svg class="h-3 w-3 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                </span>
+                <p class="text-sm leading-relaxed text-slate-700">Reservas en línea con las reglas propias de tu conjunto: horarios, cupos y pagos.</p>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100">
+                  <svg class="h-3 w-3 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                </span>
+                <p class="text-sm leading-relaxed text-slate-700">Tickets PQRS con trazabilidad total: radicado, responsable, tiempos y cierre.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="modulos" class="bg-slate-950 py-16 sm:py-20" aria-labelledby="titulo-modulos">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <h2 id="titulo-modulos" class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Todo lo que tu copropiedad necesita</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-400 sm:text-lg">Ocho módulos que trabajan juntos sobre una misma base de datos. Actívalos según las prioridades de tu consejo.</p>
+        </div>
+
+        <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <article class="group rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:border-brand-400/50 hover:bg-white/10">
+            <span class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-brand-400/10 text-brand-300 ring-1 ring-inset ring-white/10">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" /></svg>
+            </span>
+            <h3 class="font-semibold text-white">Pagos en línea PSE</h3>
+            <p class="mt-2 text-xs leading-relaxed text-slate-400">Los residentes pagan con PSE o débito automático y cada pago queda aplicado al instante.</p>
+          </article>
+
+          <article class="group rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:border-brand-400/50 hover:bg-white/10">
+            <span class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-400/10 text-emerald-300 ring-1 ring-inset ring-white/10">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>
+            </span>
+            <h3 class="font-semibold text-white">Cartera y morosidad</h3>
+            <p class="mt-2 text-xs leading-relaxed text-slate-400">Intereses de mora automáticos, cartas de cobro y estado real de cartera en segundos.</p>
+          </article>
+
+          <article class="group rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:border-brand-400/50 hover:bg-white/10">
+            <span class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-sky-400/10 text-sky-300 ring-1 ring-inset ring-white/10">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" /></svg>
+            </span>
+            <h3 class="font-semibold text-white">Reservas de zonas comunes</h3>
+            <p class="mt-2 text-xs leading-relaxed text-slate-400">Salón social, piscina y zonas con calendario, reglas propias y pago anticipado.</p>
+          </article>
+
+          <article class="group rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:border-brand-400/50 hover:bg-white/10">
+            <span class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-rose-400/10 text-rose-300 ring-1 ring-inset ring-white/10">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z" /></svg>
+            </span>
+            <h3 class="font-semibold text-white">PQRS con trazabilidad</h3>
+            <p class="mt-2 text-xs leading-relaxed text-slate-400">Radicado, responsable, tiempos de respuesta y cierre. Ninguna solicitud se pierde.</p>
+          </article>
+
+          <article class="group rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:border-brand-400/50 hover:bg-white/10">
+            <span class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-violet-400/10 text-violet-300 ring-1 ring-inset ring-white/10">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 110-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38c-.551.318-1.26.117-1.527-.461a20.845 20.845 0 01-1.44-4.282m3.102.069a18.03 18.03 0 01-.59-4.59c0-1.586.205-3.124.59-4.59m0 9.18a23.848 23.848 0 018.835 2.535M10.34 6.66a23.847 23.847 0 008.835-2.535m0 0A23.74 23.74 0 0018.795 3m.38 1.125a23.91 23.91 0 011.014 5.395m-1.014 8.855c-.118.38-.245.754-.38 1.125m.38-1.125a23.91 23.91 0 001.014-5.395m0-3.46c.495.413.811 1.035.811 1.73 0 .695-.316 1.317-.811 1.73m0-3.46a24.347 24.347 0 010 3.46" /></svg>
+            </span>
+            <h3 class="font-semibold text-white">Comunicados masivos</h3>
+            <p class="mt-2 text-xs leading-relaxed text-slate-400">WhatsApp, email y push segmentados por torre o unidad, con confirmación de envío.</p>
+          </article>
+
+          <article class="group rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:border-brand-400/50 hover:bg-white/10">
+            <span class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-400/10 text-cyan-300 ring-1 ring-inset ring-white/10">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z" /></svg>
+            </span>
+            <h3 class="font-semibold text-white">Control de accesos QR</h3>
+            <p class="mt-2 text-xs leading-relaxed text-slate-400">Visitantes, domiciliarios y citofonía virtual gestionados desde el celular del residente.</p>
+          </article>
+
+          <article class="group rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:border-brand-400/50 hover:bg-white/10">
+            <span class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-amber-400/10 text-amber-300 ring-1 ring-inset ring-white/10">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 00-1.883 2.542l.857 6a2.25 2.25 0 002.227 1.932H19.05a2.25 2.25 0 002.227-1.932l.857-6a2.25 2.25 0 00-1.883-2.542m-16.5 0V6A2.25 2.25 0 016 3.75h3.879a1.5 1.5 0 011.06.44l2.122 2.12a1.5 1.5 0 001.06.44H18A2.25 2.25 0 0120.25 9v.776" /></svg>
+            </span>
+            <h3 class="font-semibold text-white">Gestión documental</h3>
+            <p class="mt-2 text-xs leading-relaxed text-slate-400">Actas, reglamentos, presupuestos y contratos organizados y siempre disponibles.</p>
+          </article>
+
+          <article class="group rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:border-brand-400/50 hover:bg-white/10">
+            <span class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-teal-400/10 text-teal-300 ring-1 ring-inset ring-white/10">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg>
+            </span>
+            <h3 class="font-semibold text-white">Asambleas digitales</h3>
+            <p class="mt-2 text-xs leading-relaxed text-slate-400">Convocatoria, quórum en vivo y votación electrónica con validez documental.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="comunidad" class="bg-white py-16 sm:py-20" aria-labelledby="titulo-comunidad">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <h2 id="titulo-comunidad" class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Vive mejor tu comunidad</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">Diseñada para las zonas comunes donde pasa la vida real.</p>
+        </div>
+
+        <div class="mt-12 grid auto-rows-[180px] grid-cols-2 gap-4 md:auto-rows-[220px] md:grid-cols-4">
+          <figure class="card-lift group relative col-span-2 row-span-2 overflow-hidden rounded-2xl shadow-sm">
+            <img src="img/piscina.jpg" alt="Piscina de zona común en un conjunto residencial" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-transparent" aria-hidden="true"></div>
+            <figcaption class="absolute inset-x-0 bottom-0 p-4">
+              <p class="text-sm font-bold text-white">Zonas comunes</p>
+              <p class="mt-0.5 text-xs text-slate-200">Reservas de piscina en un toque</p>
+            </figcaption>
+          </figure>
+
+          <figure class="card-lift group relative col-span-2 overflow-hidden rounded-2xl shadow-sm">
+            <img src="img/salon-social.jpg" alt="Salón social listo para un evento de la copropiedad" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-transparent" aria-hidden="true"></div>
+            <figcaption class="absolute inset-x-0 bottom-0 p-4">
+              <p class="text-sm font-bold text-white">Salón social</p>
+              <p class="mt-0.5 text-xs text-slate-200">Eventos y asambleas</p>
+            </figcaption>
+          </figure>
+
+          <figure class="card-lift group relative overflow-hidden rounded-2xl shadow-sm md:row-span-2">
+            <img src="img/gimnasio.jpg" alt="Gimnasio comunal con equipos de entrenamiento" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-transparent" aria-hidden="true"></div>
+            <figcaption class="absolute inset-x-0 bottom-0 p-4">
+              <p class="text-sm font-bold text-white">Gimnasio</p>
+              <p class="mt-0.5 text-xs text-slate-200">Aforos y horarios</p>
+            </figcaption>
+          </figure>
+
+          <figure class="card-lift group relative overflow-hidden rounded-2xl shadow-sm md:row-span-2">
+            <img src="img/jardin.jpg" alt="Zonas verdes y jardines del conjunto residencial" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-transparent" aria-hidden="true"></div>
+            <figcaption class="absolute inset-x-0 bottom-0 p-4">
+              <p class="text-sm font-bold text-white">Mantenimiento programado</p>
+              <p class="mt-0.5 text-xs text-slate-200">Jardinería y zonas verdes</p>
+            </figcaption>
+          </figure>
+
+          <figure class="card-lift group relative col-span-2 overflow-hidden rounded-2xl shadow-sm">
+            <img src="img/porteria.jpg" alt="Portería y recepción del conjunto con control de acceso" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-transparent" aria-hidden="true"></div>
+            <figcaption class="absolute inset-x-0 bottom-0 p-4">
+              <span class="inline-flex items-center rounded-full bg-brand-600 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white shadow-lg shadow-brand-600/30">Control de accesos</span>
+              <p class="mt-1.5 text-sm font-bold text-white">Registro digital de visitantes con QR</p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="seguridad" class="bg-slate-50 py-16 sm:py-20" aria-labelledby="titulo-seguridad">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div class="relative">
+            <img src="img/porteria.jpg" alt="Recepción y portería de un conjunto residencial con recepción digital" loading="lazy" class="aspect-[4/3] w-full rounded-3xl object-cover shadow-2xl shadow-slate-900/15">
+            <div class="float-soft absolute -top-4 left-4 flex items-center gap-3 rounded-xl border border-slate-100 bg-white p-3.5 pr-5 shadow-xl sm:-left-6">
+              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
+              </span>
+              <p class="text-xs font-bold text-slate-900">Entrada registrada<br><span class="font-semibold text-emerald-600">en 8 segundos</span></p>
+            </div>
+          </div>
+
+          <div>
+            <span class="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-3.5 py-1.5 text-xs font-semibold text-brand-700">
+              <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
+              Seguridad y control
+            </span>
+
+            <h2 id="titulo-seguridad" class="mt-5 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Una portería del siglo XXI</h2>
+            <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">Reemplaza el cuaderno de visitantes por un libro digital: cada entrada queda con foto del rostro y cédula, los domiciliarios entran con QR temporal y administración recibe alertas al instante.</p>
+
+            <ul class="mt-7 space-y-3.5">
+              <li class="flex items-start gap-3">
+                <svg class="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                <p class="text-sm leading-relaxed text-slate-700 sm:text-base">Registro de visitantes con foto y documento de identidad</p>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                <p class="text-sm leading-relaxed text-slate-700 sm:text-base">Citofonía virtual: recibe a tus visitas desde el celular</p>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                <p class="text-sm leading-relaxed text-slate-700 sm:text-base">Bitácora de entradas y salidas consultable en tiempo real</p>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                <p class="text-sm leading-relaxed text-slate-700 sm:text-base">Botón de pánico y alertas 24/7 a administración y vigilancia</p>
+              </li>
+            </ul>
+
+            <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+              <a href="demo/porteria.html" class="inline-flex items-center justify-center gap-2 text-base font-semibold text-brand-600 transition hover:text-brand-700">
+                Ver el panel de portería
+                <svg class="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+              </a>
+              <a href="#contacto" class="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-100">Hablar con ventas</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="como-funciona" class="bg-white py-16 sm:py-20" aria-labelledby="titulo-como-funciona">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <h2 id="titulo-como-funciona" class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">En operación en menos de dos semanas</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">Un acompañamiento paso a paso, pensado para administradores con agenda apretada.</p>
+        </div>
+
+        <ol class="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
+          <li class="relative">
+            <span class="block text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-brand-600 to-sky-500">01</span>
+            <h3 class="mt-4 text-lg font-bold text-slate-900">Diagnóstico y carga de datos</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">Analizamos tu operación actual y migramos los históricos desde Excel: unidades, propietarios y saldos por cobrar, incluidos en la implementación.</p>
+          </li>
+          <li class="relative">
+            <span class="block text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-brand-600 to-sky-500">02</span>
+            <h3 class="mt-4 text-lg font-bold text-slate-900">Configuración e inducción</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">Definimos reglas, tarifas y roles junto a tu equipo, y capacitamos a portería, administración y consejo hasta que todos operen con soltura.</p>
+          </li>
+          <li class="relative">
+            <span class="block text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-brand-600 to-sky-500">03</span>
+            <h3 class="mt-4 text-lg font-bold text-slate-900">Operación y soporte continuo</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">Actualizaciones incluidas siempre, soporte con respuesta menor a 24 horas y reportes listos para presentar al consejo cada mes.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="planes" class="bg-slate-50 py-16 sm:py-20" aria-labelledby="titulo-planes">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <h2 id="titulo-planes" class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Precios claros según tu número de unidades</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">Una tarifa mensual fija, sin sorpresas ni costos por residente.</p>
+        </div>
+
+        <div class="mt-14 grid items-start gap-6 lg:grid-cols-3">
+          <article class="relative flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition hover:shadow-md">
+            <h3 class="text-sm font-bold uppercase tracking-wider text-slate-500">Esencial</h3>
+            <p class="mt-3"><span class="text-4xl font-extrabold tracking-tight text-slate-900">$190.000</span> <span class="text-sm font-medium text-slate-500">COP/mes</span></p>
+            <p class="mt-1 text-xs text-slate-500">Para conjuntos de hasta 50 unidades</p>
+            <hr class="my-6 border-slate-200">
+            <ul class="flex-1 space-y-3 text-sm text-slate-600">
+              <li class="flex gap-2.5"><svg class="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>Pagos en línea con PSE</li>
+              <li class="flex gap-2.5"><svg class="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>Estados de cuenta automáticos</li>
+              <li class="flex gap-2.5"><svg class="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>Reservas básicas de zonas comunes</li>
+              <li class="flex gap-2.5"><svg class="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>Comunicados por email</li>
+              <li class="flex gap-2.5"><svg class="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>Módulo PQRS</li>
+            </ul>
+            <button type="button" data-abrir-alta data-plan="esencial" class="mt-8 inline-flex w-full items-center justify-center rounded-xl border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-100">Empezar con Esencial</button>
+          </article>
+
+          <article class="relative flex h-full flex-col scale-[1.02] rounded-2xl border border-transparent bg-white p-7 shadow-xl ring-2 ring-brand-500">
+            <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-brand-600 px-3.5 py-1 text-xs font-bold text-white shadow-lg shadow-brand-600/30">Más elegido</span>
+            <h3 class="text-sm font-bold uppercase tracking-wider text-brand-600">Profesional</h3>
+            <p class="mt-3"><span class="text-4xl font-extrabold tracking-tight text-slate-900">$390.000</span> <span class="text-sm font-medium text-slate-500">COP/mes</span></p>
+            <p class="mt-1 text-xs text-slate-500">Para copropiedades de hasta 150 unidades</p>
+            <hr class="my-6 border-slate-200">
+            <ul class="flex-1 space-y-3 text-sm text-slate-600">
+              <li class="flex gap-2.5"><svg class="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>Todo lo del plan Esencial</li>
+              <li class="flex gap-2.5"><svg class="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>Recordatorios de pago por WhatsApp</li>
+              <li class="flex gap-2.5"><svg class="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>Control de accesos con QR</li>
+              <li class="flex gap-2.5"><svg class="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>Asambleas digitales con votación</li>
+              <li class="flex gap-2.5"><svg class="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>Reportes automáticos para el consejo</li>
+              <li class="flex gap-2.5"><svg class="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>Soporte prioritario</li>
+            </ul>
+            <button type="button" data-abrir-alta data-plan="profesional" class="mt-8 inline-flex w-full items-center justify-center rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-600/25 transition hover:bg-brand-700">Quiero Profesional</button>
+          </article>
+
+          <article class="relative flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition hover:shadow-md">
+            <h3 class="text-sm font-bold uppercase tracking-wider text-slate-500">Enterprise</h3>
+            <p class="mt-3"><span class="text-3xl font-extrabold tracking-tight text-slate-900">A cotización</span></p>
+            <p class="mt-1 text-xs text-slate-500">Más de 150 unidades · multi-conjunto</p>
+            <hr class="my-6 border-slate-200">
+            <ul class="flex-1 space-y-3 text-sm text-slate-600">
+              <li class="flex gap-2.5"><svg class="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>Gestión multi-conjunto desde una cuenta</li>
+              <li class="flex gap-2.5"><svg class="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>API e integraciones contables</li>
+              <li class="flex gap-2.5"><svg class="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>Gerente de cuenta dedicado</li>
+              <li class="flex gap-2.5"><svg class="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>SLA personalizado</li>
+            </ul>
+            <button type="button" data-abrir-alta data-plan="enterprise" class="mt-8 inline-flex w-full items-center justify-center rounded-xl border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-100">Solicitar cotización</button>
+          </article>
+        </div>
+
+        <p class="mt-10 text-center text-xs text-slate-400">Precios ilustrativos, IVA no incluido · Sin costo de implementación en plan anual.</p>
+      </div>
+    </section>
+
+    <section id="demo" class="bg-white py-16 sm:py-20" aria-labelledby="titulo-demo">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <h2 id="titulo-demo" class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Pruébala antes de hablar con nosotros</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">Recorre tres experiencias reales de la plataforma: el panel del administrador, el portal del residente y el panel de portería.</p>
+        </div>
+
+        <div class="mt-12 grid gap-6 md:grid-cols-3 lg:gap-8">
+          <a href="demo/admin.html" class="card-lift group block overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:border-brand-200" aria-labelledby="demo-admin-title">
+            <div class="relative h-52 bg-slate-900 p-4" aria-hidden="true">
+              <div class="flex h-full gap-3">
+                <div class="w-16 shrink-0 space-y-3 rounded-lg bg-slate-800/80 p-2.5 sm:w-20">
+                  <span class="mx-auto block h-6 w-6 rounded-lg bg-brand-600"></span>
+                  <span class="block h-2 w-full rounded bg-brand-500/80"></span>
+                  <span class="block h-2 w-full rounded bg-slate-600/70"></span>
+                  <span class="block h-2 w-full rounded bg-slate-600/70"></span>
+                  <span class="block h-2 w-4/5 rounded bg-slate-600/70"></span>
+                </div>
+                <div class="grid flex-1 grid-cols-2 content-start gap-2.5">
+                  <div class="rounded-lg bg-slate-800/80 p-2.5">
+                    <span class="flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span><span class="block h-1.5 w-12 rounded bg-slate-600"></span></span>
+                    <span class="mt-2 block h-3 w-14 rounded bg-slate-400/80"></span>
+                  </div>
+                  <div class="rounded-lg bg-slate-800/80 p-2.5">
+                    <span class="flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-amber-400"></span><span class="block h-1.5 w-12 rounded bg-slate-600"></span></span>
+                    <span class="mt-2 block h-3 w-12 rounded bg-slate-400/80"></span>
+                  </div>
+                  <div class="col-span-2 flex items-end gap-1 rounded-lg bg-slate-800/80 p-2.5">
+                    <span class="w-full rounded-t bg-brand-500/40" style="height:35%"></span>
+                    <span class="w-full rounded-t bg-brand-500/40" style="height:55%"></span>
+                    <span class="w-full rounded-t bg-brand-500/60" style="height:45%"></span>
+                    <span class="w-full rounded-t bg-brand-500/60" style="height:70%"></span>
+                    <span class="w-full rounded-t bg-brand-500/80" style="height:60%"></span>
+                    <span class="w-full rounded-t bg-brand-500/80" style="height:85%"></span>
+                    <span class="w-full rounded-t bg-brand-400" style="height:100%"></span>
+                  </div>
+                </div>
+              </div>
+              <span class="absolute right-3 top-3 rounded-full border border-white/10 bg-white/10 px-2.5 py-1 text-[10px] font-semibold text-white backdrop-blur">Vista admin</span>
+            </div>
+            <div class="p-6">
+              <h3 id="demo-admin-title" class="text-lg font-bold text-slate-900 transition group-hover:text-brand-600">Panel del administrador</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600">KPIs de recaudo, cartera, reservas y PQRS en tiempo real.</p>
+              <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600">Abrir panel<svg class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></span>
+            </div>
+          </a>
+
+          <a href="demo/residente.html" class="card-lift group block overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:border-brand-200" aria-labelledby="demo-residente-title">
+            <div class="relative h-52 bg-slate-100 p-4" aria-hidden="true">
+              <div class="flex items-center justify-between rounded-lg bg-white px-3 py-2 shadow-sm">
+                <span class="flex items-center gap-2"><span class="h-5 w-5 rounded-lg bg-brand-600"></span><span class="block h-2 w-16 rounded bg-slate-300"></span></span>
+                <span class="flex items-center gap-1.5"><span class="block h-2 w-8 rounded bg-slate-200"></span><span class="block h-5 w-5 rounded-full bg-brand-100"></span></span>
+              </div>
+              <div class="mt-3 grid grid-cols-2 gap-2.5">
+                <div class="rounded-lg bg-white p-3 shadow-sm">
+                  <p class="text-[9px] font-semibold uppercase tracking-wide text-slate-400">Saldo pendiente</p>
+                  <p class="mt-1 text-sm font-bold text-slate-900">$480.000</p>
+                </div>
+                <div class="rounded-lg bg-white p-3 shadow-sm">
+                  <p class="text-[9px] font-semibold uppercase tracking-wide text-slate-400">Cuota junio</p>
+                  <p class="mt-1 inline-flex rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-emerald-600">Pagada ✓</p>
+                </div>
+                <div class="col-span-2 rounded-lg bg-white p-3 shadow-sm">
+                  <span class="inline-flex items-center gap-1.5 rounded-md bg-emerald-500 px-2.5 py-1.5 text-[10px] font-bold text-white">Pagar con PSE</span>
+                  <span class="ml-2 inline-block h-2 w-16 rounded bg-slate-200 align-middle"></span>
+                </div>
+              </div>
+              <span class="absolute right-3 top-3 rounded-full border border-slate-200 bg-white/90 px-2.5 py-1 text-[10px] font-semibold text-slate-700 shadow-sm">Vista residente</span>
+            </div>
+            <div class="p-6">
+              <h3 id="demo-residente-title" class="text-lg font-bold text-slate-900 transition group-hover:text-brand-600">Portal del residente</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600">Estado de cuenta, pagos, reservas y solicitudes desde el celular.</p>
+              <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600">Abrir portal<svg class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></span>
+            </div>
+          </a>
+
+          <a href="demo/porteria.html" class="card-lift group block overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:border-brand-200" aria-labelledby="demo-porteria-title">
+            <div class="relative h-52 bg-brand-950 p-4" aria-hidden="true">
+              <div class="flex items-center justify-between rounded-lg bg-brand-900/80 px-3 py-2">
+                <span class="flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span><span class="block h-1.5 w-16 rounded bg-brand-400/70"></span></span>
+                <span class="block h-1.5 w-10 rounded bg-brand-500/60"></span>
+              </div>
+              <div class="mt-3 space-y-2">
+                <div class="flex items-center gap-2.5 rounded-lg bg-white p-2 shadow-sm">
+                  <span class="h-7 w-7 shrink-0 rounded-full bg-gradient-to-br from-slate-300 to-slate-400"></span>
+                  <span class="flex-1 space-y-1"><span class="block h-1.5 w-20 rounded bg-slate-300"></span><span class="block h-1.5 w-12 rounded bg-slate-200"></span></span>
+                  <span class="inline-flex rounded-full bg-emerald-100 px-2 py-0.5 text-[9px] font-bold text-emerald-700">Dentro</span>
+                </div>
+                <div class="flex items-center gap-2.5 rounded-lg bg-white p-2 shadow-sm">
+                  <span class="h-7 w-7 shrink-0 rounded-full bg-gradient-to-br from-brand-200 to-brand-300"></span>
+                  <span class="flex-1 space-y-1"><span class="block h-1.5 w-24 rounded bg-slate-300"></span><span class="block h-1.5 w-14 rounded bg-slate-200"></span></span>
+                  <span class="inline-flex items-center gap-1 rounded-full bg-sky-100 px-2 py-0.5 text-[9px] font-bold text-sky-700">QR ✓</span>
+                </div>
+                <div class="flex items-center gap-2.5 rounded-lg bg-white/95 p-2 shadow-sm">
+                  <span class="h-7 w-7 shrink-0 rounded-full bg-gradient-to-br from-amber-200 to-amber-300"></span>
+                  <span class="flex-1 space-y-1"><span class="block h-1.5 w-16 rounded bg-slate-300"></span><span class="block h-1.5 w-20 rounded bg-slate-200"></span></span>
+                  <span class="inline-flex rounded-full bg-amber-100 px-2 py-0.5 text-[9px] font-bold text-amber-700">En portería</span>
+                </div>
+              </div>
+              <span class="absolute right-3 top-3 rounded-full border border-white/10 bg-white/10 px-2.5 py-1 text-[10px] font-semibold text-white backdrop-blur">Vista portería</span>
+            </div>
+            <div class="p-6">
+              <h3 id="demo-porteria-title" class="text-lg font-bold text-slate-900 transition group-hover:text-brand-600">Panel de portería</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600">Registro de visitantes con foto, cédula y QR.</p>
+              <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600">Abrir panel<svg class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="suscripcion" class="bg-slate-50 py-16 sm:py-20" aria-labelledby="titulo-suscripcion">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <h2 id="titulo-suscripcion" class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Precios claros, sin letra pequeña</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">Un modelo de suscripción simple: empiezas gratis, pagas según el tamaño de tu copropiedad y decides cada mes si continúas.</p>
+        </div>
+
+        <div class="mt-12 grid gap-5 sm:grid-cols-2 md:grid-cols-4">
+          <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md">
+            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-100 text-brand-600">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" /></svg>
+            </span>
+            <h3 class="mt-4 font-bold text-slate-900">14 días gratis</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">Trial completo sin tarjeta.</p>
+          </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md">
+            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z" /></svg>
+            </span>
+            <h3 class="mt-4 font-bold text-slate-900">Paga por unidades</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">Sube o baja de plan cuando quieras.</p>
+          </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md">
+            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-100 text-sky-600">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z" /></svg>
+            </span>
+            <h3 class="mt-4 font-bold text-slate-900">Facturación automática</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">PSE, tarjeta o débito · factura electrónica DIAN.</p>
+          </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md">
+            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-100 text-violet-600">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" /></svg>
+            </span>
+            <h3 class="mt-4 font-bold text-slate-900">Cancela cuando quieras</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">Sin permanencia ni penalidades.</p>
+          </article>
+        </div>
+
+        <p class="mt-8 text-center text-xs text-slate-500">Después del trial: Esencial hasta 50 unidades · Profesional hasta 150 · Enterprise a cotización. IVA no incluido.</p>
+      </div>
+    </section>
+
+    <section id="faq" class="bg-white pb-16 pt-0 sm:pb-20" aria-labelledby="titulo-faq">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h2 id="titulo-faq" class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Preguntas frecuentes</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">Lo que más nos preguntan administradores y consejos antes de arrancar.</p>
+        </div>
+
+        <div class="mt-10 space-y-4">
+          <details class="group rounded-xl border border-slate-200 bg-white p-5 transition open:border-brand-200 open:bg-brand-50/40 hover:border-slate-300">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-slate-900">
+              ¿Necesito instalar algo en portería o en mi computador?
+              <svg class="h-5 w-5 shrink-0 text-brand-600 transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+            </summary>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">No. TuConjunto es 100 % nube y funciona como PWA en celulares, tabletas y computadores. Portería, administración y residentes solo necesitan su usuario y conexión a internet.</p>
+          </details>
+
+          <details class="group rounded-xl border border-slate-200 bg-white p-5 transition open:border-brand-200 open:bg-brand-50/40 hover:border-slate-300">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-slate-900">
+              ¿Mis datos y los de los residentes están seguros?
+              <svg class="h-5 w-5 shrink-0 text-brand-600 transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+            </summary>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">Sí. Toda la información viaja cifrada, hay copias de respaldo diarias y cumplimos la Ley 1581 de 2012 (habeas data). Los datos son propiedad de la copropiedad y pueden exportarse cuando el consejo lo decida.</p>
+          </details>
+
+          <details class="group rounded-xl border border-slate-200 bg-white p-5 transition open:border-brand-200 open:bg-brand-50/40 hover:border-slate-300">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-slate-900">
+              ¿Cumple la normativa colombiana de copropiedades?
+              <svg class="h-5 w-5 shrink-0 text-brand-600 transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+            </summary>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">Sí. La plataforma está diseñada sobre la Ley 675 de 2001: maneja cuotas ordinarias y extraordinarias, calcula intereses de mora conforme al reglamento de propiedad horizontal y genera soportes listos para revisoría fiscal.</p>
+          </details>
+
+          <details class="group rounded-xl border border-slate-200 bg-white p-5 transition open:border-brand-200 open:bg-brand-50/40 hover:border-slate-300">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-slate-900">
+              ¿Cómo pagan los residentes?
+              <svg class="h-5 w-5 shrink-0 text-brand-600 transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+            </summary>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">Por PSE desde cualquier banco o con débito automático. La conciliación bancaria es automática: el administrador ve el pago aplicado a la unidad en minutos, no en días.</p>
+          </details>
+
+          <details class="group rounded-xl border border-slate-200 bg-white p-5 transition open:border-brand-200 open:bg-brand-50/40 hover:border-slate-300">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-slate-900">
+              ¿Cómo migramos si ya usamos otro sistema u hojas de cálculo?
+              <svg class="h-5 w-5 shrink-0 text-brand-600 transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+            </summary>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">Nuestro equipo hace la carga histórica guiada: saldos por unidad, estados de cuenta y documentos. No pierdes historial y la operación del conjunto no se detiene durante la transición.</p>
+          </details>
+
+          <details class="group rounded-xl border border-slate-200 bg-white p-5 transition open:border-brand-200 open:bg-brand-50/40 hover:border-slate-300">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-slate-900">
+              ¿Qué pasa cuando termina el trial?
+              <svg class="h-5 w-5 shrink-0 text-brand-600 transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+            </summary>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">Nada se borra. El día 14 eliges tu plan y método de pago (PSE, tarjeta o débito automático) y continúas con todo intacto. Si prefieres no continuar, puedes exportar todos tus datos cuando quieras y contamos con 30 días de gracia para reactivar la cuenta o recuperar la información.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="bg-white pb-20 pt-4" aria-labelledby="titulo-cta">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-700 to-brand-900 p-8 text-center shadow-2xl shadow-brand-900/30 sm:p-10 lg:p-14">
+          <div class="pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full bg-brand-400/30 blur-3xl" aria-hidden="true"></div>
+          <div class="pointer-events-none absolute -bottom-24 -left-16 h-56 w-56 rounded-full bg-sky-400/20 blur-3xl" aria-hidden="true"></div>
+
+          <div class="relative">
+            <h2 id="titulo-cta" class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">¿Listo para administrar sin caos?</h2>
+            <p class="mx-auto mt-3 max-w-xl text-base leading-relaxed text-brand-100">Agenda una demo de 30 minutos con nuestro equipo y descubre cómo TuConjunto se adapta a tu copropiedad.</p>
+
+            <form id="form-contacto" action="#" method="get" class="mx-auto mt-8 max-w-xl rounded-2xl border border-white/15 bg-white/10 p-6 text-left backdrop-blur sm:p-8">
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label for="campo-nombre" class="mb-1.5 block text-xs font-semibold text-brand-100">Nombre y apellido</label>
+                  <input type="text" id="campo-nombre" name="nombre" required placeholder="Ana María Gómez" class="w-full rounded-xl border border-white/20 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 shadow-sm focus:border-brand-300 focus:outline-none focus:ring-2 focus:ring-brand-300">
+                </div>
+                <div>
+                  <label for="campo-conjunto" class="mb-1.5 block text-xs font-semibold text-brand-100">Nombre del conjunto</label>
+                  <input type="text" id="campo-conjunto" name="conjunto" required placeholder="Conjunto Residencial Altavista" class="w-full rounded-xl border border-white/20 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 shadow-sm focus:border-brand-300 focus:outline-none focus:ring-2 focus:ring-brand-300">
+                </div>
+                <div>
+                  <label for="campo-unidades" class="mb-1.5 block text-xs font-semibold text-brand-100">Número de unidades</label>
+                  <select id="campo-unidades" name="unidades" required class="w-full rounded-xl border border-white/20 bg-white px-4 py-2.5 text-sm text-slate-900 shadow-sm focus:border-brand-300 focus:outline-none focus:ring-2 focus:ring-brand-300">
+                    <option value="" disabled selected>Selecciona el rango</option>
+                    <option value="25">Hasta 25</option>
+                    <option value="50">Hasta 50</option>
+                    <option value="100">Hasta 100</option>
+                    <option value="150">Hasta 150</option>
+                    <option value="+150">Más de 150</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="campo-email" class="mb-1.5 block text-xs font-semibold text-brand-100">Email corporativo</label>
+                  <input type="email" id="campo-email" name="email" required placeholder="ana@altavista.com.co" class="w-full rounded-xl border border-white/20 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 shadow-sm focus:border-brand-300 focus:outline-none focus:ring-2 focus:ring-brand-300">
+                </div>
+                <div class="sm:col-span-2">
+                  <label for="campo-telefono" class="mb-1.5 block text-xs font-semibold text-brand-100">Teléfono / WhatsApp</label>
+                  <input type="tel" id="campo-telefono" name="telefono" required placeholder="+57 300 123 4567" class="w-full rounded-xl border border-white/20 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 shadow-sm focus:border-brand-300 focus:outline-none focus:ring-2 focus:ring-brand-300">
+                </div>
+                <button type="submit" class="mt-2 w-full rounded-xl bg-white px-6 py-3.5 text-base font-bold text-brand-700 shadow-lg transition hover:bg-brand-50 sm:col-span-2">Quiero mi demo gratuita</button>
+              </div>
+              <p class="mt-4 text-center text-xs text-brand-200">Respuesta en menos de 24 h hábiles. Sin compromiso.</p>
+            </form>
+
+            <div id="exito-contacto" class="mx-auto mt-8 hidden max-w-xl rounded-2xl border border-emerald-300/40 bg-white/10 p-8 text-center backdrop-blur">
+              <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500 text-white shadow-lg shadow-emerald-500/40">
+                <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+              </span>
+              <h3 class="mt-4 text-lg font-bold text-white">¡Solicitud recibida!</h3>
+              <p class="mt-2 text-sm leading-relaxed text-brand-100">Te contactamos en menos de 24 h hábiles para agendar tu demo gratuita.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-slate-950 pb-8 pt-14">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-10 md:grid-cols-4">
+        <div>
+          <a href="#" class="flex items-center gap-2.5" aria-label="TuConjunto · Inicio">
+            <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 shadow-lg shadow-brand-600/25">
+              <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" /></svg>
+            </span>
+            <span class="text-lg font-extrabold tracking-tight"><span class="text-white">Tu</span><span class="text-brand-400">Conjunto</span></span>
+          </a>
+          <p class="mt-4 max-w-xs text-sm leading-relaxed text-slate-400">La plataforma todo-en-uno para administrar conjuntos residenciales y copropiedades en Colombia, pensada por y para administradores.</p>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-300">Hecho en Colombia 🇨🇴</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-300">Soporte en español</span>
+          </div>
+        </div>
+
+        <nav aria-label="Enlaces de producto">
+          <h3 class="text-sm font-semibold text-white">Producto</h3>
+          <ul class="mt-4 space-y-2.5 text-sm">
+            <li><a href="#modulos" class="text-slate-400 transition hover:text-white">Módulos</a></li>
+            <li><a href="#como-funciona" class="text-slate-400 transition hover:text-white">Cómo funciona</a></li>
+            <li><a href="#planes" class="text-slate-400 transition hover:text-white">Planes</a></li>
+            <li><a href="#demo" class="text-slate-400 transition hover:text-white">Demo interactiva</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Recursos">
+          <h3 class="text-sm font-semibold text-white">Recursos</h3>
+          <ul class="mt-4 space-y-2.5 text-sm">
+            <li><a href="#" class="text-slate-400 transition hover:text-white">Centro de ayuda</a></li>
+            <li><a href="#" class="text-slate-400 transition hover:text-white">Guía Ley 675</a></li>
+            <li><a href="#" class="text-slate-400 transition hover:text-white">Blog</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Información legal">
+          <h3 class="text-sm font-semibold text-white">Legal</h3>
+          <ul class="mt-4 space-y-2.5 text-sm">
+            <li><a href="#" class="text-slate-400 transition hover:text-white">Términos y condiciones</a></li>
+            <li><a href="#" class="text-slate-400 transition hover:text-white">Privacidad · Ley 1581</a></li>
+            <li><a href="#" class="text-slate-400 transition hover:text-white">Tratamiento de datos</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="mt-12 border-t border-white/10 pt-6">
+        <p class="text-center text-xs text-slate-500">© 2026 TuConjunto · Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div id="modal-alta" class="fixed inset-0 z-[70] hidden overflow-y-auto bg-slate-950/70 p-4 backdrop-blur-sm">
+    <div id="dialog-alta" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-alta" class="mx-auto my-8 max-w-lg rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl sm:p-8">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <h3 id="titulo-modal-alta" class="text-lg font-extrabold tracking-tight text-slate-900">Activa TuConjunto en tu copropiedad</h3>
+          <p class="mt-1 text-xs font-medium text-slate-500">14 días gratis · sin tarjeta · sin permanencia</p>
+        </div>
+        <button type="button" id="alta-cerrar" aria-label="Cerrar" class="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+      </div>
+
+      <div class="mt-7 flex items-center gap-2" aria-hidden="true">
+        <div class="flex flex-col items-center gap-1.5">
+          <span id="dot-alta-1" class="flex h-8 w-8 items-center justify-center rounded-full border border-brand-600 bg-brand-600 text-xs font-bold text-white ring-4 ring-brand-100 transition">1</span>
+          <span class="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Conjunto</span>
+        </div>
+        <span class="mb-5 h-px flex-1 bg-slate-200"></span>
+        <div class="flex flex-col items-center gap-1.5">
+          <span id="dot-alta-2" class="flex h-8 w-8 items-center justify-center rounded-full border border-slate-300 bg-white text-xs font-bold text-slate-400 transition">2</span>
+          <span class="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Acceso</span>
+        </div>
+        <span class="mb-5 h-px flex-1 bg-slate-200"></span>
+        <div class="flex flex-col items-center gap-1.5">
+          <span id="dot-alta-3" class="flex h-8 w-8 items-center justify-center rounded-full border border-slate-300 bg-white text-xs font-bold text-slate-400 transition">3</span>
+          <span class="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Listo</span>
+        </div>
+      </div>
+
+      <form id="form-alta-1" class="mt-7 space-y-4">
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div class="sm:col-span-2">
+            <label for="alta-conjunto" class="mb-1.5 block text-xs font-semibold text-slate-700">Nombre del conjunto o copropiedad</label>
+            <input type="text" id="alta-conjunto" name="conjunto" required placeholder="Conjunto Residencial Altavista" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-200">
+          </div>
+          <div>
+            <label for="alta-ciudad" class="mb-1.5 block text-xs font-semibold text-slate-700">Ciudad</label>
+            <select id="alta-ciudad" name="ciudad" required class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 shadow-sm focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-200">
+              <option value="" disabled selected>Selecciona tu ciudad</option>
+              <option>Bogotá</option>
+              <option>Medellín</option>
+              <option>Cali</option>
+              <option>Barranquilla</option>
+              <option>Bucaramanga</option>
+              <option>Otra</option>
+            </select>
+          </div>
+          <div>
+            <label for="alta-unidades" class="mb-1.5 block text-xs font-semibold text-slate-700">N.° de unidades</label>
+            <input type="number" id="alta-unidades" name="unidades" min="10" required placeholder="120" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-200">
+          </div>
+          <div>
+            <label for="alta-email" class="mb-1.5 block text-xs font-semibold text-slate-700">Email del administrador</label>
+            <input type="email" id="alta-email" name="email" required placeholder="admin@altavista.com.co" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-200">
+          </div>
+          <div>
+            <label for="alta-celular" class="mb-1.5 block text-xs font-semibold text-slate-700">Celular (+57)</label>
+            <input type="tel" id="alta-celular" name="celular" minlength="7" required placeholder="+57 300 123 4567" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-200">
+          </div>
+          <div class="sm:col-span-2">
+            <label for="alta-plan" class="mb-1.5 block text-xs font-semibold text-slate-700">Plan de interés</label>
+            <select id="alta-plan" name="plan" required class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 shadow-sm focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-200">
+              <option value="esencial">Esencial · $190.000/mes</option>
+              <option value="profesional">Profesional · $390.000/mes</option>
+              <option value="enterprise">Enterprise · a cotización</option>
+            </select>
+          </div>
+        </div>
+        <label class="flex items-start gap-2.5 pt-1 text-xs leading-relaxed text-slate-600">
+          <input type="checkbox" id="alta-terminos" name="terminos" required class="mt-0.5 h-4 w-4 shrink-0 accent-brand-600">
+          <span>Acepto los <a href="#" class="font-semibold text-brand-600 hover:underline">Términos y condiciones</a> y el tratamiento de datos personales (Ley 1581 de 2012).</span>
+        </label>
+        <button type="submit" class="w-full rounded-xl bg-brand-600 py-3.5 font-bold text-white shadow-lg shadow-brand-600/25 transition hover:bg-brand-700">Crear cuenta de evaluación →</button>
+      </form>
+
+      <form id="form-alta-2" class="mt-7 hidden space-y-4">
+        <div>
+          <label for="alta-nombre" class="mb-1.5 block text-xs font-semibold text-slate-700">Tu nombre completo</label>
+          <input type="text" id="alta-nombre" name="nombre" required autocomplete="name" placeholder="Ana María Gómez" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-200">
+        </div>
+        <div>
+          <label for="alta-pass" class="mb-1.5 block text-xs font-semibold text-slate-700">Contraseña</label>
+          <input type="password" id="alta-pass" name="password" minlength="8" required autocomplete="new-password" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 shadow-sm focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-200">
+          <div class="mt-2 flex items-center gap-3">
+            <div class="h-1.5 flex-1 overflow-hidden rounded-full bg-slate-200">
+              <div id="alta-barra" class="h-full w-0 rounded-full transition-all duration-300"></div>
+            </div>
+            <span id="alta-fuerza" class="w-12 text-right text-xs font-semibold text-slate-400">&nbsp;</span>
+          </div>
+          <p class="mt-1.5 text-[11px] text-slate-400">Mínimo 8 caracteres. Usa letras, números y símbolos para mayor fortaleza.</p>
+        </div>
+        <div>
+          <label for="alta-pass2" class="mb-1.5 block text-xs font-semibold text-slate-700">Repite la contraseña</label>
+          <input type="password" id="alta-pass2" name="password2" minlength="8" required autocomplete="new-password" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 shadow-sm focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-200">
+        </div>
+        <button type="submit" class="w-full rounded-xl bg-brand-600 py-3.5 font-bold text-white shadow-lg shadow-brand-600/25 transition hover:bg-brand-700">Activar mi trial 14 días</button>
+      </form>
+
+      <div id="paso-alta-3" class="mt-8 hidden text-center">
+        <span class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 ring-8 ring-emerald-50">
+          <svg class="h-9 w-9 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+        </span>
+        <h3 class="mt-5 text-xl font-extrabold tracking-tight text-slate-900">¡Listo, tu espacio está creado!</h3>
+        <p class="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-slate-600">
+          <strong id="alta-res-conjunto" class="font-bold text-slate-900"></strong> ya tiene su espacio activo con el <span id="alta-res-plan" class="font-bold text-slate-900"></span>. Tu trial gratis corre hasta el <span id="alta-res-fecha" class="font-bold text-slate-900"></span>.
+        </p>
+
+        <div class="mt-5 rounded-2xl bg-slate-900 p-5 text-left text-sm text-slate-100">
+          <p class="text-xs font-bold uppercase tracking-widest text-brand-300">Qué pasa ahora</p>
+          <ol class="mt-3 space-y-2.5">
+            <li class="flex gap-2.5"><span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500/20 text-[10px] font-bold text-brand-300">1</span><span>Hoy mismo te escribimos por WhatsApp para agendar la migración.</span></li>
+            <li class="flex gap-2.5"><span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500/20 text-[10px] font-bold text-brand-300">2</span><span>Cargamos tus unidades, residentes e históricos (incluido en la implementación).</span></li>
+            <li class="flex gap-2.5"><span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500/20 text-[10px] font-bold text-brand-300">3</span><span>Invitas a consejo y portería con sus propios accesos.</span></li>
+            <li class="flex gap-2.5"><span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500/20 text-[10px] font-bold text-brand-300">4</span><span>Día 14 eliges plan y método de pago (PSE, tarjeta o débito). Sin permanencia.</span></li>
+          </ol>
+        </div>
+
+        <p class="mt-3 text-xs text-slate-400">Demo local: el registro queda guardado solo en tu navegador.</p>
+
+        <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+          <a href="demo/admin.html" class="inline-flex flex-1 items-center justify-center rounded-xl bg-brand-600 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-brand-600/25 transition hover:bg-brand-700">Ir al panel de demostración</a>
+          <button type="button" id="alta-inicio" class="inline-flex flex-1 items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">Volver al inicio</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var modal = document.getElementById('modal-alta');
+    var dialog = document.getElementById('dialog-alta');
+    var pasos = [document.getElementById('paso-alta-1'), document.getElementById('paso-alta-2'), document.getElementById('paso-alta-3')];
+    var nombresPlan = { esencial: 'Plan Esencial', profesional: 'Plan Profesional', enterprise: 'Plan Enterprise' };
+    var focoPrevio = null;
+
+    function v(id){ return document.getElementById(id).value.trim(); }
+
+    function pintarDots(actual){
+      for(var i = 1; i <= 3; i++){
+        var d = document.getElementById('dot-alta-' + i);
+        d.className = 'flex h-8 w-8 items-center justify-center rounded-full border text-xs font-bold transition';
+        if(i < actual) d.className += ' border-emerald-500 bg-emerald-500 text-white';
+        else if(i === actual) d.className += ' border-brand-600 bg-brand-600 text-white ring-4 ring-brand-100';
+        else d.className += ' border-slate-300 bg-white text-slate-400';
+      }
+    }
+
+    function irPaso(n){
+      pasos.forEach(function(p, i){ p.classList.toggle('hidden', i !== n - 1); });
+      pintarDots(n);
+    }
+
+    function abrirAlta(plan){
+      document.getElementById('form-alta-1').reset();
+      document.getElementById('form-alta-2').reset();
+      medirFuerza();
+      validarCoincidencia();
+      document.getElementById('alta-plan').value = plan && nombresPlan[plan] ? plan : 'profesional';
+      irPaso(1);
+      focoPrevio = document.activeElement;
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      window.setTimeout(function(){ document.getElementById('alta-conjunto').focus(); }, 30);
+    }
+
+    function cerrarAlta(){
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+      if(focoPrevio && typeof focoPrevio.focus === 'function') focoPrevio.focus();
+    }
+
+    Array.prototype.forEach.call(document.querySelectorAll('[data-abrir-alta]'), function(b){
+      b.addEventListener('click', function(){ abrirAlta(b.getAttribute('data-plan')); });
+    });
+
+    document.getElementById('alta-cerrar').addEventListener('click', cerrarAlta);
+
+    document.getElementById('alta-inicio').addEventListener('click', function(){
+      cerrarAlta();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    modal.addEventListener('mousedown', function(e){
+      if(e.target === modal) cerrarAlta();
+    });
+
+    document.addEventListener('keydown', function(e){
+      if(modal.classList.contains('hidden')) return;
+      if(e.key === 'Escape'){ cerrarAlta(); return; }
+      if(e.key !== 'Tab') return;
+      var focusables = dialog.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled])');
+      if(!focusables.length) return;
+      var primero = focusables[0];
+      var ultimo = focusables[focusables.length - 1];
+      if(e.shiftKey && document.activeElement === primero){ e.preventDefault(); ultimo.focus(); }
+      else if(!e.shiftKey && document.activeElement === ultimo){ e.preventDefault(); primero.focus(); }
+    });
+
+    document.getElementById('form-alta-1').addEventListener('submit', function(e){
+      e.preventDefault();
+      if(this.reportValidity()) irPaso(2);
+    });
+
+    var pass = document.getElementById('alta-pass');
+    var pass2 = document.getElementById('alta-pass2');
+
+    function medirFuerza(){
+      var n = pass.value.length;
+      var barra = document.getElementById('alta-barra');
+      var texto = document.getElementById('alta-fuerza');
+      barra.className = 'h-full w-0 rounded-full transition-all duration-300';
+      barra.style.width = '0';
+      texto.textContent = '\u00a0';
+      texto.className = 'w-12 text-right text-xs font-semibold text-slate-400';
+      if(!n) return;
+      if(n < 8){
+        barra.style.width = '33%'; barra.classList.add('bg-rose-500');
+        texto.textContent = 'Débil'; texto.className = 'w-12 text-right text-xs font-semibold text-rose-500';
+      } else if(n < 12){
+        barra.style.width = '66%'; barra.classList.add('bg-amber-500');
+        texto.textContent = 'Media'; texto.className = 'w-12 text-right text-xs font-semibold text-amber-500';
+      } else {
+        barra.style.width = '100%'; barra.classList.add('bg-emerald-500');
+        texto.textContent = 'Fuerte'; texto.className = 'w-12 text-right text-xs font-semibold text-emerald-500';
+      }
+    }
+
+    function validarCoincidencia(){
+      pass2.setCustomValidity(pass2.value && pass2.value !== pass.value ? 'Las contraseñas no coinciden.' : '');
+    }
+
+    pass.addEventListener('input', function(){ medirFuerza(); validarCoincidencia(); });
+    pass2.addEventListener('input', validarCoincidencia);
+
+    function guardarLead(datos){
+      try { localStorage.setItem('tc-lead', JSON.stringify(datos)); } catch(err) {}
+    }
+
+    document.getElementById('form-alta-2').addEventListener('submit', function(e){
+      e.preventDefault();
+      validarCoincidencia();
+      if(!this.reportValidity()) return;
+      guardarLead({
+        conjunto: v('alta-conjunto'),
+        ciudad: v('alta-ciudad'),
+        unidades: v('alta-unidades'),
+        email: v('alta-email'),
+        celular: v('alta-celular'),
+        plan: document.getElementById('alta-plan').value,
+        nombre: v('alta-nombre'),
+        creado: new Date().toISOString()
+      });
+      document.getElementById('alta-res-conjunto').textContent = v('alta-conjunto');
+      document.getElementById('alta-res-plan').textContent = nombresPlan[document.getElementById('alta-plan').value];
+      document.getElementById('alta-res-fecha').textContent = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' });
+      irPaso(3);
+    });
+
+    var formContacto = document.getElementById('form-contacto');
+    formContacto.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(!this.reportValidity()) return;
+      guardarLead({
+        conjunto: v('campo-conjunto'),
+        ciudad: '',
+        unidades: v('campo-unidades'),
+        email: v('campo-email'),
+        celular: v('campo-telefono'),
+        plan: 'Por definir',
+        nombre: v('campo-nombre'),
+        creado: new Date().toISOString()
+      });
+      formContacto.classList.add('hidden');
+      document.getElementById('exito-contacto').classList.remove('hidden');
+    });
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi portal · TuConjunto</title>
+  <meta name="description" content="Portal del residente de TuConjunto: paga tu cuota de administración con PSE, reserva zonas comunes, crea solicitudes PQRS y descarga documentos del Conjunto Residencial Altos del Bosque.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏢</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>if(localStorage.getItem("tc-theme")==="dark")document.documentElement.classList.add("dark");</script>
+  <link rel="stylesheet" href="../tailwind.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 font-sans text-slate-900 dark:text-slate-100 antialiased">
+
+  <header class="sticky top-0 z-40 border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur">
+    <nav class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8" aria-label="Navegación principal">
+      <input type="checkbox" id="menu-toggle" class="peer sr-only">
+      <div class="flex h-16 items-center justify-between gap-4">
+        <a href="#" class="flex shrink-0 items-center gap-2.5" aria-label="TuConjunto · ir al inicio">
+          <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-600" aria-hidden="true">
+            <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z"/></svg>
+          </span>
+          <span class="text-lg font-bold tracking-tight"><span class="text-slate-900 dark:text-slate-100">Tu</span><span class="text-brand-600">Conjunto</span></span>
+        </a>
+
+        <ul class="hidden items-center gap-1 text-sm font-medium md:flex">
+          <li><a href="#" aria-current="page" class="rounded-lg bg-brand-50 dark:bg-brand-500/10 px-3 py-2 text-brand-600 dark:text-brand-300">Inicio</a></li>
+          <li><a href="#pagos" class="rounded-lg px-3 py-2 text-slate-600 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100">Pagos</a></li>
+          <li><a href="#reservas" class="rounded-lg px-3 py-2 text-slate-600 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100">Reservas</a></li>
+          <li><a href="#soporte" class="rounded-lg px-3 py-2 text-slate-600 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100">Soporte</a></li>
+          <li><a href="#documentos" class="rounded-lg px-3 py-2 text-slate-600 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100">Documentos</a></li>
+        </ul>
+
+        <div class="flex items-center gap-1 sm:gap-2">
+          <a href="#" aria-label="Notificaciones: tienes 1 aviso nuevo" class="relative rounded-full p-2 text-slate-500 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-300">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/></svg>
+            <span class="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white dark:ring-slate-900"></span>
+          </a>
+          <button type="button" id="theme-toggle" aria-label="Cambiar tema" class="rounded-lg p-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition">
+            <svg class="h-5 w-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg>
+            <svg class="h-5 w-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/></svg>
+          </button>
+          <button type="button" id="btn-salir" aria-label="Cerrar sesión" title="Cerrar sesión" class="rounded-lg p-2 border border-rose-200 dark:border-rose-500/30 bg-white dark:bg-slate-800 text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-500/10 transition">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"/></svg>
+          </button>
+          <a href="#" id="perfil-link" class="flex items-center gap-2 rounded-full p-1 pr-1 transition hover:bg-slate-100 dark:hover:bg-slate-800 sm:pr-2.5" aria-label="Ver perfil">
+            <span id="perfil-iniciales" class="flex h-8 w-8 items-center justify-center rounded-full bg-brand-100 dark:bg-brand-500/20 text-xs font-bold text-brand-700 dark:text-brand-300">··</span>
+            <span id="perfil-nombre" class="hidden text-sm font-medium text-slate-700 dark:text-slate-300 sm:block"></span>
+          </a>
+          <label for="menu-toggle" class="inline-flex cursor-pointer rounded-lg p-2 text-slate-600 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 md:hidden" aria-label="Abrir menú de navegación">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+          </label>
+        </div>
+      </div>
+
+      <div class="hidden pb-4 peer-checked:block md:hidden md:peer-checked:hidden">
+        <ul class="space-y-1 pt-2 text-sm font-medium">
+          <li><a href="#" aria-current="page" class="block rounded-lg bg-brand-50 dark:bg-brand-500/10 px-3 py-2.5 text-brand-600 dark:text-brand-300">Inicio</a></li>
+          <li><a href="#pagos" class="block rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-300 transition hover:bg-slate-100 dark:hover:bg-slate-800">Pagos</a></li>
+          <li><a href="#reservas" class="block rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-300 transition hover:bg-slate-100 dark:hover:bg-slate-800">Reservas</a></li>
+          <li><a href="#soporte" class="block rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-300 transition hover:bg-slate-100 dark:hover:bg-slate-800">Soporte</a></li>
+          <li><a href="#seguridad" class="block rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-300 transition hover:bg-slate-100 dark:hover:bg-slate-800">Mi seguridad</a></li>
+          <li><a href="#documentos" class="block rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-300 transition hover:bg-slate-100 dark:hover:bg-slate-800">Documentos</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="mx-auto max-w-6xl space-y-10 px-4 py-6 sm:space-y-12 sm:px-6 sm:py-8 lg:px-8">
+
+    <p role="note" class="flex items-start gap-2.5 rounded-xl border border-sky-200 dark:border-sky-500/30 bg-sky-50 dark:bg-sky-500/10 px-4 py-3 text-xs text-sky-800 dark:text-sky-300 sm:text-sm">
+      <svg class="mt-0.5 h-4 w-4 shrink-0 text-sky-500 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12v-.008z"/></svg>
+      <span>Conectado a API local · Datos de prueba.</span>
+    </p>
+
+    <section class="rounded-2xl border border-brand-100 dark:border-slate-800 bg-gradient-to-r from-brand-50 to-white dark:from-slate-900 dark:to-slate-900 p-6 sm:p-7" aria-labelledby="titulo-bienvenida">
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h1 id="titulo-bienvenida" class="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100 sm:text-3xl"><span id="saludo-usuario">Hola</span> 👋</h1>
+          <p id="hero-unidad" class="mt-1.5 text-sm text-slate-600 dark:text-slate-400 sm:text-base">Conjunto Altos del Bosque</p>
+        </div>
+        <span id="pill-hero" class="inline-flex items-center gap-1.5 self-start rounded-full bg-emerald-50 dark:bg-emerald-500/10 px-3.5 py-1.5 text-sm font-medium text-emerald-700 dark:text-emerald-300 ring-1 ring-inset ring-emerald-200 dark:ring-emerald-500/30 sm:self-auto">
+          <svg id="pill-hero-ok" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <svg id="pill-hero-mora" class="hidden h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span id="pill-hero-texto">Cargando…</span>
+        </span>
+      </div>
+    </section>
+
+    <section id="pagos" class="scroll-mt-24" aria-labelledby="titulo-pagos">
+      <div>
+        <h2 id="titulo-pagos" class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-2xl">Estado de cuenta</h2>
+        <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Consulta tus cuotas y paga en línea con PSE.</p>
+      </div>
+      <div class="mt-5 grid gap-5 lg:grid-cols-3">
+
+        <article id="card-cuota" class="rounded-xl bg-white dark:bg-slate-900 p-6 shadow-sm dark:shadow-black/40 ring-2 ring-brand-500/30 lg:col-span-1">
+          <div class="flex items-start justify-between gap-2">
+            <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Cuota de administración · Agosto 2026</h3>
+            <span id="pill-pagado" class="hidden shrink-0 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-700 ring-1 ring-inset ring-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-300 dark:ring-emerald-500/30">Pagado el <span id="pill-pagado-fecha"></span></span>
+          </div>
+          <p class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100"><span id="cuota-monto">$0</span><span class="ml-1 align-middle text-sm font-semibold text-slate-400 dark:text-slate-500">COP</span></p>
+          <dl class="mt-4 space-y-1.5 border-b border-dashed border-slate-200 dark:border-slate-800 pb-4 text-sm">
+            <div class="flex justify-between text-slate-600 dark:text-slate-400"><dt>Administración</dt><dd class="font-medium text-slate-800 dark:text-slate-100">$245.000</dd></div>
+            <div class="flex justify-between text-slate-600 dark:text-slate-400"><dt>Fondo reserva</dt><dd class="font-medium text-slate-800 dark:text-slate-100">$40.000</dd></div>
+          </dl>
+          <p class="mt-3 flex justify-between text-sm">
+            <span class="text-slate-500 dark:text-slate-400">Fecha límite</span>
+            <span class="font-medium text-amber-600 dark:text-amber-400">Vence el 5 de sep</span>
+          </p>
+          <button type="button" id="btn-pagar" class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"/></svg>
+            Pagar con PSE
+          </button>
+          <p class="mt-3 text-center text-xs text-slate-500 dark:text-slate-400">Débito automático disponible · <a href="#" class="font-semibold text-brand-600 dark:text-brand-300 transition hover:text-brand-700 dark:hover:text-brand-200 hover:underline">Activarlo</a></p>
+          <p class="mt-4 flex items-center justify-center gap-1.5 border-t border-slate-100 dark:border-slate-800 pt-4 text-[11px] font-medium text-slate-500 dark:text-slate-400">
+            <svg class="h-4 w-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+            Pago en línea seguro · PSE
+          </p>
+        </article>
+
+        <article class="card-lift rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm dark:shadow-black/40">
+          <div class="flex items-center justify-between gap-3">
+            <h3 class="text-sm font-semibold text-slate-900 dark:text-slate-100">Último pago</h3>
+            <span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 dark:bg-emerald-500/10 px-2.5 py-0.5 text-[11px] font-medium text-emerald-700 dark:text-emerald-300 ring-1 ring-inset ring-emerald-200 dark:ring-emerald-500/30">Pagado</span>
+          </div>
+          <p id="ultimo-periodo" class="mt-5 text-xs font-medium uppercase tracking-wider text-slate-400 dark:text-slate-500">—</p>
+          <p class="mt-1 text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100"><span id="ultimo-monto">$0</span></p>
+          <p id="ultimo-detalle" class="mt-1 text-xs text-slate-500 dark:text-slate-400">—</p>
+          <div class="mt-5 border-t border-dashed border-slate-200 dark:border-slate-800 pt-4">
+            <a href="#" class="inline-flex items-center gap-1.5 text-sm font-medium text-brand-600 dark:text-brand-300 transition hover:text-brand-700 dark:hover:text-brand-200 hover:underline">
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+              Descargar recibo
+            </a>
+          </div>
+        </article>
+
+        <article class="card-lift rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm dark:shadow-black/40">
+          <h3 class="text-sm font-semibold text-slate-900 dark:text-slate-100">Resumen anual 2026</h3>
+          <ul class="mt-5 space-y-4 text-sm">
+            <li>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-600 dark:text-slate-400">Cuotas pagadas</span>
+                <span id="resumen-pagadas" class="font-semibold text-slate-900 dark:text-slate-100">0/12</span>
+              </div>
+              <div id="resumen-barra" class="mt-2 h-1.5 rounded-full bg-slate-100 dark:bg-slate-800" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Progreso de cuotas pagadas en 2026">
+                <div id="resumen-relleno" class="h-full rounded-full bg-brand-500" style="width:0%"></div>
+              </div>
+              <p id="resumen-nota" class="mt-1.5 text-xs text-slate-400 dark:text-slate-500">Cargando…</p>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-5 w-5 shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span class="text-slate-700 dark:text-slate-300">Sin intereses de mora</span>
+            </li>
+            <li class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-4">
+              <span class="text-slate-600 dark:text-slate-400">Saldo a favor</span>
+              <span class="font-semibold text-slate-900 dark:text-slate-100">$0</span>
+            </li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="reservas" class="scroll-mt-24" aria-labelledby="titulo-reservas">
+      <div>
+        <h2 id="titulo-reservas" class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-2xl">Reservas de zonas comunes</h2>
+        <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Elige un espacio, revisa disponibilidad y agenda tu visita.</p>
+      </div>
+      <div class="mt-5 grid gap-5 lg:grid-cols-2">
+
+        <div id="grid-zonas" class="grid gap-4 self-start sm:grid-cols-2"></div>
+
+        <article class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm dark:shadow-black/40 sm:p-6">
+          <div class="flex items-center justify-between gap-3">
+            <h3 class="text-base font-semibold text-slate-900 dark:text-slate-100">Mis reservas</h3>
+            <svg class="h-5 w-5 text-slate-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 16.5v2.25"/></svg>
+          </div>
+          <div class="mt-4 overflow-x-auto">
+            <table class="w-full min-w-[480px] text-left text-sm">
+              <caption id="caption-reservas" class="sr-only">Listado de reservas del residente</caption>
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-800 text-[11px] uppercase tracking-wider text-slate-400 dark:text-slate-500">
+                  <th scope="col" class="pb-2 pr-4 font-semibold">Espacio</th>
+                  <th scope="col" class="pb-2 pr-4 font-semibold">Fecha</th>
+                  <th scope="col" class="pb-2 pr-4 font-semibold">Horario</th>
+                  <th scope="col" class="pb-2 font-semibold">Estado</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-reservas" class="divide-y divide-slate-100 dark:divide-slate-800"></tbody>
+            </table>
+          </div>
+          <p class="mt-4 flex items-start gap-2 rounded-lg bg-slate-50 dark:bg-slate-800 p-3 text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+            <svg class="mt-0.5 h-4 w-4 shrink-0 text-slate-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12v-.008z"/></svg>
+            Las reservas se aprueban automáticamente si estás al día con tu cuota.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="soporte" class="scroll-mt-24" aria-labelledby="titulo-soporte">
+      <div>
+        <h2 id="titulo-soporte" class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-2xl">Soporte y atención</h2>
+        <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Tu canal directo con la administración del conjunto.</p>
+      </div>
+      <div class="mt-5 grid gap-5 lg:grid-cols-2">
+
+        <article class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm dark:shadow-black/40 sm:p-6">
+          <div class="flex items-center justify-between gap-3">
+            <h3 class="text-base font-semibold text-slate-900 dark:text-slate-100">Mis solicitudes (PQRS)</h3>
+            <svg class="h-5 w-5 text-slate-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
+          </div>
+          <ul id="lista-pqrs" class="mt-2 divide-y divide-slate-100 dark:divide-slate-800"></ul>
+          <button type="button" id="btn-nueva-pqrs" class="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-600 px-4 py-3 text-sm font-semibold text-slate-600 dark:text-slate-400 transition hover:border-brand-400 hover:bg-brand-50 dark:hover:bg-brand-500/10 hover:text-brand-700 dark:hover:text-brand-300">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+            Crear nueva solicitud
+          </button>
+        </article>
+
+        <article class="flex flex-col rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm dark:shadow-black/40 sm:p-6">
+          <h3 class="text-base font-semibold text-slate-900 dark:text-slate-100">Contacto de administración</h3>
+          <ul class="mt-5 space-y-4">
+            <li class="flex items-center gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400" aria-hidden="true">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+              </span>
+              <div>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Teléfono / portería</p>
+                <p class="text-sm font-medium text-slate-900 dark:text-slate-100">(601) 555 0134 · Anexo 102</p>
+              </div>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400" aria-hidden="true">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </span>
+              <div>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Horario de atención</p>
+                <p class="text-sm font-medium text-slate-900 dark:text-slate-100">Lunes a sábado · 8:00 am – 6:00 pm</p>
+              </div>
+            </li>
+          </ul>
+          <div class="mt-auto space-y-3 pt-6">
+            <a href="#" class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-50 dark:bg-emerald-500/10 px-4 py-2.5 text-sm font-semibold text-emerald-700 dark:text-emerald-300 transition hover:bg-emerald-100 dark:hover:bg-emerald-500/20">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"/></svg>
+              Escribir por WhatsApp
+            </a>
+            <p class="flex items-center justify-center gap-2 rounded-lg bg-red-50 dark:bg-red-500/10 px-3 py-2.5 text-xs font-medium text-red-700 dark:text-red-300">
+              <svg class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+              Emergencias 24/7: Cel. portería 310 555 8899
+            </p>
+            <div class="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-slate-200 dark:border-slate-800 pt-4">
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-wider text-rose-600 dark:text-rose-400">Emergencias 24/7</p>
+                <p class="mt-0.5 text-xs text-slate-500 dark:text-slate-400">Alerta inmediata a portería y seguridad.</p>
+              </div>
+              <button type="button" id="soporte-panico" aria-label="Activar alerta de emergencia" class="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-rose-200 dark:border-rose-500/30 bg-rose-50 dark:bg-rose-500/10 px-3 py-2 text-sm font-semibold text-rose-700 dark:text-rose-300 transition hover:bg-rose-100 dark:hover:bg-rose-500/20">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/></svg>
+                Activar alerta
+              </button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="seguridad" class="scroll-mt-24" aria-labelledby="titulo-seguridad">
+      <div>
+        <h2 id="titulo-seguridad" class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-2xl">Mi seguridad</h2>
+        <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Administra la contraseña de acceso a tu portal.</p>
+      </div>
+      <div class="mt-5">
+        <article class="max-w-xl rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm dark:shadow-black/40 sm:p-6">
+          <div class="flex items-start gap-3">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300" aria-hidden="true">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>
+            </span>
+            <div>
+              <h3 class="text-base font-semibold text-slate-900 dark:text-slate-100">Cambiar contraseña</h3>
+              <p class="mt-0.5 text-xs text-slate-500 dark:text-slate-400">Mínimo 8 caracteres. Al guardarla se cerrarán tus otras sesiones abiertas.</p>
+            </div>
+          </div>
+          <form id="form-seguridad" class="mt-5 space-y-4">
+            <div>
+              <label for="seg-actual" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Contraseña actual <span class="text-rose-500">*</span></label>
+              <input type="password" id="seg-actual" name="actual" autocomplete="current-password" required class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm transition focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label for="seg-nueva" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Nueva contraseña <span class="text-rose-500">*</span></label>
+                <input type="password" id="seg-nueva" name="nueva" minlength="8" autocomplete="new-password" required placeholder="Mínimo 8 caracteres" class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder:text-slate-500">
+              </div>
+              <div>
+                <label for="seg-repetir" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Repetir nueva <span class="text-rose-500">*</span></label>
+                <input type="password" id="seg-repetir" name="repetir" minlength="8" autocomplete="new-password" required class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm transition focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
+              </div>
+            </div>
+            <p id="seg-error" role="alert" aria-live="assertive" hidden
+              class="flex items-start gap-2 rounded-xl border border-rose-200 bg-rose-50 px-3.5 py-3 text-xs font-semibold leading-relaxed text-rose-700 dark:border-rose-500/30 dark:bg-rose-500/10 dark:text-rose-300">
+              <svg class="mt-0.5 h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/></svg>
+              <span id="seg-error-msg"></span>
+            </p>
+            <button type="submit" class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 sm:w-auto">
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
+              Actualizar contraseña
+            </button>
+          </form>
+        </article>
+      </div>
+    </section>
+
+    <section id="asambleas" class="scroll-mt-24" aria-labelledby="titulo-asambleas">
+      <div>
+        <h2 id="titulo-asambleas" class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-2xl">Asambleas</h2>
+        <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Convocatorias, confirmación de asistencia y votaciones de la copropiedad.</p>
+      </div>
+      <div id="lista-asambleas" class="mt-5 space-y-4"></div>
+    </section>
+
+    <section aria-labelledby="titulo-comunicados">
+      <div>
+        <h2 id="titulo-comunicados" class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-2xl">Comunicados</h2>
+        <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Anuncios recientes de la administración.</p>
+      </div>
+      <div class="mt-5 space-y-4">
+
+        <article class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm dark:shadow-black/40 sm:p-6">
+          <div class="flex flex-wrap items-center gap-2">
+            <time datetime="2026-08-14" class="inline-flex rounded-full bg-slate-100 dark:bg-slate-800 px-2.5 py-1 text-[11px] font-medium text-slate-600 dark:text-slate-400">14 ago 2026</time>
+            <span class="rounded-full bg-violet-50 dark:bg-violet-500/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-violet-700 dark:text-violet-300 ring-1 ring-inset ring-violet-200 dark:ring-violet-500/30">Asamblea</span>
+          </div>
+          <h3 class="mt-2.5 text-base font-semibold text-slate-900 dark:text-slate-100">Convocatoria asamblea extraordinaria</h3>
+          <p class="mt-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Se cita a los propietarios el sábado 12 de sep a las 9 am en el salón social. Orden del día: aprobación del presupuesto 2027 y estado de obras.</p>
+          <a href="#" class="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 dark:text-brand-300 transition hover:text-brand-700 dark:hover:text-brand-200 hover:underline">
+            Confirmar asistencia
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+          </a>
+        </article>
+
+        <article class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm dark:shadow-black/40 sm:p-6">
+          <div class="flex flex-wrap items-center gap-2">
+            <time datetime="2026-08-19" class="inline-flex rounded-full bg-slate-100 dark:bg-slate-800 px-2.5 py-1 text-[11px] font-medium text-slate-600 dark:text-slate-400">19 ago 2026</time>
+            <span class="rounded-full bg-sky-50 dark:bg-sky-500/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-sky-700 dark:text-sky-300 ring-1 ring-inset ring-sky-200 dark:ring-sky-500/30">Servicios</span>
+          </div>
+          <h3 class="mt-2.5 text-base font-semibold text-slate-900 dark:text-slate-100">Corte de agua programado</h3>
+          <p class="mt-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">El jueves 27 de ago entre 8 am y 12 pm se suspenderá el servicio por mantenimiento de tanques. Te recomendamos almacenar agua con anticipación.</p>
+        </article>
+
+        <article class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm dark:shadow-black/40 sm:p-6">
+          <div class="flex flex-wrap items-center gap-2">
+            <time datetime="2026-08-22" class="inline-flex rounded-full bg-slate-100 dark:bg-slate-800 px-2.5 py-1 text-[11px] font-medium text-slate-600 dark:text-slate-400">22 ago 2026</time>
+            <span class="rounded-full bg-amber-50 dark:bg-amber-500/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-amber-700 dark:text-amber-300 ring-1 ring-inset ring-amber-200 dark:ring-amber-500/30">Convivencia</span>
+          </div>
+          <h3 class="mt-2.5 text-base font-semibold text-slate-900 dark:text-slate-100">Nueva norma de parqueaderos visitantes</h3>
+          <p class="mt-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Desde el 1 de sep los vehículos visitantes deben registrar placa en portería y ocupar únicamente los cupos demarcados del sótano 2.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="documentos" class="scroll-mt-24" aria-labelledby="titulo-documentos">
+      <div>
+        <h2 id="titulo-documentos" class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-2xl">Documentos</h2>
+        <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Descarga los documentos oficiales de tu copropiedad.</p>
+      </div>
+      <div id="docs-lista" class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <p class="text-sm text-slate-500 dark:text-slate-400">Cargando documentos…</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+    <div class="mx-auto max-w-6xl px-4 py-8 text-center sm:px-6 lg:px-8">
+      <div class="flex items-center justify-center gap-2">
+        <span class="flex h-7 w-7 items-center justify-center rounded-md bg-brand-600" aria-hidden="true">
+          <svg class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z"/></svg>
+        </span>
+        <span class="text-sm font-bold tracking-tight"><span class="text-slate-900 dark:text-slate-100">Tu</span><span class="text-brand-600">Conjunto</span></span>
+      </div>
+      <p class="mt-3 text-xs text-slate-500 dark:text-slate-400">© 2026 TuConjunto · Conectado a API local</p>
+      <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">
+        <a href="#" class="transition hover:text-slate-700 dark:hover:text-slate-300 hover:underline">Términos</a>
+        <span class="mx-1.5 text-slate-300 dark:text-slate-600">·</span>
+        <a href="#" class="transition hover:text-slate-700 dark:hover:text-slate-300 hover:underline">Privacidad (Ley 1581 de 2012)</a>
+      </p>
+    </div>
+  </footer>
+
+  <button type="button" id="fab-panico" aria-label="Botón de pánico: activar alerta de emergencia" class="group fixed bottom-6 right-6 z-40 flex h-16 w-16 items-center justify-center rounded-full bg-rose-600 text-white shadow-2xl shadow-rose-600/50 transition hover:bg-rose-500 active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">
+    <span class="pointer-events-none absolute inset-0 animate-ping rounded-full bg-rose-500/60" aria-hidden="true"></span>
+    <svg class="relative h-7 w-7" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"/></svg>
+    <span class="pointer-events-none absolute right-full mr-3 hidden whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs font-medium text-slate-100 group-hover:block group-focus-visible:block dark:bg-slate-100 dark:text-slate-900">Emergencia — mantener pulsado no necesario</span>
+  </button>
+
+  <div id="modal-panico" role="dialog" aria-modal="true" aria-labelledby="titulo-panico" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/70 p-4 backdrop-blur-sm">
+    <div class="w-full max-w-sm rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 text-center shadow-2xl">
+      <div id="panico-paso1">
+        <span class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-rose-100 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400" aria-hidden="true">
+          <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/></svg>
+        </span>
+        <h3 id="titulo-panico" class="mt-4 text-lg font-bold text-slate-900 dark:text-slate-100">¿Activar alerta de emergencia?</h3>
+        <p class="mt-2 text-xs leading-relaxed text-slate-500 dark:text-slate-400">Se notificará de inmediato a portería, al administrador y a tus contactos de confianza indicando tu unidad: <strong id="panico-unidad" class="font-semibold text-slate-700 dark:text-slate-200">tu unidad</strong>.</p>
+        <div class="mt-5 space-y-2.5">
+          <button type="button" id="panico-confirmar" class="w-full rounded-xl bg-rose-600 py-3 text-sm font-bold text-white transition hover:bg-rose-500 active:scale-[0.98]">Activar ahora</button>
+          <button type="button" id="panico-cancelar" class="w-full rounded-xl border border-slate-200 dark:border-slate-700 py-3 text-sm font-semibold text-slate-600 dark:text-slate-300 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100">Cancelar</button>
+        </div>
+      </div>
+      <div id="panico-paso2" class="hidden">
+        <p id="panico-contador" aria-live="assertive" class="text-6xl font-extrabold tracking-tight text-rose-600 dark:text-rose-400">3</p>
+        <p class="mt-3 text-sm font-semibold text-slate-700 dark:text-slate-300">Enviando alerta…</p>
+        <button type="button" id="panico-cancelar-cuenta" class="mt-6 w-full rounded-xl border border-rose-200 dark:border-rose-500/30 py-3 text-sm font-semibold text-rose-700 dark:text-rose-300 transition hover:bg-rose-50 dark:hover:bg-rose-500/10">Cancelar alerta</button>
+      </div>
+      <div id="panico-paso3" class="hidden">
+        <span class="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400" aria-hidden="true">
+          <svg class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </span>
+        <h3 class="mt-4 text-lg font-bold text-slate-900 dark:text-slate-100">Alerta enviada</h3>
+        <p class="mt-2 text-xs leading-relaxed text-slate-500 dark:text-slate-400">Portería y seguridad han sido notificadas a las <span id="hora-panico" class="font-semibold text-slate-700 dark:text-slate-200"></span>.</p>
+        <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">Si fue una activación accidental, avisa a la portería.</p>
+        <button type="button" id="panico-entendido" class="mt-5 w-full rounded-xl bg-brand-600 py-3 text-sm font-semibold text-white transition hover:bg-brand-700">Entendido</button>
+      </div>
+      <div id="panico-error" class="hidden">
+        <span class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-rose-100 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400" aria-hidden="true">
+          <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+        </span>
+        <h3 class="mt-4 text-lg font-bold text-slate-900 dark:text-slate-100">No se pudo enviar la alerta</h3>
+        <p id="panico-error-msg" class="mt-2 text-xs leading-relaxed text-slate-500 dark:text-slate-400"></p>
+        <div class="mt-5 space-y-2.5">
+          <button type="button" id="panico-reintentar" class="w-full rounded-xl bg-rose-600 py-3 text-sm font-bold text-white transition hover:bg-rose-500 active:scale-[0.98]">Reintentar</button>
+          <button type="button" id="panico-cerrar-error" class="w-full rounded-xl border border-slate-200 dark:border-slate-700 py-3 text-sm font-semibold text-slate-600 dark:text-slate-300 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-zone" class="pointer-events-none fixed inset-x-0 bottom-6 z-50 flex flex-col items-start gap-2 px-4 sm:px-6"></div>
+
+  <div id="modal-pago" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-pago" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/70 p-4 backdrop-blur-sm">
+    <div class="w-full max-w-md rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-2xl">
+      <div class="flex items-start justify-between gap-3">
+        <div class="flex items-center gap-2.5">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sky-600 text-[11px] font-extrabold tracking-tight text-white" aria-hidden="true">PSE</span>
+          <div>
+            <h3 id="titulo-modal-pago" class="text-base font-bold text-slate-900 dark:text-slate-100">PSE</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Pagos Seguros en Línea</p>
+          </div>
+        </div>
+        <button type="button" data-cerrar-modal aria-label="Cerrar" class="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-600 dark:hover:text-slate-300">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <form id="form-pago" class="mt-5 space-y-4">
+        <div>
+          <label for="pago-banco" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Banco</label>
+          <select id="pago-banco" name="banco" required data-autofocus class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm transition focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
+            <option value="">Selecciona tu banco</option>
+            <option value="Bancolombia">Bancolombia</option>
+            <option value="Davivienda">Davivienda</option>
+            <option value="BBVA">BBVA</option>
+            <option value="Nequi">Nequi</option>
+          </select>
+        </div>
+        <dl id="pago-resumen" class="space-y-1.5 rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm dark:border-slate-700 dark:bg-slate-800"></dl>
+        <div class="flex flex-col-reverse gap-2.5 sm:flex-row">
+          <button type="button" data-cerrar-modal class="flex flex-1 items-center justify-center rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-slate-100">Cancelar</button>
+          <button type="submit" id="btn-confirmar-pago" class="flex flex-1 items-center justify-center gap-2 rounded-xl bg-brand-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600">Pagar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="modal-reserva" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-reserva" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/70 p-4 backdrop-blur-sm">
+    <div class="w-full max-w-md rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-2xl">
+      <div class="flex items-start justify-between gap-3">
+        <h3 id="titulo-modal-reserva" class="text-base font-bold text-slate-900 dark:text-slate-100">Reservar zona común</h3>
+        <button type="button" data-cerrar-modal aria-label="Cerrar" class="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-600 dark:hover:text-slate-300">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <form id="form-reserva" class="mt-5 space-y-4">
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label for="reserva-fecha" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Fecha</label>
+            <input type="date" id="reserva-fecha" name="fecha" required data-autofocus class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm transition focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
+          </div>
+          <div>
+            <label for="reserva-franja" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Franja horaria</label>
+            <select id="reserva-franja" name="franja" required class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm transition focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
+              <option value="manana">Mañana · 8 am – 12 m</option>
+              <option value="tarde">Tarde · 12 m – 6 pm</option>
+              <option value="noche">Noche · 6 pm – 10 pm</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="reserva-notas" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Notas (opcional)</label>
+          <textarea id="reserva-notas" name="notas" rows="3" placeholder="Ej.: celebración de cumpleaños, número de invitados…" class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm transition focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"></textarea>
+        </div>
+        <p class="flex items-start gap-2 rounded-lg bg-slate-50 p-3 text-xs leading-relaxed text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+          <svg class="mt-0.5 h-4 w-4 shrink-0 text-slate-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12v-.008z"/></svg>
+          Queda Pendiente hasta aprobación de administración (sin costo si estás al día).
+        </p>
+        <div class="flex flex-col-reverse gap-2.5 sm:flex-row">
+          <button type="button" data-cerrar-modal class="flex flex-1 items-center justify-center rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-slate-100">Cancelar</button>
+          <button type="submit" class="flex flex-1 items-center justify-center rounded-xl bg-brand-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600">Enviar solicitud</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="modal-pqrs" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-pqrs" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/70 p-4 backdrop-blur-sm">
+    <div class="w-full max-w-md rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-2xl">
+      <div class="flex items-start justify-between gap-3">
+        <h3 id="titulo-modal-pqrs" class="text-base font-bold text-slate-900 dark:text-slate-100">Nueva solicitud (PQRS)</h3>
+        <button type="button" data-cerrar-modal aria-label="Cerrar" class="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-600 dark:hover:text-slate-300">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <form id="form-pqrs" class="mt-5 space-y-4">
+        <div>
+          <label for="pqrs-asunto" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Asunto</label>
+          <input type="text" id="pqrs-asunto" name="asunto" required data-autofocus maxlength="120" placeholder="Resumen corto de tu solicitud" class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm transition focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label for="pqrs-tipo" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Tipo</label>
+            <select id="pqrs-tipo" name="tipo" class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm transition focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
+              <option value="Convivencia">Convivencia</option>
+              <option value="Mantenimiento">Mantenimiento</option>
+              <option value="Administrativo">Administrativo</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+          <div>
+            <label for="pqrs-prioridad" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Prioridad</label>
+            <select id="pqrs-prioridad" name="prioridad" class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm transition focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
+              <option value="Baja">Baja</option>
+              <option value="Media" selected>Media</option>
+              <option value="Alta">Alta</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="pqrs-detalle" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Detalle</label>
+          <textarea id="pqrs-detalle" name="detalle" rows="4" required placeholder="Describe tu solicitud con el mayor detalle posible…" class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm transition focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"></textarea>
+        </div>
+        <div class="flex flex-col-reverse gap-2.5 sm:flex-row">
+          <button type="button" data-cerrar-modal class="flex flex-1 items-center justify-center rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-slate-100">Cancelar</button>
+          <button type="submit" class="flex flex-1 items-center justify-center rounded-xl bg-brand-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600">Crear solicitud</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="modal-clave" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-clave" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/70 p-4 backdrop-blur-sm">
+    <div class="w-full max-w-md rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-2xl">
+      <div class="flex items-start gap-3">
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400" aria-hidden="true">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z"/></svg>
+        </span>
+        <div>
+          <h3 id="titulo-modal-clave" class="text-base font-bold text-slate-900 dark:text-slate-100">Actualiza tu contraseña</h3>
+          <p class="mt-0.5 text-xs leading-relaxed text-slate-500 dark:text-slate-400">Por seguridad debes definir una contraseña nueva antes de continuar.</p>
+        </div>
+      </div>
+      <form id="form-modal-clave" class="mt-5 space-y-4">
+        <div>
+          <label for="mc-actual" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Contraseña actual <span class="text-rose-500">*</span></label>
+          <input type="password" id="mc-actual" name="actual" autocomplete="current-password" required data-autofocus class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm transition focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
+        </div>
+        <div>
+          <label for="mc-nueva" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Nueva contraseña <span class="text-rose-500">*</span></label>
+          <input type="password" id="mc-nueva" name="nueva" minlength="8" autocomplete="new-password" required placeholder="Mínimo 8 caracteres" class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder:text-slate-500">
+        </div>
+        <div>
+          <label for="mc-repetir" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Repetir nueva <span class="text-rose-500">*</span></label>
+          <input type="password" id="mc-repetir" name="repetir" minlength="8" autocomplete="new-password" required class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm transition focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
+        </div>
+        <p id="mc-error" role="alert" aria-live="assertive" hidden
+          class="flex items-start gap-2 rounded-xl border border-rose-200 bg-rose-50 px-3.5 py-3 text-xs font-semibold leading-relaxed text-rose-700 dark:border-rose-500/30 dark:bg-rose-500/10 dark:text-rose-300">
+          <svg class="mt-0.5 h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/></svg>
+          <span id="mc-error-msg"></span>
+        </p>
+        <button type="submit" class="inline-flex w-full items-center justify-center rounded-xl bg-brand-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600">Guardar y continuar</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const themeToggle = document.getElementById("theme-toggle");
+    themeToggle.addEventListener("click", () => {
+      const isDark = document.documentElement.classList.toggle("dark");
+      localStorage.setItem("tc-theme", isDark ? "dark" : "light");
+    });
+    document.getElementById("btn-salir").addEventListener("click", async () => {
+      try { await TC.api("/auth/logout", { method: "POST" }); } catch (e) {}
+      location.href = "/login.html";
+    });
+  </script>
+
+  <script src="assets/api.js"></script>
+
+  <script>
+    (() => {
+      const $ = (id) => document.getElementById(id);
+      const DIAS = ["dom", "lun", "mar", "mié", "jue", "vie", "sáb"];
+      const MESES = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+      const MESES_LARGOS = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+      const DIAS_LARGOS = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
+      const FRANJAS = { manana: "8:00–12:00", tarde: "12:00–18:00", noche: "18:00–22:00" };
+      const PERIODO_ACTUAL = "2026-08";
+      const BTN_PAGAR_CLASES = "mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600";
+      const BTN_PAGAR_HTML = '<svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"/></svg>Pagar con PSE';
+      const BTN_AL_DIA_CLASES = "mt-5 inline-flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-300";
+      const BTN_AL_DIA_HTML = '<svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Cuota al día ✓';
+      const HERO_OK_CLASES = "inline-flex items-center gap-1.5 self-start rounded-full bg-emerald-50 dark:bg-emerald-500/10 px-3.5 py-1.5 text-sm font-medium text-emerald-700 dark:text-emerald-300 ring-1 ring-inset ring-emerald-200 dark:ring-emerald-500/30 sm:self-auto";
+      const HERO_MORA_CLASES = "inline-flex items-center gap-1.5 self-start rounded-full bg-amber-50 dark:bg-amber-500/10 px-3.5 py-1.5 text-sm font-medium text-amber-700 dark:text-amber-300 ring-1 ring-inset ring-amber-200 dark:ring-amber-500/30 sm:self-auto";
+      const PILL_BASE = "inline-flex whitespace-nowrap rounded-full px-2.5 py-0.5 text-[11px] font-medium ring-1 ring-inset ";
+      const PILL_RESERVA = {
+        Confirmada: "bg-emerald-50 text-emerald-700 ring-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-300 dark:ring-emerald-500/30",
+        Pendiente: "bg-amber-50 text-amber-700 ring-amber-200 dark:bg-amber-500/10 dark:text-amber-300 dark:ring-amber-500/30",
+        Cancelada: "bg-slate-100 text-slate-600 ring-slate-200 dark:bg-slate-500/10 dark:text-slate-300 dark:ring-slate-500/30",
+        Rechazada: "bg-rose-50 text-rose-700 ring-rose-200 dark:bg-rose-500/10 dark:text-rose-300 dark:ring-rose-500/30"
+      };
+      const PILL_PQRS = {
+        Abierto: "bg-rose-50 text-rose-700 ring-rose-200 dark:bg-rose-500/10 dark:text-rose-300 dark:ring-rose-500/30",
+        "En revisión": "bg-amber-50 text-amber-700 ring-amber-200 dark:bg-amber-500/10 dark:text-amber-300 dark:ring-amber-500/30",
+        Resuelto: "bg-emerald-50 text-emerald-700 ring-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-300 dark:ring-emerald-500/30"
+      };
+      const PILL_ASAMBLEA = {
+        Convocada: "bg-violet-50 text-violet-700 ring-violet-200 dark:bg-violet-500/10 dark:text-violet-300 dark:ring-violet-500/30",
+        Cerrada: "bg-slate-100 text-slate-600 ring-slate-200 dark:bg-slate-500/10 dark:text-slate-300 dark:ring-slate-500/30"
+      };
+      const PILL_OP_BASE = "inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium ring-1 ring-inset ";
+      const ICONO_CAL = "M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 16.5v2.25";
+      const ICONO_PIN = "M15 10.5a3 3 0 11-6 0 3 3 0 016 0zM19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z";
+      const ICONOS_ZONA = [
+        { re: /bbq|asador/i, caja: "bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-300", d: "M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48zM12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" },
+        { re: /piscina/i, caja: "bg-sky-50 dark:bg-sky-500/10 text-sky-600 dark:text-sky-300", d: "M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" },
+        { re: /gimnasio|gym/i, caja: "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-300", d: "M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" },
+        { re: /cancha|sint[eé]tica/i, caja: "bg-rose-50 dark:bg-rose-500/10 text-rose-600 dark:text-rose-300", d: "M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0" },
+        { re: /sal[oó]n/i, caja: "bg-violet-50 dark:bg-violet-500/10 text-violet-600 dark:text-violet-300", d: "M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" }
+      ];
+      const ICONO_ZONA_DEFECTO = { caja: "bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300", d: "M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" };
+
+      let yo = null;
+      let unidadTexto = "";
+      let pagos = [];
+      let reservas = [];
+      let pqrs = [];
+      let zonas = [];
+      let zonaSeleccionada = null;
+      let montoCuota = 0;
+      let procesandoPago = false;
+      let enviandoReserva = false;
+      let enviandoPqrs = false;
+      let intervaloPanico = null;
+      let disparadorPanico = null;
+      let asambleas = [];
+
+      function el(tag, clases, texto) {
+        const n = document.createElement(tag);
+        if (clases) n.className = clases;
+        if (texto != null) n.textContent = texto;
+        return n;
+      }
+      function iconoSvg(d) {
+        const s = document.createElement("span");
+        s.innerHTML = '<svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="' + d + '"/></svg>';
+        return s.firstElementChild;
+      }
+      function crearPill(texto, mapa, defecto) {
+        return el("span", PILL_BASE + (mapa[texto] || defecto), texto);
+      }
+      function parseDia(iso) {
+        const p = String(iso || "").slice(0, 10).split("-").map(Number);
+        if (p.length !== 3 || p.some(Number.isNaN)) return null;
+        return new Date(p[0], p[1] - 1, p[2]);
+      }
+      function fmtFechaCorta(iso) {
+        const d = parseDia(iso);
+        return d ? `${DIAS[d.getDay()]} ${d.getDate()} ${MESES[d.getMonth()]}` : "";
+      }
+      function fmtDiaMes(iso) {
+        if (!iso) return "";
+        const d = new Date(iso);
+        if (Number.isNaN(d.getTime())) return "";
+        return `${d.getDate()} ${MESES[d.getMonth()]}`;
+      }
+      function fmtInstante(iso) {
+        if (!iso) return "";
+        const d = new Date(iso);
+        if (Number.isNaN(d.getTime())) return "";
+        return `${d.getDate()} ${MESES[d.getMonth()]} ${d.getFullYear()}`;
+      }
+      function fmtFechaLarga(iso) {
+        const d = parseDia(iso);
+        if (!d) return String(iso || "");
+        return `${DIAS_LARGOS[d.getDay()]} ${d.getDate()} de ${MESES_LARGOS[d.getMonth()].toLowerCase()} de ${d.getFullYear()}`;
+      }
+      function hora12(t) {
+        const partes = String(t).split(":").map(Number);
+        let h = partes[0] || 0;
+        const m = partes[1] || 0;
+        const sufijo = h < 12 ? "am" : "pm";
+        h = h % 12 || 12;
+        return m ? `${h}:${String(m).padStart(2, "0")} ${sufijo}` : `${h} ${sufijo}`;
+      }
+      function fmtHorario(franja) {
+        const rango = FRANJAS[franja] || String(franja || "");
+        const tramos = rango.split("–");
+        return tramos.length === 2 ? tramos.map(hora12).join(" – ") : rango;
+      }
+      function etiquetaPeriodo(p) {
+        const partes = String(p || "").split("-");
+        return `${MESES_LARGOS[(Number(partes[1]) || 1) - 1]} ${partes[0] || ""}`;
+      }
+      function hace(iso) {
+        if (!iso) return "";
+        const dias = Math.floor((Date.now() - new Date(iso).getTime()) / 86400000);
+        if (!(dias >= 0)) return "";
+        if (dias === 0) return "hoy";
+        if (dias === 1) return "hace 1 día";
+        if (dias < 7) return `hace ${dias} días`;
+        const semanas = Math.floor(dias / 7);
+        if (semanas < 5) return semanas === 1 ? "hace 1 semana" : `hace ${semanas} semanas`;
+        const meses = Math.floor(dias / 30);
+        return meses === 1 ? "hace 1 mes" : `hace ${meses} meses`;
+      }
+      function textoUnidad(u) {
+        if (typeof u === "string") return u;
+        if (u && typeof u === "object") return u.label || u.etiqueta || u.codigo || [u.torre, u.apto || u.interior].filter(Boolean).join(" · ") || u.nombre || "";
+        return "";
+      }
+      function nombreZona(r) {
+        const z = zonas.find((x) => x.id === r.zona_id);
+        return (z && z.nombre) || r.zona_nombre || (r.zona && r.zona.nombre) || "Zona común";
+      }
+
+      const modalPago = $("modal-pago");
+      const modalReserva = $("modal-reserva");
+      const modalPqrs = $("modal-pqrs");
+      const modales = [modalPago, modalReserva, modalPqrs];
+      const btnConfirmarPago = $("btn-confirmar-pago");
+
+      function abrirModal(modal) {
+        modal.__origen = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+        const objetivo = modal.querySelector("[data-autofocus]") || modal.querySelector("input, select, textarea, button");
+        if (objetivo) objetivo.focus();
+      }
+      function cerrarModal(modal) {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+        if (modal.__origen && typeof modal.__origen.focus === "function") modal.__origen.focus();
+      }
+      modales.forEach((modal) => {
+        modal.addEventListener("click", (evento) => {
+          if (modal === modalPago && procesandoPago) return;
+          if (evento.target === modal || evento.target.closest("[data-cerrar-modal]")) cerrarModal(modal);
+        });
+      });
+      document.addEventListener("keydown", (evento) => {
+        if (evento.key !== "Escape") return;
+        const activo = modales.find((m) => !m.classList.contains("hidden"));
+        if (activo && !(activo === modalPago && procesandoPago)) cerrarModal(activo);
+      });
+
+      function renderSesion() {
+        const nombre = (yo && yo.nombre) || "Residente";
+        const partes = nombre.trim().split(/\s+/);
+        unidadTexto = textoUnidad(yo && yo.unidad) || "Tu unidad";
+        $("saludo-usuario").textContent = `Hola, ${partes[0]} 👋`;
+        $("hero-unidad").textContent = `${unidadTexto} · Conjunto Altos del Bosque`;
+        $("perfil-iniciales").textContent = partes.slice(0, 2).map((p) => p[0].toUpperCase()).join("");
+        $("perfil-nombre").textContent = partes.slice(0, 2).join(" ");
+        $("perfil-link").setAttribute("aria-label", `Ver perfil de ${nombre}`);
+        $("caption-reservas").textContent = `Listado de reservas de ${nombre}`;
+        $("panico-unidad").textContent = unidadTexto;
+      }
+
+      function renderPagos() {
+        const cuota = pagos.find((p) => p.periodo === PERIODO_ACTUAL && p.estado === "Pendiente") || pagos.find((p) => p.periodo === PERIODO_ACTUAL) || pagos.find((p) => p.estado === "Pendiente");
+        const pagadas = pagos.filter((p) => p.estado === "Pagado").sort((a, b) => new Date(b.fecha || 0) - new Date(a.fecha || 0));
+        const ultimo = pagadas[0];
+        const alDia = !cuota || cuota.estado === "Pagado";
+        const heroPill = $("pill-hero");
+        heroPill.className = alDia ? HERO_OK_CLASES : HERO_MORA_CLASES;
+        $("pill-hero-ok").classList.toggle("hidden", !alDia);
+        $("pill-hero-mora").classList.toggle("hidden", alDia);
+        $("pill-hero-texto").textContent = alDia ? "Cuenta al día" : `Cuota de ${(cuota ? etiquetaPeriodo(cuota.periodo) : "agosto").toLowerCase()} pendiente`;
+        const card = $("card-cuota");
+        const pillPagado = $("pill-pagado");
+        const btn = $("btn-pagar");
+        montoCuota = cuota ? cuota.valor || montoCuota : montoCuota;
+        $("cuota-monto").textContent = TC.formatCOP(cuota ? cuota.valor : montoCuota);
+        if (alDia) {
+          card.classList.remove("ring-brand-500/30");
+          card.classList.add("ring-emerald-500/40");
+          pillPagado.classList.remove("hidden");
+          $("pill-pagado-fecha").textContent = ultimo ? fmtInstante(ultimo.fecha) : "";
+          btn.disabled = true;
+          btn.title = "Ya registraste tu pago de este periodo";
+          btn.className = BTN_AL_DIA_CLASES;
+          btn.innerHTML = BTN_AL_DIA_HTML;
+        } else {
+          card.classList.add("ring-brand-500/30");
+          card.classList.remove("ring-emerald-500/40");
+          pillPagado.classList.add("hidden");
+          btn.disabled = false;
+          btn.removeAttribute("title");
+          btn.className = BTN_PAGAR_CLASES;
+          btn.innerHTML = BTN_PAGAR_HTML;
+        }
+        if (ultimo) {
+          $("ultimo-periodo").textContent = etiquetaPeriodo(ultimo.periodo);
+          $("ultimo-monto").textContent = TC.formatCOP(ultimo.valor);
+          $("ultimo-detalle").textContent = `Pagado el ${fmtDiaMes(ultimo.fecha)}${ultimo.referencia ? ` · Ref ${ultimo.referencia}` : ""}${ultimo.metodo ? ` con ${ultimo.metodo}` : ""}`;
+        } else {
+          $("ultimo-detalle").textContent = "Sin pagos registrados todavía";
+        }
+        const total = pagadas.length;
+        $("resumen-pagadas").textContent = `${total}/12`;
+        $("resumen-barra").setAttribute("aria-valuenow", String(Math.round((total / 12) * 100)));
+        $("resumen-relleno").style.width = Math.min(100, (total / 12) * 100) + "%";
+        $("resumen-nota").textContent = alDia ? "Cuotas al día en 2026" : "Tienes una cuota Pendiente de pago";
+      }
+
+      function renderReservas() {
+        const tb = $("tbody-reservas");
+        tb.textContent = "";
+        const lista = reservas.slice().sort((a, b) => String(a.fecha || "").localeCompare(String(b.fecha || "")) || String(a.franja || "").localeCompare(String(b.franja || "")));
+        if (!lista.length) {
+          const tr = document.createElement("tr");
+          const td = el("td", "py-6 text-center text-xs text-slate-500 dark:text-slate-400", "Aún no tienes reservas. Elige una zona y agenda tu visita.");
+          td.colSpan = 4;
+          tr.append(td);
+          tb.append(tr);
+          return;
+        }
+        lista.forEach((r) => {
+          const tr = document.createElement("tr");
+          tr.className = "table-row-hover";
+          tr.append(el("td", "py-3.5 pr-4 font-medium text-slate-900 dark:text-slate-100", nombreZona(r)));
+          tr.append(el("td", "py-3.5 pr-4 text-slate-600 dark:text-slate-400", fmtFechaCorta(r.fecha)));
+          tr.append(el("td", "py-3.5 pr-4 text-slate-600 dark:text-slate-400", fmtHorario(r.franja)));
+          const td = document.createElement("td");
+          td.className = "py-3.5";
+          const cont = el("div", "flex flex-wrap items-center gap-2");
+          cont.append(crearPill(r.estado || "Pendiente", PILL_RESERVA, PILL_RESERVA.Pendiente));
+          if ((r.estado || "Pendiente") === "Pendiente") {
+            const b = el("button", "rounded-md border border-slate-200 px-2 py-0.5 text-[11px] font-medium text-slate-500 transition hover:border-red-200 hover:bg-red-50 hover:text-red-600 dark:border-slate-800 dark:text-slate-400 dark:hover:border-red-500/30 dark:hover:bg-red-500/10 dark:hover:text-red-400", "Cancelar");
+            b.type = "button";
+            b.dataset.cancelar = r.id;
+            cont.append(b);
+          }
+          td.append(cont);
+          tr.append(td);
+          tb.append(tr);
+        });
+      }
+
+      function renderPqrs() {
+        const ul = $("lista-pqrs");
+        ul.textContent = "";
+        const lista = pqrs.slice().sort((a, b) => new Date(b.creada || b.creado_en || 0) - new Date(a.creada || a.creado_en || 0));
+        if (!lista.length) {
+          ul.append(el("li", "py-4 text-sm text-slate-500 dark:text-slate-400", "No tienes solicitudes registradas."));
+          return;
+        }
+        lista.forEach((t) => {
+          const li = document.createElement("li");
+          li.className = "flex items-start justify-between gap-4 py-4";
+          const iz = el("div", "min-w-0");
+          iz.append(el("p", "text-sm font-medium text-slate-900 dark:text-slate-100", t.titulo || t.asunto || ""));
+          const meta = el("p", "mt-0.5 flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-xs text-slate-500 dark:text-slate-400");
+          meta.append(el("span", "font-mono", t.codigo || t.id || ""));
+          meta.append(document.createTextNode(`· ${hace(t.creada || t.creado_en)} ·`));
+          meta.append(el("span", "text-[10px] uppercase tracking-wide", `Prioridad ${String(t.prioridad || "Media").toLowerCase()}`));
+          iz.append(meta);
+          li.append(iz);
+          li.append(crearPill(t.estado || "Abierto", PILL_PQRS, PILL_PQRS.Abierto));
+          ul.append(li);
+        });
+      }
+
+      function estiloZona(nombre) {
+        const n = String(nombre || "");
+        return ICONOS_ZONA.find((e) => e.re.test(n)) || ICONO_ZONA_DEFECTO;
+      }
+      function renderZonas() {
+        const g = $("grid-zonas");
+        g.textContent = "";
+        zonas.forEach((z) => {
+          const est = estiloZona(z.nombre);
+          const art = document.createElement("article");
+          art.className = "card-lift flex flex-col rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm dark:shadow-black/40";
+          const top = el("div", "flex items-start justify-between gap-2");
+          const box = el("span", "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg " + est.caja);
+          box.setAttribute("aria-hidden", "true");
+          box.append(iconoSvg(est.d));
+          top.append(box);
+          top.append(el("span", "inline-flex rounded-full px-2 py-0.5 text-[10px] font-medium leading-4 ring-1 ring-inset " + (z.activa ? "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 ring-emerald-200 dark:ring-emerald-500/30" : "bg-slate-100 dark:bg-slate-500/10 text-slate-600 dark:text-slate-300 ring-slate-200 dark:ring-slate-500/30"), z.activa ? "Disponible" : "No disponible"));
+          art.append(top);
+          art.append(el("h3", "mt-3 text-sm font-semibold text-slate-900 dark:text-slate-100", z.nombre));
+          art.append(el("p", "mt-1.5 text-xs text-slate-500 dark:text-slate-400", `Capacidad ${z.capacidad != null ? z.capacidad : "—"} personas`));
+          art.append(el("p", "text-xs font-medium text-slate-700 dark:text-slate-300", z.costo_hora ? `${TC.formatCOP(z.costo_hora)} / hora` : "Gratis para residentes"));
+          const btn = document.createElement("button");
+          btn.type = "button";
+          if (z.activa) {
+            btn.textContent = "Reservar";
+            btn.dataset.zonaId = z.id;
+            btn.dataset.zonaNombre = z.nombre || "";
+            btn.className = "mt-4 w-full rounded-lg bg-brand-600 px-3 py-2 text-xs font-semibold text-white transition hover:bg-brand-700";
+          } else {
+            btn.textContent = "Sin disponibilidad";
+            btn.disabled = true;
+            btn.className = "mt-4 w-full cursor-not-allowed rounded-lg border border-slate-200 dark:border-slate-700 px-3 py-2 text-xs font-semibold text-slate-400 dark:text-slate-500";
+          }
+          art.append(btn);
+          g.append(art);
+        });
+      }
+
+      $("grid-zonas").addEventListener("click", (evento) => {
+        const boton = evento.target.closest("[data-zona-id]");
+        if (!boton || boton.disabled) return;
+        zonaSeleccionada = { id: boton.dataset.zonaId, nombre: boton.dataset.zonaNombre };
+        $("titulo-modal-reserva").textContent = `Reservar · ${zonaSeleccionada.nombre}`;
+        $("form-reserva").reset();
+        abrirModal(modalReserva);
+      });
+
+      $("form-reserva").addEventListener("submit", (evento) => {
+        evento.preventDefault();
+        if (enviandoReserva || !zonaSeleccionada) return;
+        enviandoReserva = true;
+        const btnSubmit = evento.target.querySelector('[type="submit"]');
+        btnSubmit.disabled = true;
+        TC.api("/reservas", { method: "POST", body: { zona_id: zonaSeleccionada.id, fecha: $("reserva-fecha").value, franja: $("reserva-franja").value, notas: $("reserva-notas").value.trim() }         }).then((nueva) => {
+          enviandoReserva = false;
+          btnSubmit.disabled = false;
+          const rv = nueva && nueva.reserva ? nueva.reserva : nueva;
+          if (rv && typeof rv === "object") reservas.push(rv);
+          cerrarModal(modalReserva);
+          renderReservas();
+          TC.toast(`Solicitud enviada para ${zonaSeleccionada.nombre} · Queda Pendiente de aprobación`);
+        }).catch((e) => {
+          enviandoReserva = false;
+          btnSubmit.disabled = false;
+          TC.toast((e && e.message) || "No se pudo crear la reserva", "error");
+        });
+      });
+
+      $("tbody-reservas").addEventListener("click", (evento) => {
+        const boton = evento.target.closest("[data-cancelar]");
+        if (!boton) return;
+        const reserva = reservas.find((r) => r.id === boton.dataset.cancelar);
+        if (!reserva || reserva.estado !== "Pendiente") return;
+        if (!confirm(`¿Cancelar tu reserva de ${nombreZona(reserva)} del ${fmtFechaCorta(reserva.fecha)}?`)) return;
+        boton.disabled = true;
+        TC.api(`/reservas/${encodeURIComponent(reserva.id)}/cancelar`, { method: "PATCH" }).then((act) => {
+          if (act && typeof act === "object") Object.assign(reserva, act);
+          reserva.estado = (act && act.estado) || "Cancelada";
+          renderReservas();
+          TC.toast("Reserva cancelada", "info");
+        }).catch((e) => {
+          boton.disabled = false;
+          TC.toast((e && e.message) || "No se pudo cancelar la reserva", "error");
+        });
+      });
+
+      $("btn-nueva-pqrs").addEventListener("click", () => {
+        $("form-pqrs").reset();
+        abrirModal(modalPqrs);
+      });
+      $("form-pqrs").addEventListener("submit", (evento) => {
+        evento.preventDefault();
+        if (enviandoPqrs) return;
+        enviandoPqrs = true;
+        const btnSubmit = evento.target.querySelector('[type="submit"]');
+        btnSubmit.disabled = true;
+        TC.api("/pqrs", { method: "POST", body: { titulo: $("pqrs-asunto").value.trim(), descripcion: $("pqrs-detalle").value.trim(), tipo: $("pqrs-tipo").value, prioridad: $("pqrs-prioridad").value }         }).then((t) => {
+          enviandoPqrs = false;
+          btnSubmit.disabled = false;
+          const tk = t && t.pqrs ? t.pqrs : t;
+          if (tk && typeof tk === "object") pqrs.push(tk);
+          cerrarModal(modalPqrs);
+          renderPqrs();
+          TC.toast(`Ticket ${(tk && tk.codigo) || ""} creado`);
+        }).catch((e) => {
+          enviandoPqrs = false;
+          btnSubmit.disabled = false;
+          TC.toast((e && e.message) || "No se pudo crear la solicitud", "error");
+        });
+      });
+
+      const tcApiBase = TC.api;
+      TC.api = function(ruta, opciones) {
+        return tcApiBase(ruta, opciones).catch((e) => {
+          if (e && e.status === 403 && /DEBE_CAMBIAR_CLAVE|cambiar.{0,12}contrase/i.test(String((e && e.message) || ""))) abrirModalClave();
+          throw e;
+        });
+      };
+
+      function validarCambioClave(actual, nueva, repetir) {
+        if (!actual || !nueva || !repetir) return "Completa todos los campos.";
+        if (nueva.length < 8) return "La nueva contraseña debe tener al menos 8 caracteres.";
+        if (nueva !== repetir) return "Las contraseñas nuevas no coinciden.";
+        if (nueva === actual) return "La nueva contraseña debe ser diferente de la actual.";
+        return "";
+      }
+
+      async function procesarCambioClave(actual, nueva, repetir, caja, msg, btn, exito) {
+        const problema = validarCambioClave(actual, nueva, repetir);
+        msg.textContent = "";
+        caja.hidden = true;
+        if (problema) {
+          msg.textContent = problema;
+          caja.hidden = false;
+          return;
+        }
+        btn.disabled = true;
+        try {
+          await TC.api("/auth/cambiar-clave", { method: "POST", body: { actual, nueva } });
+          exito();
+        } catch (e) {
+          msg.textContent = (e && e.message) || "No se pudo actualizar la contraseña.";
+          caja.hidden = false;
+        } finally {
+          btn.disabled = false;
+        }
+      }
+
+      $("form-seguridad").addEventListener("submit", function(evento) {
+        evento.preventDefault();
+        procesarCambioClave($("seg-actual").value, $("seg-nueva").value, $("seg-repetir").value, $("seg-error"), $("seg-error-msg"), evento.target.querySelector('[type="submit"]'), () => {
+          this.reset();
+          TC.toast("Contraseña actualizada · Se cerraron tus otras sesiones");
+        });
+      });
+
+      function abrirModalClave() {
+        const m = $("modal-clave");
+        if (!m.classList.contains("hidden")) return;
+        $("form-modal-clave").reset();
+        $("mc-error").hidden = true;
+        m.classList.remove("hidden");
+        m.classList.add("flex");
+        $("mc-actual").focus();
+      }
+
+      $("form-modal-clave").addEventListener("submit", function(evento) {
+        evento.preventDefault();
+        procesarCambioClave($("mc-actual").value, $("mc-nueva").value, $("mc-repetir").value, $("mc-error"), $("mc-error-msg"), evento.target.querySelector('[type="submit"]'), () => {
+          TC.toast("Contraseña actualizada · Se cerraron tus otras sesiones");
+          setTimeout(() => location.reload(), 700);
+        });
+      });
+
+      function asiste(a) {
+        const v = a.asistire !== undefined ? a.asistire : (a.mi_asistencia !== undefined ? a.mi_asistencia : a.confirmada);
+        return v === true || v === 1 || v === "1";
+      }
+      function miVotoDe(a) {
+        const v = a.mi_voto !== undefined ? a.mi_voto : (a.voto_propio !== undefined ? a.voto_propio : a.mi_opcion);
+        return typeof v === "string" ? v : "";
+      }
+      function votosDe(a) {
+        return Array.isArray(a.votos) ? a.votos : [];
+      }
+      function totalVotos(a) {
+        return votosDe(a).reduce((s, v) => s + (Number(v.count) || 0), 0);
+      }
+
+      function resultadosAsamblea(a, mv) {
+        const caja = el("div", "mt-3 space-y-3");
+        const votos = votosDe(a);
+        const total = totalVotos(a);
+        const nombres = (Array.isArray(a.opciones) ? a.opciones : []).map(String);
+        votos.forEach((v) => {
+          if (v && v.opcion != null && !nombres.includes(String(v.opcion))) nombres.push(String(v.opcion));
+        });
+        nombres.forEach((op) => {
+          const c = votos.filter((v) => String(v.opcion) === op).reduce((s, v) => s + (Number(v.count) || 0), 0);
+          const pct = total > 0 ? Math.round((c / total) * 100) : 0;
+          const fila = el("div");
+          const top = el("div", "flex items-baseline justify-between gap-3 text-xs");
+          top.append(el("span", "font-medium text-slate-700 dark:text-slate-300", mv === op ? `${op} · tu voto` : op));
+          top.append(el("span", "tabular-nums font-semibold text-slate-500 dark:text-slate-400", `${pct}% · ${c} ${c === 1 ? "voto" : "votos"}`));
+          const barra = el("div", "mt-1 h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800");
+          const relleno = el("div", "h-full rounded-full " + (mv === op ? "bg-brand-500" : "bg-violet-500"));
+          relleno.style.width = pct + "%";
+          barra.append(relleno);
+          fila.append(top, barra);
+          caja.append(fila);
+        });
+        return caja;
+      }
+
+      function tarjetaAsamblea(a) {
+        const art = el("article", "card-lift rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm dark:shadow-black/40 sm:p-6");
+        const head = el("div", "flex flex-wrap items-start justify-between gap-3");
+        const izq = el("div", "min-w-0");
+        izq.append(el("h3", "text-base font-bold text-slate-900 dark:text-slate-100", a.titulo || "Asamblea"));
+        const meta = el("div", "mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 dark:text-slate-400");
+        const wF = el("span", "inline-flex items-center gap-1.5");
+        wF.append(iconoSvg(ICONO_CAL));
+        wF.append(el("span", null, fmtFechaLarga(a.fecha)));
+        const wL = el("span", "inline-flex items-center gap-1.5");
+        wL.append(iconoSvg(ICONO_PIN));
+        wL.append(el("span", null, a.lugar || "Lugar por confirmar"));
+        meta.append(wF, wL);
+        izq.append(meta);
+        head.append(izq);
+        head.append(crearPill(a.estado || "Convocada", PILL_ASAMBLEA, PILL_ASAMBLEA.Convocada));
+        art.append(head);
+
+        const mv = miVotoDe(a);
+        const total = totalVotos(a);
+        const convocada = (a.estado || "Convocada") !== "Cerrada";
+
+        if (convocada) {
+          const cuerpo = el("div", "mt-4 space-y-4 border-t border-slate-100 pt-4 dark:border-slate-800");
+          const filaA = el("div", "flex flex-wrap items-center gap-3");
+          const bA = document.createElement("button");
+          bA.type = "button";
+          bA.dataset.asistencia = a.id;
+          const nA = Number(a.asistentes) || 0;
+          if (asiste(a)) {
+            bA.textContent = `✓ Voy (${nA})`;
+            bA.className = "inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-4 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-emerald-500";
+          } else {
+            bA.textContent = "Confirmar asistencia";
+            bA.className = "inline-flex items-center gap-1.5 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-2 text-xs font-semibold text-emerald-700 transition hover:bg-emerald-100 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-300 dark:hover:bg-emerald-500/20";
+          }
+          filaA.append(bA);
+          filaA.append(el("span", "text-[11px] text-slate-400 dark:text-slate-500", `${nA} ${nA === 1 ? "vecino confirmado" : "vecinos confirmados"}`));
+          cuerpo.append(filaA);
+
+          const opciones = Array.isArray(a.opciones) ? a.opciones.map(String) : [];
+          if (opciones.length) {
+            const bloqV = el("div");
+            bloqV.append(el("p", "text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400", "Votación"));
+            const grupo = el("div", "mt-2 flex flex-wrap gap-2");
+            grupo.setAttribute("role", "radiogroup");
+            grupo.setAttribute("aria-label", `Votación: ${a.titulo || ""}`);
+            opciones.forEach((op) => {
+              const b = document.createElement("button");
+              b.type = "button";
+              b.dataset.votar = a.id;
+              b.dataset.opcion = op;
+              const mia = mv === op;
+              b.setAttribute("role", "radio");
+              b.setAttribute("aria-checked", mia ? "true" : "false");
+              if (mv && !mia) {
+                b.disabled = true;
+                b.className = PILL_OP_BASE + "cursor-not-allowed opacity-60 bg-slate-50 text-slate-400 ring-slate-200 dark:bg-slate-800/60 dark:text-slate-500 dark:ring-slate-700";
+                b.textContent = op;
+              } else if (mia) {
+                b.className = PILL_OP_BASE + "cursor-default bg-brand-600 text-white shadow-sm ring-brand-600";
+                b.textContent = `✓ ${op}`;
+              } else {
+                b.className = PILL_OP_BASE + "bg-white text-slate-700 ring-slate-300 transition hover:text-brand-700 hover:ring-brand-400 dark:bg-slate-800 dark:text-slate-200 dark:ring-slate-600 dark:hover:text-brand-300";
+                b.textContent = op;
+              }
+              grupo.append(b);
+            });
+            bloqV.append(grupo);
+            if (total >= 1) {
+              bloqV.append(resultadosAsamblea(a, mv));
+            } else {
+              bloqV.append(el("p", "mt-3 text-[11px] text-slate-400 dark:text-slate-500", mv ? "Tu voto quedó registrado. Los resultados se mostrarán cuando haya votos." : "Aún no hay votos registrados."));
+            }
+            cuerpo.append(bloqV);
+          }
+          art.append(cuerpo);
+        } else {
+          const cuerpo = el("div", "mt-4 border-t border-slate-100 pt-4 dark:border-slate-800");
+          cuerpo.append(el("p", "text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400", "Resultados finales"));
+          if (total >= 1) {
+            cuerpo.append(resultadosAsamblea(a, ""));
+          } else {
+            cuerpo.append(el("p", "mt-2 text-xs text-slate-500 dark:text-slate-400", "Esta asamblea cerró sin votos registrados."));
+          }
+          art.append(cuerpo);
+        }
+        return art;
+      }
+
+      function renderAsambleas() {
+        const cont = $("lista-asambleas");
+        cont.textContent = "";
+        if (!asambleas.length) {
+          const vacio = el("div", "rounded-xl border border-dashed border-slate-300 bg-white px-6 py-10 text-center dark:border-slate-700 dark:bg-slate-900");
+          const ic = el("span", "mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-slate-400 dark:bg-slate-800 dark:text-slate-500");
+          ic.setAttribute("aria-hidden", "true");
+          ic.append(iconoSvg(ICONO_CAL));
+          vacio.append(ic);
+          vacio.append(el("p", "mt-3 text-sm font-semibold text-slate-900 dark:text-slate-100", "No hay asambleas convocadas"));
+          vacio.append(el("p", "mx-auto mt-1 max-w-sm text-xs leading-relaxed text-slate-500 dark:text-slate-400", "Cuando la administración convoque una asamblea verás aquí la convocatoria, podrás confirmar asistencia y votar."));
+          cont.append(vacio);
+          return;
+        }
+        asambleas.slice().sort((a, b) => ((a.estado === "Cerrada") - (b.estado === "Cerrada")) || String(a.fecha || "").localeCompare(String(b.fecha || ""))).forEach((a) => cont.append(tarjetaAsamblea(a)));
+      }
+
+      async function cargarAsambleas() {
+        try {
+          const r = await TC.api("/asambleas");
+          asambleas = Array.isArray(r) ? r : [];
+          renderAsambleas();
+          return true;
+        } catch (e) {
+          return false;
+        }
+      }
+
+      async function alternarAsistencia(id, btn) {
+        btn.disabled = true;
+        try {
+          await TC.api(`/asambleas/${encodeURIComponent(id)}/asistencia`, { method: "POST" });
+          await cargarAsambleas();
+          const a = asambleas.find((x) => String(x.id) === String(id));
+          TC.toast(a && asiste(a) ? "Asistencia confirmada" : "Asistencia cancelada", "info");
+        } catch (e) {
+          btn.disabled = false;
+          TC.toast((e && e.message) || "No se pudo registrar tu asistencia", "error");
+        }
+      }
+
+      async function emitirVoto(id, opcion) {
+        try {
+          await TC.api(`/asambleas/${encodeURIComponent(id)}/voto`, { method: "POST", body: { opcion } });
+          await cargarAsambleas();
+          TC.toast(`Tu voto por «${opcion}» quedó registrado`);
+        } catch (e) {
+          cargarAsambleas();
+          TC.toast((e && e.message) || "No se pudo registrar tu voto", "error");
+        }
+      }
+
+      $("lista-asambleas").addEventListener("click", (evento) => {
+        const bA = evento.target.closest("[data-asistencia]");
+        if (bA && !bA.disabled) {
+          alternarAsistencia(bA.dataset.asistencia, bA);
+          return;
+        }
+        const bV = evento.target.closest("[data-votar]");
+        if (bV && !bV.disabled) emitirVoto(bV.dataset.votar, bV.dataset.opcion);
+      });
+
+      function iniciarPollingAsambleas() {
+        setInterval(() => {
+          if (document.visibilityState !== "visible") return;
+          if (modales.some((m) => !m.classList.contains("hidden"))) return;
+          if (!$("modal-clave").classList.contains("hidden")) return;
+          cargarAsambleas();
+        }, 30000);
+      }
+
+      $("btn-pagar").addEventListener("click", () => {
+        const cuota = pagos.find((p) => p.periodo === PERIODO_ACTUAL && p.estado === "Pendiente") || pagos.find((p) => p.estado === "Pendiente");
+        if (!cuota) return;
+        montoCuota = cuota.valor || montoCuota;
+        $("pago-banco").value = "";
+        btnConfirmarPago.disabled = false;
+        btnConfirmarPago.textContent = `Pagar ${TC.formatCOP(montoCuota)}`;
+        const resumen = $("pago-resumen");
+        resumen.textContent = "";
+        [["Valor", `${TC.formatCOP(montoCuota)} COP`, true], ["Concepto", cuota.concepto || "Cuota de administración", false], ["Periodo", etiquetaPeriodo(cuota.periodo), false], ["Unidad", unidadTexto, false]].forEach(([clave, valor, fuerte]) => {
+          const fila = el("div", "flex justify-between gap-4");
+          fila.append(el("dt", "text-slate-500 dark:text-slate-400", clave));
+          fila.append(el("dd", (fuerte ? "font-semibold text-slate-900" : "font-medium text-slate-800") + " dark:text-slate-100", valor));
+          resumen.append(fila);
+        });
+        abrirModal(modalPago);
+      });
+
+      $("form-pago").addEventListener("submit", (evento) => {
+        evento.preventDefault();
+        if (procesandoPago) return;
+        procesandoPago = true;
+        btnConfirmarPago.disabled = true;
+        btnConfirmarPago.innerHTML = '<span class="inline-block h-4 w-4 animate-spin rounded-full border-2 border-white/40" style="border-top-color:#fff" aria-hidden="true"></span>Procesando…';
+        const restaurar = () => {
+          procesandoPago = false;
+          btnConfirmarPago.disabled = false;
+          btnConfirmarPago.textContent = `Pagar ${TC.formatCOP(montoCuota)}`;
+        };
+        // Flujo real (Wompi): iniciar → redirect al checkout firmado.
+        // Sin pasarela configurada (PROVEEDOR_NO_CONFIGURADO) cae al simulador.
+        TC.api("/pagos/pse/iniciar", { method: "POST", body: { periodo: PERIODO_ACTUAL } }).then((ini) => {
+          const url = ini && ini.checkout_url;
+          if (url) {
+            procesandoPago = false;
+            btnConfirmarPago.disabled = false;
+            btnConfirmarPago.textContent = "Ir al banco…";
+            cerrarModal(modalPago);
+            TC.toast("Redirigiendo al banco para completar el pago seguro…");
+            window.location.href = url;
+            return;
+          }
+          throw Object.assign(new Error("respuesta sin checkout"), { code: "SIN_CHECKOUT" });
+        }).catch((eIni) => {
+          if (!eIni || eIni.code !== "PROVEEDOR_NO_CONFIGURADO") {
+            restaurar();
+            TC.toast((eIni && eIni.message) || "No se pudo iniciar el pago", "error");
+            return;
+          }
+          TC.api("/pagos/pse", { method: "POST", body: { periodo: PERIODO_ACTUAL } }).then((p) => {
+          restaurar();
+          const pago = p && typeof p.pago === "object" ? p.pago : p;
+          const i = pagos.findIndex((x) => x.periodo === PERIODO_ACTUAL);
+          const nuevo = Object.assign({}, i >= 0 ? pagos[i] : { periodo: PERIODO_ACTUAL }, pago && typeof pago === "object" ? pago : {}, { estado: (pago && pago.estado) || "Pagado" });
+          if (i >= 0) pagos[i] = nuevo; else pagos.push(nuevo);
+          cerrarModal(modalPago);
+          renderPagos();
+          TC.toast(`Pago aprobado por PSE · Recibo ${(pago && pago.referencia) || ""}`);
+        }).catch((e) => {
+          restaurar();
+          if (e && e.status === 409) {
+            TC.toast(e.message || "Esta cuota ya estaba pagada", "warning");
+            recargarPagos();
+          } else {
+            TC.toast((e && e.message) || "No se pudo completar el pago", "error");
+          }
+          });
+        });
+      });
+
+      function recargarPagos() {
+        TC.api("/pagos").then((p) => {
+          if (Array.isArray(p)) {
+            pagos = p;
+            renderPagos();
+          }
+        }).catch(() => {});
+      }
+
+      const fabPanico = $("fab-panico");
+      const soportePanico = $("soporte-panico");
+      const modalPanico = $("modal-panico");
+      const pasosPanico = [$("panico-paso1"), $("panico-paso2"), $("panico-paso3"), $("panico-error")];
+
+      function mostrarPasoPanico(paso) {
+        pasosPanico.forEach((p) => p.classList.add("hidden"));
+        paso.classList.remove("hidden");
+      }
+      function abrirModalPanico() {
+        if (intervaloPanico) {
+          clearInterval(intervaloPanico);
+          intervaloPanico = null;
+        }
+        disparadorPanico = document.activeElement;
+        mostrarPasoPanico($("panico-paso1"));
+        modalPanico.classList.remove("hidden");
+        modalPanico.classList.add("flex");
+        $("panico-confirmar").focus();
+      }
+      function cerrarModalPanico() {
+        if (intervaloPanico) {
+          clearInterval(intervaloPanico);
+          intervaloPanico = null;
+        }
+        modalPanico.classList.add("hidden");
+        modalPanico.classList.remove("flex");
+        if (disparadorPanico && typeof disparadorPanico.focus === "function") disparadorPanico.focus();
+      }
+      async function enviarAlertaPanico() {
+        const cancelar = $("panico-cancelar-cuenta");
+        cancelar.disabled = true;
+        try {
+          await TC.api("/alertas", { method: "POST", body: {} });
+          $("hora-panico").textContent = new Date().toLocaleTimeString("es-CO", { hour: "numeric", minute: "2-digit", hour12: true });
+          mostrarPasoPanico($("panico-paso3"));
+        } catch (e) {
+          $("panico-error-msg").textContent = (e && e.message) ? e.message : "No se pudo enviar la alerta. Revisa tu conexión e inténtalo de nuevo.";
+          mostrarPasoPanico($("panico-error"));
+        } finally {
+          cancelar.disabled = false;
+        }
+      }
+      function iniciarCuentaAtras() {
+        mostrarPasoPanico($("panico-paso2"));
+        let restante = 3;
+        $("panico-contador").textContent = String(restante);
+        $("panico-cancelar-cuenta").focus();
+        intervaloPanico = setInterval(() => {
+          restante -= 1;
+          if (restante > 0) {
+            $("panico-contador").textContent = String(restante);
+            return;
+          }
+          clearInterval(intervaloPanico);
+          intervaloPanico = null;
+          enviarAlertaPanico();
+        }, 900);
+      }
+      fabPanico.addEventListener("click", abrirModalPanico);
+      soportePanico.addEventListener("click", abrirModalPanico);
+      $("panico-confirmar").addEventListener("click", iniciarCuentaAtras);
+      $("panico-cancelar").addEventListener("click", cerrarModalPanico);
+      $("panico-cancelar-cuenta").addEventListener("click", cerrarModalPanico);
+      $("panico-entendido").addEventListener("click", cerrarModalPanico);
+      $("panico-reintentar").addEventListener("click", enviarAlertaPanico);
+      $("panico-cerrar-error").addEventListener("click", cerrarModalPanico);
+      modalPanico.addEventListener("click", (evento) => {
+        if (evento.target === modalPanico && !$("panico-paso1").classList.contains("hidden")) cerrarModalPanico();
+      });
+      document.addEventListener("keydown", (evento) => {
+        if (evento.key === "Escape" && !modalPanico.classList.contains("hidden") && !$("panico-paso1").classList.contains("hidden")) cerrarModalPanico();
+      });
+
+      function iniciarPolling() {
+        setInterval(async () => {
+          if (document.visibilityState !== "visible") return;
+          if (modales.some((m) => !m.classList.contains("hidden"))) return;
+          try {
+            const [r, q] = await Promise.all([TC.api("/reservas?mias=1"), TC.api("/pqrs")]);
+            if (Array.isArray(r)) {
+              reservas = r;
+              renderReservas();
+            }
+            if (Array.isArray(q)) {
+              pqrs = q;
+              renderPqrs();
+            }
+          } catch (e) {}
+        }, 20000);
+      }
+
+      (async () => {
+        $("reserva-fecha").min = new Date().toISOString().slice(0, 10);
+        const me = await TC.api("/auth/me");
+        yo = me && me.usuario ? me.usuario : me;
+        renderSesion();
+        const [p, r, q, z, asm] = await Promise.all([TC.api("/pagos"), TC.api("/reservas?mias=1"), TC.api("/pqrs"), TC.api("/zonas"), TC.api("/asambleas")]);
+        pagos = Array.isArray(p) ? p : [];
+        reservas = Array.isArray(r) ? r : [];
+        pqrs = Array.isArray(q) ? q : [];
+        zonas = Array.isArray(z) ? z : [];
+        asambleas = Array.isArray(asm) ? asm : [];
+        renderPagos();
+        renderReservas();
+        renderPqrs();
+        renderZonas();
+        renderAsambleas();
+        cargarDocumentos();
+        iniciarPolling();
+        iniciarPollingAsambleas();
+      })().catch((e) => {
+        if (e && e.status !== 401 && $("modal-clave").classList.contains("hidden")) TC.toast((e && e.message) || "Error al cargar tus datos", "error");
+      });
+
+      async function cargarDocumentos() {
+        const cont = $("docs-lista");
+        try {
+          const docs = await TC.api("/documentos");
+          if (!Array.isArray(docs) || docs.length === 0) {
+            cont.innerHTML = '<p class="text-sm text-slate-500 dark:text-slate-400">Aún no hay documentos publicados.</p>';
+            return;
+          }
+          cont.innerHTML = docs.map((d) =>
+            '<a href="/api/documentos/' + encodeURIComponent(d.id) + '/descargar" download="' + TC.esc(d.nombre) + '" class="card-lift group flex items-center justify-between gap-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm dark:shadow-black/40">' +
+              '<div class="flex min-w-0 items-center gap-3">' +
+                '<span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300" aria-hidden="true">' +
+                  '<svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>' +
+                '</span>' +
+                '<span class="min-w-0">' +
+                  '<span class="block truncate text-sm font-semibold text-slate-900 dark:text-slate-100 transition group-hover:text-brand-700 dark:group-hover:text-brand-300">' + TC.esc(d.nombre) + '</span>' +
+                  '<span class="block text-xs text-slate-500 dark:text-slate-400">' + TC.esc(String(d.mime || "").indexOf("pdf") >= 0 ? "PDF" : String(d.mime || "").indexOf("jpeg") >= 0 ? "JPG" : String(d.mime || "").indexOf("png") >= 0 ? "PNG" : "Archivo") + " · " + (Number(d.tamano) > 1048576 ? (Number(d.tamano) / 1048576).toFixed(1) + " MB" : Math.max(1, Math.round(Number(d.tamano) / 1024)) + " KB") + '</span>' +
+                '</span>' +
+              '</div>' +
+              '<span class="shrink-0 rounded-lg p-2 text-slate-400 dark:text-slate-500 transition group-hover:bg-brand-50 dark:group-hover:bg-slate-800 group-hover:text-brand-600 dark:group-hover:text-brand-300" aria-hidden="true">' +
+                '<svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>' +
+              '</span>' +
+            '</a>'
+          ).join("");
+        } catch (e) {
+          cont.innerHTML = '<p class="text-sm text-slate-500 dark:text-slate-400">No fue posible cargar los documentos.</p>';
+        }
+      }
+    })();
+  </script>
+
+</body>
+</html>

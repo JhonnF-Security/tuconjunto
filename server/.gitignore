@@ -1,0 +1,6 @@
+node_modules/
+data/
+tls/
+backups/
+.env
+*.log
