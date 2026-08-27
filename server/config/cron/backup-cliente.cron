@@ -1,0 +1,3 @@
+# Backup diario a las 03:00
+# Cliente: se ejecuta desde server/
+0 3 * * * cd /root/agency-agents/tu-conjunto/server/server && DB_FILE="/root/agency-agents/tu-conjunto/server/data/conjunto-test/tuconjunto.db" ./scripts/backup.sh >> backups/tuconjunto.db-log 2>&1
