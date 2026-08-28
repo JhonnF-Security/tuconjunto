@@ -235,9 +235,6 @@ function rateLimit({ ventanaMs, max, clave }) {
 
 function csrfMutaciones(req, res, next) {
   if (req.method === 'GET' || req.method === 'HEAD' || req.method === 'OPTIONS') return next();
-  // Los webhooks de pasarelas se autentican por firma (checksum), no por
-  // sesión: no pueden enviar cabeceras X-Requested-With.
-  if (String(req.path).startsWith('/api/pagos/webhook/')) return next();
   if (req.headers['x-requested-with'] !== 'fetch') {
     return res
       .status(403)

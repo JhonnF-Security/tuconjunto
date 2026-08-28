@@ -91,37 +91,6 @@ function cookieSecure(req) {
   return Boolean(req && req.secure);
 }
 
-// ---------------------------------------------------------------------
-// Pasarela de pagos (Wompi). Con PAYMENTS_PROVIDER=none funciona el
-// simulador interno; con 'wompi' + llaves se activa el flujo real F2/F3.
-// ---------------------------------------------------------------------
-
-const PAYMENTS_PROVIDER = String(process.env.PAYMENTS_PROVIDER || 'none')
-  .trim()
-  .toLowerCase();
-const WOMPI_ENV = process.env.WOMPI_ENV === 'production' ? 'production' : 'sandbox';
-const WOMPI_PUBLIC_KEY = String(process.env.WOMPI_PUBLIC_KEY || '').trim();
-const WOMPI_PRIVATE_KEY = String(process.env.WOMPI_PRIVATE_KEY || '').trim();
-const WOMPI_INTEGRITY_SECRET = String(process.env.WOMPI_INTEGRITY_SECRET || '').trim();
-const WOMPI_EVENTS_SECRET = String(process.env.WOMPI_EVENTS_SECRET || '').trim();
-const APP_PUBLIC_BASE_URL = String(process.env.APP_PUBLIC_BASE_URL || '').trim().replace(/\/+$/, '');
-
-let PAGOS_TIMEOUT_MINUTOS = 30;
-{
-  const n = Number(process.env.PAGOS_TIMEOUT_MINUTOS);
-  if (Number.isInteger(n) && n > 0 && n <= 720) PAGOS_TIMEOUT_MINUTOS = n;
-}
-
-// URLs oficiales según ambiente.
-const WOMPI_API_BASE =
-  WOMPI_ENV === 'production' ? 'https://production.wompi.co' : 'https://sandbox.wompi.co';
-const WOMPI_CHECKOUT_BASE = 'https://checkout.wompi.co/p/';
-
-// La pasarela real solo está activa con proveedor wompi Y llaves mínimas.
-const PAGOS_WOMPI_ACTIVO =
-  PAYMENTS_PROVIDER === 'wompi' &&
-  Boolean(WOMPI_PUBLIC_KEY && WOMPI_INTEGRITY_SECRET);
-
 module.exports = {
   PORT,
   HOST,
@@ -135,16 +104,4 @@ module.exports = {
   DB_FILE,
   cookieSecure,
   RAIZ,
-  // Pagos
-  PAYMENTS_PROVIDER,
-  WOMPI_ENV,
-  WOMPI_PUBLIC_KEY,
-  WOMPI_PRIVATE_KEY,
-  WOMPI_INTEGRITY_SECRET,
-  WOMPI_EVENTS_SECRET,
-  APP_PUBLIC_BASE_URL,
-  PAGOS_TIMEOUT_MINUTOS,
-  WOMPI_API_BASE,
-  WOMPI_CHECKOUT_BASE,
-  PAGOS_WOMPI_ACTIVO,
 };

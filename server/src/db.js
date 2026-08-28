@@ -96,35 +96,13 @@ function crearEsquema(d) {
       periodo         TEXT NOT NULL,
       valor           INTEGER NOT NULL,
       estado          TEXT NOT NULL DEFAULT 'Pendiente' CHECK (estado IN ('Pendiente','Pagado')),
-      metodo          TEXT NOT NULL DEFAULT 'PSE',
+      metodo          TEXT NOT NULL DEFAULT 'Manual',
       referencia      TEXT,
       fecha_pago      INTEGER,
       registrado_por  INTEGER,
       UNIQUE(unidad_id, periodo)
     );
     CREATE INDEX IF NOT EXISTS idx_pagos_estado ON pagos(estado, periodo);
-
-    -- Ciclo de vida de pagos con pasarela real (Fase F1, ver deploy/PSE-INTEGRACION.md).
-    -- La cuota en la tabla pagos permanece 'Pendiente' hasta que el webhook
-    -- Aprobado la marca 'Pagado' de forma atomica; aqui vive el estado intermedio.
-    CREATE TABLE IF NOT EXISTS transacciones_pse (
-      id               INTEGER PRIMARY KEY AUTOINCREMENT,
-      pago_id          INTEGER NOT NULL REFERENCES pagos(id),
-      unidad_id        INTEGER NOT NULL REFERENCES unidades(id),
-      periodo          TEXT NOT NULL,
-      referencia       TEXT NOT NULL UNIQUE,
-      monto_centavos   INTEGER NOT NULL,
-      moneda           TEXT NOT NULL DEFAULT 'COP',
-      pasarela         TEXT NOT NULL DEFAULT 'wompi',
-      txn_id_pasarela  TEXT,
-      estado           TEXT NOT NULL DEFAULT 'Creada' CHECK (estado IN ('Creada','Pendiente','Aprobada','Rechazada','Anulada','Expirada')),
-      banco            TEXT,
-      raw_evento       TEXT,
-      creada_en        INTEGER NOT NULL,
-      actualizada_en   INTEGER NOT NULL
-    );
-    CREATE INDEX IF NOT EXISTS idx_txn_estado ON transacciones_pse(estado, creada_en);
-    CREATE INDEX IF NOT EXISTS idx_txn_pasarela ON transacciones_pse(txn_id_pasarela);
 
     CREATE TABLE IF NOT EXISTS visitas (
       id             INTEGER PRIMARY KEY AUTOINCREMENT,

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Panel de administración · TuConjunto</title>
-  <meta name="description" content="Panel de administración de TuConjunto: recaudo, cartera, pagos PSE, reservas, PQRS y comunicados del Conjunto Residencial Altos del Bosque.">
+  <meta name="description" content="Panel de administración de TuConjunto: cartera, reservas, PQRS y comunicados del Conjunto Residencial Altos del Bosque.">
   <script>if(localStorage.getItem("tc-theme")==="dark")document.documentElement.classList.add("dark");</script>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏢</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -69,12 +69,6 @@
           <a href="#" id="nav-pqrs" class="flex items-center gap-3 rounded-r-lg border-l-2 border-transparent px-3 py-2 text-slate-300 transition hover:bg-white/5 hover:text-white">
             <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
             PQRS
-          </a>
-        </li>
-        <li>
-          <a href="#" id="nav-pagos" class="flex items-center gap-3 rounded-r-lg border-l-2 border-transparent px-3 py-2 text-slate-300 transition hover:bg-white/5 hover:text-white">
-            <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z"/></svg>
-            Pagos
           </a>
         </li>
         <li>
@@ -147,7 +141,6 @@
               <button type="button" role="menuitem" data-crear="reserva" class="flex w-full items-center gap-2.5 px-4 py-2 text-left text-sm font-medium text-slate-700 transition hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"><span class="h-1.5 w-1.5 shrink-0 rounded-full bg-violet-500" aria-hidden="true"></span>Nueva reserva manual</button>
               <button type="button" role="menuitem" data-crear="comunicado" class="flex w-full items-center gap-2.5 px-4 py-2 text-left text-sm font-medium text-slate-700 transition hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"><span class="h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500" aria-hidden="true"></span>Nuevo comunicado</button>
               <button type="button" role="menuitem" data-crear="asamblea" class="flex w-full items-center gap-2.5 px-4 py-2 text-left text-sm font-medium text-slate-700 transition hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"><span class="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" aria-hidden="true"></span>Agendar asamblea</button>
-              <button type="button" role="menuitem" data-crear="pago" class="flex w-full items-center gap-2.5 px-4 py-2 text-left text-sm font-medium text-slate-700 transition hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"><span class="h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" aria-hidden="true"></span>Asignar pago</button>
               <button type="button" role="menuitem" data-crear="documento" class="flex w-full items-center gap-2.5 px-4 py-2 text-left text-sm font-medium text-slate-700 transition hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"><span class="h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500" aria-hidden="true"></span>Publicar documento</button>
             </div>
           </div>
@@ -802,62 +795,6 @@
         </section>
       </section>
 
-      <section id="vista-pagos" class="hidden" aria-label="Vista de pagos entrantes">
-        <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <h1 class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl dark:text-slate-100">Pagos entrantes</h1>
-            <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Recaudo en línea PSE del período · información de solo lectura</p>
-          </div>
-          <span class="inline-flex shrink-0 items-center rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-500 dark:bg-slate-800 dark:text-slate-400">Solo lectura · conciliación automática</span>
-        </div>
-
-        <div class="mb-6 grid gap-4 sm:grid-cols-3">
-          <article class="card-lift rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900 dark:shadow-black/30">
-            <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Recibido en agosto</p>
-            <p id="kpi-recibido" class="mt-2 text-2xl font-bold tracking-tight text-emerald-600 dark:text-emerald-400">$ 0</p>
-          </article>
-          <article class="card-lift rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900 dark:shadow-black/30">
-            <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Pendiente de pago</p>
-            <p id="kpi-pendiente" class="mt-2 text-2xl font-bold tracking-tight text-amber-600 dark:text-amber-400">$ 0</p>
-          </article>
-          <article class="card-lift rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900 dark:shadow-black/30">
-            <p class="text-sm font-medium text-slate-500 dark:text-slate-400">% recaudo</p>
-            <p id="kpi-porcentaje" class="mt-2 text-2xl font-bold tracking-tight text-brand-600 dark:text-brand-400">0 %</p>
-            <div class="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800" role="progressbar" aria-label="Porcentaje recaudado del período" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <div id="kpi-barra" class="h-full w-0 rounded-full bg-brand-500 transition-all duration-500"></div>
-            </div>
-          </article>
-        </div>
-
-        <section class="card-lift rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 dark:border-slate-800 dark:bg-slate-900 dark:shadow-black/30" aria-labelledby="titulo-movimientos">
-          <div class="flex flex-wrap items-center justify-between gap-3">
-            <h2 id="titulo-movimientos" class="text-base font-semibold text-slate-900 dark:text-slate-100">Movimientos del período</h2>
-            <span id="pagos-conteo" class="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-500 dark:bg-slate-800 dark:text-slate-400">0 movimientos</span>
-          </div>
-          <div class="mt-4 overflow-x-auto">
-            <table class="w-full min-w-[820px] text-left text-sm">
-              <thead>
-                <tr class="border-b border-slate-200 dark:border-slate-800">
-                  <th scope="col" class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Unidad</th>
-                  <th scope="col" class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Concepto</th>
-                  <th scope="col" class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Periodo</th>
-                  <th scope="col" class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Valor</th>
-                  <th scope="col" class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Método</th>
-                  <th scope="col" class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Estado</th>
-                  <th scope="col" class="px-3 py-2.5 text-right text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Fecha pago</th>
-                </tr>
-              </thead>
-              <tbody id="pagos-tbody" class="divide-y divide-slate-100 dark:divide-slate-800"></tbody>
-            </table>
-          </div>
-        </section>
-
-        <p class="mt-3 flex items-center justify-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
-          <svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
-          Los pagos PSE se concilian automáticamente con el banco en producción.
-        </p>
-      </section>
-
       <section id="vista-seguridad" class="hidden" aria-label="Vista de seguridad y accesos">
         <div class="mb-6">
           <h1 class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl dark:text-slate-100">Seguridad y acceso</h1>
@@ -1219,62 +1156,6 @@
     </div>
   </div>
 
-  <div id="modal-asignar" class="fixed inset-0 z-[70] hidden" role="dialog" aria-modal="true" aria-labelledby="modal-ap-titulo" aria-describedby="modal-ap-desc">
-    <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" data-cerrar-modal aria-hidden="true"></div>
-    <div class="pointer-events-none absolute inset-0 overflow-y-auto">
-      <div class="flex min-h-full items-start justify-center p-4 sm:items-center">
-        <form id="form-ap" novalidate class="pointer-events-auto w-full max-w-md rounded-2xl border border-slate-200 bg-white shadow-2xl dark:border-slate-800 dark:bg-slate-900">
-          <div class="p-5 sm:p-6">
-            <div class="flex items-start justify-between gap-3">
-              <div>
-                <h3 id="modal-ap-titulo" class="text-lg font-semibold text-slate-900 dark:text-slate-100">Asignar pago</h3>
-                <p id="modal-ap-desc" class="mt-0.5 text-xs text-slate-500 dark:text-slate-400">Registra la cuota del periodo a un copropietario</p>
-              </div>
-              <button type="button" data-cerrar-modal class="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-300" aria-label="Cerrar ventana de asignación de pago">
-                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
-              </button>
-            </div>
-            <div id="ap-form" class="mt-4 grid gap-4">
-              <div class="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label for="ap-doc" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Documento del copropietario *</label>
-                  <input type="text" id="ap-doc" required inputmode="numeric" autocomplete="off" placeholder="Ej: 1020004" class="mt-1.5 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder-slate-500">
-                </div>
-                <div>
-                  <label for="ap-periodo" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Periodo *</label>
-                  <input type="month" id="ap-periodo" required value="2026-08" class="mt-1.5 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
-                </div>
-              </div>
-              <div class="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label for="ap-concepto" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Concepto</label>
-                  <input type="text" id="ap-concepto" value="Administración" class="mt-1.5 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder-slate-500">
-                </div>
-                <div>
-                  <label for="ap-valor" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Valor (COP) *</label>
-                  <input type="number" id="ap-valor" required min="1" step="500" value="250000" class="mt-1.5 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm tabular-nums text-slate-900 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
-                </div>
-              </div>
-              <button type="button" data-cerrar-modal class="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800">Cancelar</button>
-              <button type="submit" class="w-full rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 dark:shadow-none">Asignar cuota</button>
-            </div>
-            <div id="ap-invita" class="mt-4 hidden">
-              <div class="rounded-xl border border-amber-200 bg-amber-50 p-4 dark:border-amber-500/30 dark:bg-amber-500/10">
-                <p class="text-sm font-semibold text-amber-800 dark:text-amber-300">No existe usuario con ese documento</p>
-                <p id="ap-invita-doc" class="mt-1 break-all text-xs font-medium text-amber-700 dark:text-amber-400">Documento —</p>
-                <p class="mt-1 text-xs text-amber-700 dark:text-amber-400">Puedes invitarlo ahora como copropietario y continuar después con la asignación.</p>
-                <div class="mt-3 flex flex-wrap gap-2">
-                  <button type="button" id="ap-invitar-btn" class="inline-flex items-center gap-1.5 rounded-lg bg-amber-600 px-3 py-2 text-xs font-semibold text-white transition hover:bg-amber-500">Invitar ahora</button>
-                  <button type="button" data-cerrar-modal class="rounded-lg border border-amber-300 px-3 py-2 text-xs font-semibold text-amber-700 transition hover:bg-amber-100 dark:border-amber-500/40 dark:text-amber-300 dark:hover:bg-amber-500/10">Cerrar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
   <div id="modal-unidad" class="fixed inset-0 z-[70] hidden" role="dialog" aria-modal="true" aria-labelledby="modal-un-titulo" aria-describedby="modal-un-desc">
     <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" data-cerrar-modal aria-hidden="true"></div>
     <div class="pointer-events-none absolute inset-0 overflow-y-auto">
@@ -1402,7 +1283,6 @@
       comunidad:{vista:"vista-comunidad",nav:"nav-comunidad",titulo:"Gestión de comunidad",sub:"Copropietarios, residentes y equipo de administración · 120 unidades"},
       reservas:{vista:"vista-reservas",nav:"nav-reservas",titulo:"Reservas de zonas comunes",sub:"Solicitudes de los residentes · aprueba o rechaza en un clic"},
       pqrs:{vista:"vista-pqrs",nav:"nav-pqrs",titulo:"PQRS de la copropiedad",sub:"Peticiones, quejas, reclamos y sugerencias de los residentes"},
-      pagos:{vista:"vista-pagos",nav:"nav-pagos",titulo:"Pagos entrantes",sub:"Recaudo en línea PSE del período · información de solo lectura"},
       seguridad:{vista:"vista-seguridad",nav:"nav-seguridad",titulo:"Seguridad y acceso",sub:"Tu contraseña, sesión y parámetros globales de la copropiedad"}
     };
     var tcVistaActual="resumen";
@@ -1972,40 +1852,6 @@
         .catch(function(err){btn.disabled=false;showToast((err&&err.message)?err.message:"No se pudo actualizar el ticket");});
     });
 
-    function tcRenderPagos(){
-      var k=state.kpis;
-      var kr=document.getElementById("kpi-recibido");
-      if(kr&&k)kr.textContent=tcFormatCOP(k.recaudado_mes);
-      var kp=document.getElementById("kpi-pendiente");
-      if(kp&&k)kp.textContent=tcFormatCOP(k.pendiente_mes);
-      var pct=k?tcNumero(k.pct_recaudo):0;
-      var kc=document.getElementById("kpi-porcentaje");
-      if(kc)kc.textContent=pct+" %";
-      var barra=document.getElementById("kpi-barra");
-      if(barra)barra.style.width=pct+"%";
-      var progreso=barra&&barra.parentElement?barra.parentElement:null;
-      if(progreso)progreso.setAttribute("aria-valuenow",String(pct));
-      var tbody=document.getElementById("pagos-tbody");
-      if(!tbody)return;
-      var lista=state.pagos;
-      var conteo=document.getElementById("pagos-conteo");
-      if(conteo)conteo.textContent=lista.length+(lista.length===1?" movimiento":" movimientos");
-      if(!lista.length){tbody.innerHTML=tcVacio(7);return;}
-      tbody.innerHTML=lista.map(function(g){
-        var estadoRaw=String(g.estado||"").toLowerCase();
-        var pagado=estadoRaw.indexOf("pag")>-1&&estadoRaw.indexOf("pend")<0;
-        var metodo=g.metodo||"";
-        return '<tr class="table-row-hover">'
-          +'<td class="whitespace-nowrap px-3 py-3 font-semibold text-slate-900 dark:text-slate-100">'+tcEsc(tcCampo(g,["unidad","unidad_id"],"—"))+'</td>'
-          +'<td class="whitespace-nowrap px-3 py-3 text-slate-600 dark:text-slate-400">'+tcEsc(tcCampo(g,["concepto","descripcion"],"Cuota de administración"))+'</td>'
-          +'<td class="whitespace-nowrap px-3 py-3 capitalize text-slate-600 dark:text-slate-400">'+tcEsc(g.periodo||"—")+'</td>'
-          +'<td class="whitespace-nowrap px-3 py-3 font-medium tabular-nums text-slate-900 dark:text-slate-100">'+tcEsc(tcFormatCOP(tcCampo(g,["valor","monto","importe"],0)))+'</td>'
-          +'<td class="whitespace-nowrap px-3 py-3">'+(metodo?'<span class="inline-flex items-center rounded-full bg-sky-50 px-2 py-0.5 text-xs font-semibold text-sky-700 ring-1 ring-sky-600/20 dark:bg-sky-500/10 dark:text-sky-300 dark:ring-sky-500/30">'+tcEsc(metodo)+'</span>':'<span class="text-xs text-slate-400 dark:text-slate-500">—</span>')+'</td>'
-          +'<td class="whitespace-nowrap px-3 py-3">'+tcPill(pagado?"Pagado":"Pendiente",pagado?"emerald":"amber")+'</td>'
-          +'<td class="whitespace-nowrap px-3 py-3 text-right text-xs text-slate-500 dark:text-slate-400">'+tcEsc(tcFechaPago(g.fecha_pago||g.pagado_en||g.fecha||g.creado_en))+'</td></tr>';
-      }).join("");
-    }
-
     var modalInvitar=document.getElementById("modal-invitar");
     var modalTicket=document.getElementById("modal-ticket");
     function tcSyncOverflow(){
@@ -2090,20 +1936,6 @@
         showToast(temp?("Password temporal: "+temp):("Usuario creado · Invitación enviada a "+email),!!temp);
         await tcRecargar(["usuarios","cartera"]);
         tcRenderUsuarios();
-        if(tcPagoPendienteDoc){
-          var docu=tcPagoPendienteDoc;
-          tcPagoPendienteDoc=null;
-          showToast("Usuario creado · Continúa con la asignación del pago");
-          await tcRecargar(["pagos"]);
-          tcRenderPagos();
-          var apd=document.getElementById("ap-doc");
-          if(apd)apd.value=docu;
-          var apf=document.getElementById("ap-form");
-          if(apf)apf.classList.remove("hidden");
-          var api2=document.getElementById("ap-invita");
-          if(api2)api2.classList.add("hidden");
-          tcAbrirGen(modalAp,"ap-periodo");
-        }
       }catch(err){
         showToast((err&&err.message)?err.message:"No se pudo crear el usuario");
       }finally{
@@ -2209,11 +2041,10 @@
     var modalCom=document.getElementById("modal-comunicado");
     var modalDoc=document.getElementById("modal-documento");
     var modalAsm=document.getElementById("modal-asamblea");
-    var modalAp=document.getElementById("modal-asignar");
     var modalUn=document.getElementById("modal-unidad");
     var modalObli=document.getElementById("modal-obligatoria");
-    TODOS_MODALES=[modalInvitar,modalTicket,modalReserva,modalCom,modalAsm,modalAp,modalUn,modalObli];
-    [modalReserva,modalCom,modalAsm,modalAp,modalUn].forEach(function(m){
+    TODOS_MODALES=[modalInvitar,modalTicket,modalReserva,modalCom,modalAsm,modalUn,modalObli];
+    [modalReserva,modalCom,modalAsm,modalUn].forEach(function(m){
       if(m)m.querySelectorAll("[data-cerrar-modal]").forEach(function(el){el.addEventListener("click",function(){tcCerrarGen(m);});});
     });
 
@@ -2550,67 +2381,6 @@
       }
     });
 
-    var tcPagoPendienteDoc=null;
-    function tcAbrirAsignar(){
-      var f=document.getElementById("form-ap");
-      if(f)f.reset();
-      var periodo=document.getElementById("ap-periodo");
-      if(periodo)periodo.value="2026-08";
-      var valor=document.getElementById("ap-valor");
-      if(valor)valor.value="250000";
-      var concepto=document.getElementById("ap-concepto");
-      if(concepto)concepto.value="Administración";
-      var af=document.getElementById("ap-form");
-      if(af)af.classList.remove("hidden");
-      var inv=document.getElementById("ap-invita");
-      if(inv)inv.classList.add("hidden");
-      tcAbrirGen(modalAp,"ap-doc");
-    }
-    document.getElementById("form-ap").addEventListener("submit",async function(e){
-      e.preventDefault();
-      if(!e.target.checkValidity()){e.target.reportValidity();return;}
-      var doc=document.getElementById("ap-doc").value.trim();
-      var periodo=document.getElementById("ap-periodo").value;
-      var concepto=document.getElementById("ap-concepto").value.trim()||"Administración";
-      var valor=Number(document.getElementById("ap-valor").value)||250000;
-      if(!doc){showToast("Ingresa el documento del copropietario");return;}
-      var cuerpo={documento:doc,periodo:periodo,concepto:concepto,valor:valor};
-      var boton=e.target.querySelector('button[type="submit"]');
-      boton.disabled=true;
-      try{
-        var resp=await TC.api("/pagos/asignar",{method:"POST",body:cuerpo});
-        var objetivo=(resp&&typeof resp==="object")?(resp.usuario||resp):{};
-        var u=tcUsuarioPorDoc(doc);
-        var nom=objetivo.nombre||objetivo.usuario_nombre||(u?u.nombre:"copropietario "+doc);
-        var uni=objetivo.unidad||objetivo.unidad_id||(u?u.unidad_id:"—");
-        tcCerrarGen(modalAp);
-        showToast("Cuota asignada a "+nom+" ("+uni+")");
-        await tcRecargar(["pagos","kpis"]);
-        tcRenderPagos();tcRenderKpis();
-      }catch(err){
-        var m=String((err&&err.message)||"");
-        var noRegistrado=!!(err&&err.status===404&&(m.indexOf("USUARIO_NO_REGISTRADO")>-1||/no (existe|se encontr).{0,30}(usuario|documento)|usuario no (existe|registrado|encontrado)/i.test(m)));
-        if(noRegistrado){
-          document.getElementById("ap-form").classList.add("hidden");
-          var docEcho=document.getElementById("ap-invita-doc");
-          if(docEcho)docEcho.textContent="Documento "+doc+" · sugerencia: invitar";
-          document.getElementById("ap-invita").classList.remove("hidden");
-        }else{
-          showToast(m||"No se pudo asignar el pago");
-        }
-      }finally{
-        boton.disabled=false;
-      }
-    });
-    var apInvitarBtn=document.getElementById("ap-invitar-btn");
-    if(apInvitarBtn)apInvitarBtn.addEventListener("click",function(){
-      tcPagoPendienteDoc=document.getElementById("ap-doc").value.trim();
-      tcCerrarGen(modalAp);
-      var docInp=document.getElementById("inv-doc-numero");
-      if(docInp)docInp.value=tcPagoPendienteDoc;
-      tcAbrirModal();
-    });
-
     var btnAgregarUnidad=document.getElementById("btn-agregar-unidad");
     if(btnAgregarUnidad)btnAgregarUnidad.addEventListener("click",function(){
       var f=document.getElementById("form-un");
@@ -2764,7 +2534,7 @@
       tcSyncUnidad();
       await tcCargarConfig();
       await tcRecargar(null);
-      tcRenderUsuarios();tcRenderAlertas();tcRenderReservas();tcRenderProximas();tcRenderPqrs();tcRenderPqrsRecientes();tcRenderPagos();tcRenderKpis();tcRenderStats();tcRenderUnidades();tcPoblarZonas();
+      tcRenderUsuarios();tcRenderAlertas();tcRenderReservas();tcRenderProximas();tcRenderPqrs();tcRenderPqrsRecientes();tcRenderKpis();tcRenderStats();tcRenderUnidades();tcPoblarZonas();
     })();
   </script>
 </body>

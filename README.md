@@ -38,9 +38,9 @@ Credenciales demo (todas `demo1234`, solo tras `npm run seed`):
 ## Módulos operativos
 
 - **Auth**: login real, sesión 8h, logout, bloqueo anti fuerza bruta
-- **Residentes**: pago PSE simulado, reservas de zonas comunes, PQRS, botón de pánico
+- **Residentes**: estados de cuenta, recordatorios de pago, reservas de zonas comunes, PQRS, botón de pánico
 - **Portería**: registro de visitantes (foto rostro/cédula), entradas/salidas, recepción de alertas pánico en vivo
-- **Administración**: KPIs en vivo, comunidad/usuarios/roles, aprobación de reservas, gestión PQRS, pagos y cartera, comunicados, documentos, asambleas con votación, logo del conjunto
+- **Administración**: KPIs en vivo, comunidad/usuarios/roles, aprobación de reservas, gestión PQRS, cartera y cobros, comunicados, documentos, asambleas con votación, logo del conjunto
 - **Landing comercial**: catálogo, planes, wizard de suscripción (trial 14 días) que registra leads en la BD
 
 ## Estructura
@@ -60,8 +60,6 @@ tu-conjunto/
 
 Nota: `demo/` y la raíz contienen los prototipos originales; la aplicación funcional vive en `server/public/`.
 
-## Despliegue e integración de pagos
+## Despliegue
 
 - **VPS**: ver `deploy/DEPLOY.md` (script automático con nginx + TLS + systemd endurecido + firewall + backups).
-- **Pagos PSE reales**: el simulador actual está listo para enlazarse con Wompi
-  (recomendada) u otra pasarela. Plan por fases y variables de entorno en `deploy/PSE-INTEGRACION.md`.

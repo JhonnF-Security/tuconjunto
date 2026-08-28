@@ -103,7 +103,6 @@ app.use('/api/usuarios', require('./routes/usuarios'));
 app.use('/api/zonas', require('./routes/zonas'));
 app.use('/api/reservas', require('./routes/reservas'));
 app.use('/api/pqrs', require('./routes/pqrs'));
-app.use('/api/pagos', require('./routes/pagos'));
 app.use('/api/cartera', require('./routes/cartera'));
 app.use('/api/visitas', require('./routes/visitas'));
 app.use('/api/alertas', require('./routes/alertas'));

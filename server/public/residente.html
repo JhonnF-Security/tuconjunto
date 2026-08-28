@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mi portal · TuConjunto</title>
-  <meta name="description" content="Portal del residente de TuConjunto: paga tu cuota de administración con PSE, reserva zonas comunes, crea solicitudes PQRS y descarga documentos del Conjunto Residencial Altos del Bosque.">
+  <meta name="description" content="Portal del residente de TuConjunto: reserva zonas comunes, crea solicitudes PQRS y descarga documentos del Conjunto Residencial Altos del Bosque.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏢</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,7 +28,6 @@
 
         <ul class="hidden items-center gap-1 text-sm font-medium md:flex">
           <li><a href="#" aria-current="page" class="rounded-lg bg-brand-50 dark:bg-brand-500/10 px-3 py-2 text-brand-600 dark:text-brand-300">Inicio</a></li>
-          <li><a href="#pagos" class="rounded-lg px-3 py-2 text-slate-600 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100">Pagos</a></li>
           <li><a href="#reservas" class="rounded-lg px-3 py-2 text-slate-600 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100">Reservas</a></li>
           <li><a href="#soporte" class="rounded-lg px-3 py-2 text-slate-600 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100">Soporte</a></li>
           <li><a href="#documentos" class="rounded-lg px-3 py-2 text-slate-600 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100">Documentos</a></li>
@@ -59,7 +58,6 @@
       <div class="hidden pb-4 peer-checked:block md:hidden md:peer-checked:hidden">
         <ul class="space-y-1 pt-2 text-sm font-medium">
           <li><a href="#" aria-current="page" class="block rounded-lg bg-brand-50 dark:bg-brand-500/10 px-3 py-2.5 text-brand-600 dark:text-brand-300">Inicio</a></li>
-          <li><a href="#pagos" class="block rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-300 transition hover:bg-slate-100 dark:hover:bg-slate-800">Pagos</a></li>
           <li><a href="#reservas" class="block rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-300 transition hover:bg-slate-100 dark:hover:bg-slate-800">Reservas</a></li>
           <li><a href="#soporte" class="block rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-300 transition hover:bg-slate-100 dark:hover:bg-slate-800">Soporte</a></li>
           <li><a href="#seguridad" class="block rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-300 transition hover:bg-slate-100 dark:hover:bg-slate-800">Mi seguridad</a></li>
@@ -87,81 +85,6 @@
           <svg id="pill-hero-mora" class="hidden h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           <span id="pill-hero-texto">Cargando…</span>
         </span>
-      </div>
-    </section>
-
-    <section id="pagos" class="scroll-mt-24" aria-labelledby="titulo-pagos">
-      <div>
-        <h2 id="titulo-pagos" class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-2xl">Estado de cuenta</h2>
-        <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Consulta tus cuotas y paga en línea con PSE.</p>
-      </div>
-      <div class="mt-5 grid gap-5 lg:grid-cols-3">
-
-        <article id="card-cuota" class="rounded-xl bg-white dark:bg-slate-900 p-6 shadow-sm dark:shadow-black/40 ring-2 ring-brand-500/30 lg:col-span-1">
-          <div class="flex items-start justify-between gap-2">
-            <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Cuota de administración · Agosto 2026</h3>
-            <span id="pill-pagado" class="hidden shrink-0 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-700 ring-1 ring-inset ring-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-300 dark:ring-emerald-500/30">Pagado el <span id="pill-pagado-fecha"></span></span>
-          </div>
-          <p class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100"><span id="cuota-monto">$0</span><span class="ml-1 align-middle text-sm font-semibold text-slate-400 dark:text-slate-500">COP</span></p>
-          <dl class="mt-4 space-y-1.5 border-b border-dashed border-slate-200 dark:border-slate-800 pb-4 text-sm">
-            <div class="flex justify-between text-slate-600 dark:text-slate-400"><dt>Administración</dt><dd class="font-medium text-slate-800 dark:text-slate-100">$245.000</dd></div>
-            <div class="flex justify-between text-slate-600 dark:text-slate-400"><dt>Fondo reserva</dt><dd class="font-medium text-slate-800 dark:text-slate-100">$40.000</dd></div>
-          </dl>
-          <p class="mt-3 flex justify-between text-sm">
-            <span class="text-slate-500 dark:text-slate-400">Fecha límite</span>
-            <span class="font-medium text-amber-600 dark:text-amber-400">Vence el 5 de sep</span>
-          </p>
-          <button type="button" id="btn-pagar" class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600">
-            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"/></svg>
-            Pagar con PSE
-          </button>
-          <p class="mt-3 text-center text-xs text-slate-500 dark:text-slate-400">Débito automático disponible · <a href="#" class="font-semibold text-brand-600 dark:text-brand-300 transition hover:text-brand-700 dark:hover:text-brand-200 hover:underline">Activarlo</a></p>
-          <p class="mt-4 flex items-center justify-center gap-1.5 border-t border-slate-100 dark:border-slate-800 pt-4 text-[11px] font-medium text-slate-500 dark:text-slate-400">
-            <svg class="h-4 w-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
-            Pago en línea seguro · PSE
-          </p>
-        </article>
-
-        <article class="card-lift rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm dark:shadow-black/40">
-          <div class="flex items-center justify-between gap-3">
-            <h3 class="text-sm font-semibold text-slate-900 dark:text-slate-100">Último pago</h3>
-            <span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 dark:bg-emerald-500/10 px-2.5 py-0.5 text-[11px] font-medium text-emerald-700 dark:text-emerald-300 ring-1 ring-inset ring-emerald-200 dark:ring-emerald-500/30">Pagado</span>
-          </div>
-          <p id="ultimo-periodo" class="mt-5 text-xs font-medium uppercase tracking-wider text-slate-400 dark:text-slate-500">—</p>
-          <p class="mt-1 text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100"><span id="ultimo-monto">$0</span></p>
-          <p id="ultimo-detalle" class="mt-1 text-xs text-slate-500 dark:text-slate-400">—</p>
-          <div class="mt-5 border-t border-dashed border-slate-200 dark:border-slate-800 pt-4">
-            <a href="#" class="inline-flex items-center gap-1.5 text-sm font-medium text-brand-600 dark:text-brand-300 transition hover:text-brand-700 dark:hover:text-brand-200 hover:underline">
-              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
-              Descargar recibo
-            </a>
-          </div>
-        </article>
-
-        <article class="card-lift rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm dark:shadow-black/40">
-          <h3 class="text-sm font-semibold text-slate-900 dark:text-slate-100">Resumen anual 2026</h3>
-          <ul class="mt-5 space-y-4 text-sm">
-            <li>
-              <div class="flex items-center justify-between">
-                <span class="text-slate-600 dark:text-slate-400">Cuotas pagadas</span>
-                <span id="resumen-pagadas" class="font-semibold text-slate-900 dark:text-slate-100">0/12</span>
-              </div>
-              <div id="resumen-barra" class="mt-2 h-1.5 rounded-full bg-slate-100 dark:bg-slate-800" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Progreso de cuotas pagadas en 2026">
-                <div id="resumen-relleno" class="h-full rounded-full bg-brand-500" style="width:0%"></div>
-              </div>
-              <p id="resumen-nota" class="mt-1.5 text-xs text-slate-400 dark:text-slate-500">Cargando…</p>
-            </li>
-            <li class="flex items-center gap-2">
-              <svg class="h-5 w-5 shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              <span class="text-slate-700 dark:text-slate-300">Sin intereses de mora</span>
-            </li>
-            <li class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-4">
-              <span class="text-slate-600 dark:text-slate-400">Saldo a favor</span>
-              <span class="font-semibold text-slate-900 dark:text-slate-100">$0</span>
-            </li>
-          </ul>
-        </article>
-
       </div>
     </section>
 
@@ -440,40 +363,6 @@
 
   <div id="toast-zone" class="pointer-events-none fixed inset-x-0 bottom-6 z-50 flex flex-col items-start gap-2 px-4 sm:px-6"></div>
 
-  <div id="modal-pago" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-pago" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/70 p-4 backdrop-blur-sm">
-    <div class="w-full max-w-md rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-2xl">
-      <div class="flex items-start justify-between gap-3">
-        <div class="flex items-center gap-2.5">
-          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sky-600 text-[11px] font-extrabold tracking-tight text-white" aria-hidden="true">PSE</span>
-          <div>
-            <h3 id="titulo-modal-pago" class="text-base font-bold text-slate-900 dark:text-slate-100">PSE</h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400">Pagos Seguros en Línea</p>
-          </div>
-        </div>
-        <button type="button" data-cerrar-modal aria-label="Cerrar" class="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-600 dark:hover:text-slate-300">
-          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
-      </div>
-      <form id="form-pago" class="mt-5 space-y-4">
-        <div>
-          <label for="pago-banco" class="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Banco</label>
-          <select id="pago-banco" name="banco" required data-autofocus class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm transition focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
-            <option value="">Selecciona tu banco</option>
-            <option value="Bancolombia">Bancolombia</option>
-            <option value="Davivienda">Davivienda</option>
-            <option value="BBVA">BBVA</option>
-            <option value="Nequi">Nequi</option>
-          </select>
-        </div>
-        <dl id="pago-resumen" class="space-y-1.5 rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm dark:border-slate-700 dark:bg-slate-800"></dl>
-        <div class="flex flex-col-reverse gap-2.5 sm:flex-row">
-          <button type="button" data-cerrar-modal class="flex flex-1 items-center justify-center rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-slate-100">Cancelar</button>
-          <button type="submit" id="btn-confirmar-pago" class="flex flex-1 items-center justify-center gap-2 rounded-xl bg-brand-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600">Pagar</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
   <div id="modal-reserva" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-reserva" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/70 p-4 backdrop-blur-sm">
     <div class="w-full max-w-md rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-2xl">
       <div class="flex items-start justify-between gap-3">
@@ -656,7 +545,6 @@
       let zonas = [];
       let zonaSeleccionada = null;
       let montoCuota = 0;
-      let procesandoPago = false;
       let enviandoReserva = false;
       let enviandoPqrs = false;
       let intervaloPanico = null;
@@ -742,11 +630,9 @@
         return (z && z.nombre) || r.zona_nombre || (r.zona && r.zona.nombre) || "Zona común";
       }
 
-      const modalPago = $("modal-pago");
       const modalReserva = $("modal-reserva");
       const modalPqrs = $("modal-pqrs");
-      const modales = [modalPago, modalReserva, modalPqrs];
-      const btnConfirmarPago = $("btn-confirmar-pago");
+      const modales = [modalReserva, modalPqrs];
 
       function abrirModal(modal) {
         modal.__origen = document.activeElement instanceof HTMLElement ? document.activeElement : null;
@@ -762,14 +648,13 @@
       }
       modales.forEach((modal) => {
         modal.addEventListener("click", (evento) => {
-          if (modal === modalPago && procesandoPago) return;
           if (evento.target === modal || evento.target.closest("[data-cerrar-modal]")) cerrarModal(modal);
         });
       });
       document.addEventListener("keydown", (evento) => {
         if (evento.key !== "Escape") return;
         const activo = modales.find((m) => !m.classList.contains("hidden"));
-        if (activo && !(activo === modalPago && procesandoPago)) cerrarModal(activo);
+        if (activo) cerrarModal(activo);
       });
 
       function renderSesion() {
@@ -783,53 +668,6 @@
         $("perfil-link").setAttribute("aria-label", `Ver perfil de ${nombre}`);
         $("caption-reservas").textContent = `Listado de reservas de ${nombre}`;
         $("panico-unidad").textContent = unidadTexto;
-      }
-
-      function renderPagos() {
-        const cuota = pagos.find((p) => p.periodo === PERIODO_ACTUAL && p.estado === "Pendiente") || pagos.find((p) => p.periodo === PERIODO_ACTUAL) || pagos.find((p) => p.estado === "Pendiente");
-        const pagadas = pagos.filter((p) => p.estado === "Pagado").sort((a, b) => new Date(b.fecha || 0) - new Date(a.fecha || 0));
-        const ultimo = pagadas[0];
-        const alDia = !cuota || cuota.estado === "Pagado";
-        const heroPill = $("pill-hero");
-        heroPill.className = alDia ? HERO_OK_CLASES : HERO_MORA_CLASES;
-        $("pill-hero-ok").classList.toggle("hidden", !alDia);
-        $("pill-hero-mora").classList.toggle("hidden", alDia);
-        $("pill-hero-texto").textContent = alDia ? "Cuenta al día" : `Cuota de ${(cuota ? etiquetaPeriodo(cuota.periodo) : "agosto").toLowerCase()} pendiente`;
-        const card = $("card-cuota");
-        const pillPagado = $("pill-pagado");
-        const btn = $("btn-pagar");
-        montoCuota = cuota ? cuota.valor || montoCuota : montoCuota;
-        $("cuota-monto").textContent = TC.formatCOP(cuota ? cuota.valor : montoCuota);
-        if (alDia) {
-          card.classList.remove("ring-brand-500/30");
-          card.classList.add("ring-emerald-500/40");
-          pillPagado.classList.remove("hidden");
-          $("pill-pagado-fecha").textContent = ultimo ? fmtInstante(ultimo.fecha) : "";
-          btn.disabled = true;
-          btn.title = "Ya registraste tu pago de este periodo";
-          btn.className = BTN_AL_DIA_CLASES;
-          btn.innerHTML = BTN_AL_DIA_HTML;
-        } else {
-          card.classList.add("ring-brand-500/30");
-          card.classList.remove("ring-emerald-500/40");
-          pillPagado.classList.add("hidden");
-          btn.disabled = false;
-          btn.removeAttribute("title");
-          btn.className = BTN_PAGAR_CLASES;
-          btn.innerHTML = BTN_PAGAR_HTML;
-        }
-        if (ultimo) {
-          $("ultimo-periodo").textContent = etiquetaPeriodo(ultimo.periodo);
-          $("ultimo-monto").textContent = TC.formatCOP(ultimo.valor);
-          $("ultimo-detalle").textContent = `Pagado el ${fmtDiaMes(ultimo.fecha)}${ultimo.referencia ? ` · Ref ${ultimo.referencia}` : ""}${ultimo.metodo ? ` con ${ultimo.metodo}` : ""}`;
-        } else {
-          $("ultimo-detalle").textContent = "Sin pagos registrados todavía";
-        }
-        const total = pagadas.length;
-        $("resumen-pagadas").textContent = `${total}/12`;
-        $("resumen-barra").setAttribute("aria-valuenow", String(Math.round((total / 12) * 100)));
-        $("resumen-relleno").style.width = Math.min(100, (total / 12) * 100) + "%";
-        $("resumen-nota").textContent = alDia ? "Cuotas al día en 2026" : "Tienes una cuota Pendiente de pago";
       }
 
       function renderReservas() {
@@ -1265,81 +1103,10 @@
         }, 30000);
       }
 
-      $("btn-pagar").addEventListener("click", () => {
-        const cuota = pagos.find((p) => p.periodo === PERIODO_ACTUAL && p.estado === "Pendiente") || pagos.find((p) => p.estado === "Pendiente");
-        if (!cuota) return;
-        montoCuota = cuota.valor || montoCuota;
-        $("pago-banco").value = "";
-        btnConfirmarPago.disabled = false;
-        btnConfirmarPago.textContent = `Pagar ${TC.formatCOP(montoCuota)}`;
-        const resumen = $("pago-resumen");
-        resumen.textContent = "";
-        [["Valor", `${TC.formatCOP(montoCuota)} COP`, true], ["Concepto", cuota.concepto || "Cuota de administración", false], ["Periodo", etiquetaPeriodo(cuota.periodo), false], ["Unidad", unidadTexto, false]].forEach(([clave, valor, fuerte]) => {
-          const fila = el("div", "flex justify-between gap-4");
-          fila.append(el("dt", "text-slate-500 dark:text-slate-400", clave));
-          fila.append(el("dd", (fuerte ? "font-semibold text-slate-900" : "font-medium text-slate-800") + " dark:text-slate-100", valor));
-          resumen.append(fila);
-        });
-        abrirModal(modalPago);
-      });
-
-      $("form-pago").addEventListener("submit", (evento) => {
-        evento.preventDefault();
-        if (procesandoPago) return;
-        procesandoPago = true;
-        btnConfirmarPago.disabled = true;
-        btnConfirmarPago.innerHTML = '<span class="inline-block h-4 w-4 animate-spin rounded-full border-2 border-white/40" style="border-top-color:#fff" aria-hidden="true"></span>Procesando…';
-        const restaurar = () => {
-          procesandoPago = false;
-          btnConfirmarPago.disabled = false;
-          btnConfirmarPago.textContent = `Pagar ${TC.formatCOP(montoCuota)}`;
-        };
-        // Flujo real (Wompi): iniciar → redirect al checkout firmado.
-        // Sin pasarela configurada (PROVEEDOR_NO_CONFIGURADO) cae al simulador.
-        TC.api("/pagos/pse/iniciar", { method: "POST", body: { periodo: PERIODO_ACTUAL } }).then((ini) => {
-          const url = ini && ini.checkout_url;
-          if (url) {
-            procesandoPago = false;
-            btnConfirmarPago.disabled = false;
-            btnConfirmarPago.textContent = "Ir al banco…";
-            cerrarModal(modalPago);
-            TC.toast("Redirigiendo al banco para completar el pago seguro…");
-            window.location.href = url;
-            return;
-          }
-          throw Object.assign(new Error("respuesta sin checkout"), { code: "SIN_CHECKOUT" });
-        }).catch((eIni) => {
-          if (!eIni || eIni.code !== "PROVEEDOR_NO_CONFIGURADO") {
-            restaurar();
-            TC.toast((eIni && eIni.message) || "No se pudo iniciar el pago", "error");
-            return;
-          }
-          TC.api("/pagos/pse", { method: "POST", body: { periodo: PERIODO_ACTUAL } }).then((p) => {
-          restaurar();
-          const pago = p && typeof p.pago === "object" ? p.pago : p;
-          const i = pagos.findIndex((x) => x.periodo === PERIODO_ACTUAL);
-          const nuevo = Object.assign({}, i >= 0 ? pagos[i] : { periodo: PERIODO_ACTUAL }, pago && typeof pago === "object" ? pago : {}, { estado: (pago && pago.estado) || "Pagado" });
-          if (i >= 0) pagos[i] = nuevo; else pagos.push(nuevo);
-          cerrarModal(modalPago);
-          renderPagos();
-          TC.toast(`Pago aprobado por PSE · Recibo ${(pago && pago.referencia) || ""}`);
-        }).catch((e) => {
-          restaurar();
-          if (e && e.status === 409) {
-            TC.toast(e.message || "Esta cuota ya estaba pagada", "warning");
-            recargarPagos();
-          } else {
-            TC.toast((e && e.message) || "No se pudo completar el pago", "error");
-          }
-          });
-        });
-      });
-
       function recargarPagos() {
         TC.api("/pagos").then((p) => {
           if (Array.isArray(p)) {
             pagos = p;
-            renderPagos();
           }
         }).catch(() => {});
       }
@@ -1441,13 +1208,11 @@
         const me = await TC.api("/auth/me");
         yo = me && me.usuario ? me.usuario : me;
         renderSesion();
-        const [p, r, q, z, asm] = await Promise.all([TC.api("/pagos"), TC.api("/reservas?mias=1"), TC.api("/pqrs"), TC.api("/zonas"), TC.api("/asambleas")]);
-        pagos = Array.isArray(p) ? p : [];
+        const [r, q, z, asm] = await Promise.all([TC.api("/reservas?mias=1"), TC.api("/pqrs"), TC.api("/zonas"), TC.api("/asambleas")]);
         reservas = Array.isArray(r) ? r : [];
         pqrs = Array.isArray(q) ? q : [];
         zonas = Array.isArray(z) ? z : [];
         asambleas = Array.isArray(asm) ? asm : [];
-        renderPagos();
         renderReservas();
         renderPqrs();
         renderZonas();
