@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tuconjunto-prod
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./server/data:/app/server/data
+      - ./server/.env:/app/server/.env:ro
+      - ./backups:/app/backups
+    environment:
+      - NODE_ENV=production
+      - PORT=8081
+      - HOST=0.0.0.0
+      - TRUST_PROXY=1
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8081/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+
+  # Optional: nginx reverse proxy with SSL
+  # nginx:
+  #   image: nginx:alpine
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./deploy/nginx.conf:/etc/nginx/nginx.conf:ro
+  #     - ./tls:/etc/nginx/tls:ro
+  #   depends_on:
+  #     - app
